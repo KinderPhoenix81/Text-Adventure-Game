@@ -1,0 +1,2 @@
+11-02-2025 13:41:53.680 DEBUG [textAdventure.LoggingExample] - Hello World
+11-02-2025 13:41:53.682 INFO  [textAdventure.LoggingExample] - Hello World [Info Message]
