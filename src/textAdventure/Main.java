@@ -10,6 +10,9 @@ public class Main {
 		
 		//Michael change
 		System.out.println("Michael was here.");
+		
+		//Justin
+		System.out.println("hi");
 
 	}
 
