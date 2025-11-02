@@ -7,6 +7,9 @@ public class Main {
 		
 		//Blake making a change
 		System.out.println("Blake was here.");
+		
+		//Michael change
+		System.out.println("Michael was here.");
 
 	}
 
