@@ -1,2 +1,2 @@
-/log4j2.xml
-/textAdventure/
+*.jar
+/lib/*
