@@ -13,6 +13,14 @@ public class Main {
 		
 		//Justin
 		System.out.println("hi");
+		
+		try {
+			//me
+		} catch (Exception ex) {
+			//these hands
+		} finally {
+			//go away
+		}
 
 	}
 
