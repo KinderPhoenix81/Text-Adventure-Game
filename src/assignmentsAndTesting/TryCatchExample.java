@@ -1,4 +1,4 @@
-package textAdventure;
+package assignmentsAndTesting;
 
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
@@ -17,9 +17,9 @@ public class TryCatchExample {
 			
 			//Debug
 			System.out.println("You did it");
-			log.info("You're number was " + num);
+			log.info("Your number was " + num);
 		} catch (java.util.InputMismatchException ex) {
-			//Display error
+			//Display errror
 			System.out.println("That's not a number:(");
 			log.error("Invalid Input", ex);
 		} finally {
