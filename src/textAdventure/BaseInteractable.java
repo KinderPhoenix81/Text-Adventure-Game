@@ -7,6 +7,11 @@ public abstract class BaseInteractable implements Interactable {
 	private String description;
 	private String lore;
 	
+	public BaseInteractable(String name, String desc, String lore) {
+		this.name = name;
+		this.description = desc;
+		this.lore = lore;
+	}
 	
 	//Override the behavior of the methods in the interface
 	@Override

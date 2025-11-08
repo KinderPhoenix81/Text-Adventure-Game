@@ -6,6 +6,16 @@ public class Pedestal extends BaseInteractable {
 	private Item displayedItem;
 	private Boolean pedestalHasItem;
 	
+	//Constructor for the pedestal
+	public Pedestal(String name, String desc, String lore, Item displayedItem) {
+		//Uses parent constructor
+		super(name, desc, lore);
+		
+		//Places an item on the pedestal upon start
+		this.displayedItem = displayedItem;
+		pedestalHasItem = true;
+	}
+	
 	//Getters for a pedestal
 	public Item getDisplayedItem() {
 		return displayedItem;
@@ -15,11 +25,13 @@ public class Pedestal extends BaseInteractable {
 		//Logic
 		//If there is no item on the pedestal
 		if(displayedItem.equals(null)) {
-			return false;
+			pedestalHasItem = false;
+			return pedestalHasItem;
 			
 			//If there is an item on the pedestal
 		} else {
-			return true;
+			pedestalHasItem = true;
+			return pedestalHasItem;
 		}
 	}
 	
