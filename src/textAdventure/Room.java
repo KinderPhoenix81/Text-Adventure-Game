@@ -8,7 +8,7 @@ public class Room {
 	private String name;
 	
 	//Used for the text prompt field in GameManagement, describes the environment
-	private String roomDescription;
+	private String description;
 	
 	//Used for the action prompt field in GameManagement, describes potential actions
 	private ArrayList<String> roomActions;
@@ -17,10 +17,15 @@ public class Room {
 	private ArrayList<BaseInteractable> interactableList;
 	private ArrayList<Item> itemList;
 	
+	//Empty Constructor
+	public Room() {
+		
+	}
+	
 	//Constructor
 	public Room(String name, String roomDesc, ArrayList<String> roomActions, ArrayList<BaseInteractable> interactableList, ArrayList<Item> itemList) {
 		this.name = name;
-		this.roomDescription = roomDesc;
+		this.description = roomDesc;
 		this.roomActions = roomActions;
 		this.interactableList = interactableList;
 		this.itemList = itemList;
@@ -65,7 +70,7 @@ public class Room {
 	}
 	
 	public String getRoomDesc() {
-		return roomDescription;
+		return description;
 	}
 	
 	public ArrayList<String> getRoomActions() {
@@ -80,5 +85,25 @@ public class Room {
 		return itemList;
 	}
 	
+	//Setters for fields
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setDesc(String desc) {
+		description = desc;
+	}
+	
+	public void setRoomActions(ArrayList<String> roomActions) {
+		this.roomActions = roomActions;
+	}
+	
+	public void setInteractableList(ArrayList<BaseInteractable> interactableList) {
+		this.interactableList = interactableList;
+	}
+	
+	public void setItemList(ArrayList<Item> itemList) {
+		this.itemList = itemList;
+	}
 	
 }

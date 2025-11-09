@@ -28,6 +28,10 @@ public class Item {
 		return description;
 	}
 	
+	public String getLore() {
+		return lore;
+	}
+	
 	public String getAction() {
 		return action;
 	}
