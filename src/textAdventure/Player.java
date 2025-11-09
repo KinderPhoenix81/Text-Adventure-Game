@@ -12,20 +12,13 @@ public class Player {
 	
 	//Constructor
 	public Player(String name) {
+		//Sets properties of the player
 		this.name = name;
 		inventory = new ArrayList<Item>();
 		health = 100;
 		
-		//Properties for the current room
-		ArrayList<Item> roomItems = new ArrayList<Item>();
-		ArrayList<BaseInteractable> roomInteractables = new ArrayList<BaseInteractable>();
-		
-		Door cryptDoor = new Door("Crypt Door", "Crypt Door Desc...", "Crypt Door Lore");
-		roomInteractables.add(cryptDoor);
-		
 		//Sets the player in the starting room, also creates the beginning room
-		currentRoom = new Room("Crypt Entrance", "Crypt Entrance Desc...", "Crypt Entrance Actions...",
-				roomInteractables, roomItems);
+		currentRoom = Room.createStartingRoom();
 	}
 	
 	//Getters for the player

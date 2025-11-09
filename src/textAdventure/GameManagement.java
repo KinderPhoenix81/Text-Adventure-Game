@@ -35,12 +35,21 @@ public class GameManagement {
 	}
 	
 	//Setter for action prompt
-	public void setActionPrompt(String prompt) {
-		actionPrompt = prompt;
+	public void refreshActionPrompt(Room room) {
+		StringBuilder prompt = new StringBuilder();
+		
+		//For each action in the current room, get the actions and append it
+		for(String action : room.getRoomActions()) {
+			prompt.append(action);
+			prompt.append("\n");
+		}
+		
+		//Set the value of the room actions
+		actionPrompt = prompt.toString();
 	}
 	
 	//Setter for baseActionsPrompt
-	public void refreshPlayerActionsPrompt(Player player) {
+	public void refreshPlayerActionPrompt(Player player) {
 		StringBuilder prompt = new StringBuilder();
 		
 		//For each item in the player's inventory, get the item's action and append it
