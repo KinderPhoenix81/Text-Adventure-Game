@@ -14,6 +14,13 @@ public class Door extends BaseInteractable {
 		openedStatus = false;
 	}
 	
+	//Overloaded constructor to specfiy door status
+	public Door(String name, String desc, String lore, Boolean openedStatus) {
+		//Uses the constructor from parent class
+		super(name, desc, lore);
+		this.openedStatus = openedStatus;
+	}
+	
 	//Getter
 	public Boolean getOpenedStatus() {
 		return openedStatus;
