@@ -112,7 +112,7 @@ public class GameManagement {
 		ArrayList<String> ngRoomActions = new ArrayList<>(List.of("Move South", "Inspect Pedestal", "Inspect Rock Engravings", "Pick up Wheat Totem"));
 		
 		ArrayList<Item> ngRoomItems = new ArrayList<>();
-		Item wheatTotem = new Item("Wheat Totem", "Wheat Totem desc...", "Wheat totem lore...", "Place Totem");
+		Item wheatTotem = new Item("Wheat Totem", 1, "Wheat Totem desc...", "Wheat totem lore...", "Place Totem");
 		ngRoomItems.add(wheatTotem);
 		
 		ArrayList<BaseInteractable> ngRoomInteractables = new ArrayList<>();
@@ -140,7 +140,7 @@ public class GameManagement {
 		ArrayList<String> egRoomActions = new ArrayList<>(List.of("Move West", "Inspect Pedestal", "Inspect Rock Engravings", "Pick up Sword Totem"));
 		
 		ArrayList<Item> egRoomItems = new ArrayList<>();
-		Item swordTotem = new Item("Sword Totem", "Sword Totem desc...", "Sword totem lore...", "Place Totem");
+		Item swordTotem = new Item("Sword Totem", 2, "Sword Totem desc...", "Sword totem lore...", "Place Totem");
 		egRoomItems.add(swordTotem);
 		
 		ArrayList<BaseInteractable> egRoomInteractables = new ArrayList<>();
@@ -168,7 +168,7 @@ public class GameManagement {
 		ArrayList<String> sgRoomActions = new ArrayList<>(List.of("Move North", "Inspect Pedestal", "Inspect Rock Engravings", "Pick up Fish Totem"));
 		
 		ArrayList<Item> sgRoomItems = new ArrayList<>();
-		Item fishTotem = new Item("Fish Totem", "Fish Totem desc...", "Fish totem lore...", "Place Totem");
+		Item fishTotem = new Item("Fish Totem", 3, "Fish Totem desc...", "Fish totem lore...", "Place Totem");
 		sgRoomItems.add(fishTotem);
 		
 		ArrayList<BaseInteractable> sgRoomInteractables = new ArrayList<>();
@@ -196,7 +196,7 @@ public class GameManagement {
 		ArrayList<String> wgRoomActions = new ArrayList<>(List.of("Move East", "Inspect Pedestal", "Inspect Rock Engravings", "Pick up Lumber Totem"));
 		
 		ArrayList<Item> wgRoomItems = new ArrayList<>();
-		Item lumberTotem = new Item("Lumber Totem", "Lumber Totem desc...", "Lumber totem lore...", "Place Totem");
+		Item lumberTotem = new Item("Lumber Totem", 4, "Lumber Totem desc...", "Lumber totem lore...", "Place Totem");
 		wgRoomItems.add(lumberTotem);
 		
 		ArrayList<BaseInteractable> wgRoomInteractables = new ArrayList<>();
@@ -224,7 +224,7 @@ public class GameManagement {
 		ArrayList<String> iceRoomActions = new ArrayList<>(List.of("Move North", "Exit Crypt", "Grab Torch"));
 		
 		ArrayList<Item> iceRoomItems = new ArrayList<>();
-		Item torch = new Item("Torch", "Torch desc...", "Torch lore...", "Use Torch");
+		Item torch = new Item("Torch", 5, "Torch desc...", "Torch lore...", "Use Torch");
 		iceRoomItems.add(torch);
 		
 		ArrayList<BaseInteractable> iceRoomInteractables = new ArrayList<>();
@@ -252,7 +252,7 @@ public class GameManagement {
 		ArrayList<String> cellAActions = new ArrayList<>(List.of("Move East", "Move South"));
 		
 		ArrayList<Item> cellAItems = new ArrayList<>();
-		Item healthPotion_1 = new Item("Health Potion", "Health Potion desc...", "Health Potion lore...", "Use Health Potion");
+		Item healthPotion_1 = new Item("Health Potion", 6, "Health Potion desc...", "Health Potion lore...", "Use Health Potion");
 		cellAItems.add(healthPotion_1);
 		
 		darkRoomCellA.setName("Inner Crypt");
@@ -322,7 +322,7 @@ public class GameManagement {
 		ArrayList<String> cellFActions = new ArrayList<>(List.of("Move North", "Move West"));
 		
 		ArrayList<Item> cellFItems = new ArrayList<>();
-		Item healthPotion_2 = new Item("Health Potion", "Health Potion desc...", "Health Potion lore...", "Use Health Potion");
+		Item healthPotion_2 = new Item("Health Potion", 7, "Health Potion desc...", "Health Potion lore...", "Use Health Potion");
 		cellAItems.add(healthPotion_2);
 		
 		darkRoomCellF.setName("Inner Crypt");
@@ -374,7 +374,7 @@ public class GameManagement {
 		ArrayList<String> artifactRoomActions = new ArrayList<>(List.of("Move East", "Take Artifact"));
 		
 		ArrayList<Item> artifactRoomItems = new ArrayList<>();
-		Item goldenArtifact = new Item("Golden Artifact", "Golden Artifact desc...", "Golden Artifact lore...", "???");
+		Item goldenArtifact = new Item("Golden Artifact", 8, "Golden Artifact desc...", "Golden Artifact lore...", "???");
 		cellAItems.add(goldenArtifact);
 		
 		artifactRoom.setName("Artifact Room");
@@ -392,7 +392,7 @@ public class GameManagement {
 		ArrayList<String> spiritRoomActions = new ArrayList<>(List.of("Move West", "Break Vase"));
 		
 		ArrayList<Item> spiritRoomItems = new ArrayList<>();
-		Item spiritVase = new Item("Vase of Spirits", "Vase of Spirits desc...", "Vase of Spirits lore...", "Shatter");
+		Item spiritVase = new Item("Vase of Spirits", 9, "Vase of Spirits desc...", "Vase of Spirits lore...", "Shatter");
 		cellAItems.add(spiritVase);
 		
 		spiritRoom.setName("Spirit Room");
