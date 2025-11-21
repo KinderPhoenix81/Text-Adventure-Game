@@ -4,6 +4,7 @@ public class Item {
 
 	//Fields for an item
 	private String name;
+	private int id;
 	private String description;
 	private String lore;
 	
@@ -12,8 +13,9 @@ public class Item {
 	private String action;
 	
 	//Constructor
-	public Item(String name, String desc, String lore, String action) {
+	public Item(String name, int id, String desc, String lore, String action) {
 		this.name = name;
+		this.id = id;
 		description = desc;
 		this.lore = lore;
 		this.action = action;
@@ -22,6 +24,10 @@ public class Item {
 	//Getters for information
 	public String getName() {
 		return name;
+	}
+	
+	public int getID() {
+		return id;
 	}
 	
 	public String getDesc() {

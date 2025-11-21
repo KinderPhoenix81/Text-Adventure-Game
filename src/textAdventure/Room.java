@@ -6,6 +6,7 @@ public class Room {
 
 	//Fields for a room
 	private String name;
+	private int id;
 	
 	//Used for the text prompt field in GameManagement, describes the environment
 	private String description;
@@ -23,12 +24,23 @@ public class Room {
 	}
 	
 	//Constructor
-	public Room(String name, String roomDesc, ArrayList<String> roomActions, ArrayList<BaseInteractable> interactableList, ArrayList<Item> itemList) {
+	public Room(String name, String roomDesc, int id, ArrayList<String> roomActions, ArrayList<BaseInteractable> interactableList, ArrayList<Item> itemList) {
 		this.name = name;
 		this.description = roomDesc;
+		this.id = id;
 		this.roomActions = roomActions;
 		this.interactableList = interactableList;
 		this.itemList = itemList;
+	}
+	
+	//Constructor without needing actions, interactables, or items
+	public Room(String name, String roomDesc, int id) {
+		this.name = name;
+		this.description = roomDesc;
+		this.id = id;
+		this.roomActions = null;
+		this.interactableList = null;
+		this.itemList = null;
 	}
 
 	//Method to create the starting room
@@ -57,7 +69,7 @@ public class Room {
 		roomActions.add(moveWest);
 		
 		//Create a room for the crypt entrance
-		Room room = new Room("Crypt Entrance- Outside", "Crypt Entrance Description", roomActions, roomInteractables, roomItems);
+		Room room = new Room("Crypt Entrance- Outside", "Crypt Entrance Description", 1, roomActions, roomInteractables, roomItems);
 	
 		//Return this room object
 		return room;
@@ -71,6 +83,10 @@ public class Room {
 	
 	public String getRoomDesc() {
 		return description;
+	}
+	
+	public int getID() {
+		return id;
 	}
 	
 	public ArrayList<String> getRoomActions() {
@@ -92,6 +108,10 @@ public class Room {
 	
 	public void setDesc(String desc) {
 		description = desc;
+	}
+	
+	public void setID(int id) {
+		this.id = id;
 	}
 	
 	public void setRoomActions(ArrayList<String> roomActions) {
