@@ -353,8 +353,8 @@ public class GameManagement {
 		ArrayList<String> cryptSplitHallwayActions = new ArrayList<>(List.of("Move South", "Open Gilded Door", "Open Ominous Door"));
 		
 		ArrayList<BaseInteractable> cryptSplitHallwayInteractables = new ArrayList<>();
-		Door artifactDoor = new Door("Artifact Door", "Artifact Door desc", "Artifact Door lore");
-		Door spiritDoor = new Door("Spirit Door", "Spirit Door desc", "Spirit Door lore");
+		Door artifactDoor = new Door(2, "Artifact Door", "Artifact Door desc", "Artifact Door lore");
+		Door spiritDoor = new Door(3, "Spirit Door", "Spirit Door desc", "Spirit Door lore");
 		cryptSplitHallwayInteractables.add(artifactDoor);
 		cryptSplitHallwayInteractables.add(spiritDoor);
 		
@@ -443,4 +443,28 @@ public class GameManagement {
 		this.titleScreenActions = titleScreenActions;
 	}
 	
+	//Getter and setter for room, item, and interactable lists
+	public ArrayList<Room> getRoomList() {
+		return GameManagement.roomList;
+	}
+	
+	public void setRoomList(ArrayList<Room> roomList) {
+		GameManagement.roomList = roomList;
+	}
+	
+	public ArrayList<Item> getItemList() {
+		return GameManagement.itemList;
+	}
+	
+	public void setItemList(ArrayList<Item> itemList) {
+		GameManagement.itemList = itemList;
+	}
+	
+	public ArrayList<BaseInteractable> getInteractables() {
+		return GameManagement.interactableList;
+	}
+	
+	public void setInteractableList(ArrayList<BaseInteractable> interactableList) {
+		GameManagement.interactableList = interactableList;
+	}
 }

@@ -51,7 +51,7 @@ public class Room {
 		ArrayList<String> roomActions = new ArrayList<String>();
 		
 		//Create a door interactable
-		Door cryptDoor = new Door("Crypt Door", "Crypt Door Desc...", "Crypt Door Lore");
+		Door cryptDoor = new Door(1, "Crypt Door", "Crypt Door Desc...", "Crypt Door Lore");
 		roomInteractables.add(cryptDoor);
 		
 		//Create an action for the crypt entrance and moving to other gardens

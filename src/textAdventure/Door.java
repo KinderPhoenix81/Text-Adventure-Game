@@ -4,11 +4,14 @@ public class Door extends BaseInteractable {
 
 	//Fields for a door object specifically
 	private Boolean openedStatus;
+	private int id;
 	
 	//Constructor
-	public Door(String name, String desc, String lore) {
+	public Door(int id, String name, String desc, String lore) {
 		//Uses the constructor from the parent class
 		super(name, desc, lore);
+		
+		this.id = id;
 		
 		//Sets the openedStatus
 		openedStatus = false;
@@ -21,8 +24,12 @@ public class Door extends BaseInteractable {
 		this.openedStatus = openedStatus;
 	}
 	
-	//Getter
+	//Getters
 	public Boolean getOpenedStatus() {
 		return openedStatus;
+	}
+	
+	public int getID() {
+		return id;
 	}
 }
