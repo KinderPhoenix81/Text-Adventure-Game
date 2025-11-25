@@ -96,7 +96,7 @@ public class GameManagement {
 			System.out.println(playerActionsPrompt);
 		}
 	
-	//Create a list of rooms for the game --STUBBED OUT, USE GAME NOTES AND DOCS TO COMPLETE
+	//Create a list of rooms for the game
 	public static void createGameContent() {
 		//Define some lists to hold rooms, items, and interactables
 		ArrayList<Room> gameRooms = new ArrayList<Room>();
