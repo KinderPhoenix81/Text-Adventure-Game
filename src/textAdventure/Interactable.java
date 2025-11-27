@@ -6,5 +6,7 @@ public interface Interactable {
 	public String getName();
 	public String getDesc();
 	public String getLore();
+	public int getID();
+	int compareTo(Interactable other);
 	
 }

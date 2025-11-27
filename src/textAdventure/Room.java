@@ -2,7 +2,7 @@ package textAdventure;
 
 import java.util.ArrayList;
 
-public class Room {
+public class Room implements Comparable<Room>{
 
 	//Fields for a room
 	private String name;
@@ -124,6 +124,12 @@ public class Room {
 	
 	public void setItemList(ArrayList<Item> itemList) {
 		this.itemList = itemList;
+	}
+
+	@Override
+	public int compareTo(Room o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.getID(), o.getID());
 	}
 	
 }
