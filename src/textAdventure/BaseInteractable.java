@@ -1,13 +1,15 @@
 package textAdventure;
 
-public abstract class BaseInteractable implements Interactable {
+public abstract class BaseInteractable implements Interactable, Comparable<BaseInteractable> {
 
 	//Fields for any interactable
+	private int id;
 	private String name;
 	private String description;
 	private String lore;
 	
-	public BaseInteractable(String name, String desc, String lore) {
+	public BaseInteractable(int id, String name, String desc, String lore) {
+		this.id = id;
 		this.name = name;
 		this.description = desc;
 		this.lore = lore;
@@ -29,4 +31,14 @@ public abstract class BaseInteractable implements Interactable {
 		return lore;
 	}
 
+	@Override
+	public int getID() {
+		return id;
+	}
+	
+	@Override
+	public int compareTo(BaseInteractable other) {
+	return Integer.compare(this.id, other.id);
+	}
+	
 }

@@ -1,6 +1,8 @@
 package textAdventure;
 
-public class Item {
+import java.util.Comparator;
+
+public class Item implements Comparable<Item>{
 
 	//Fields for an item
 	private String name;
@@ -11,6 +13,10 @@ public class Item {
 	//String containing the two word parser for doing something
 	//Ex: Use Health Potion, Place Totem, Equip Torch, etc.
 	private String action;
+	
+	//Comparators
+	public static final Comparator<Item> BY_NAME = Comparator.comparing(Item::getName);
+	public static final Comparator<Item> BY_ID = Comparator.comparing(Item::getID);
 	
 	//Constructor
 	public Item(String name, int id, String desc, String lore, String action) {
@@ -40,5 +46,11 @@ public class Item {
 	
 	public String getAction() {
 		return action;
+	}
+
+	@Override
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.id, o.id);
 	}
 }
