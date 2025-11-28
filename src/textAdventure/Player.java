@@ -16,9 +16,6 @@ public class Player {
 		this.name = name;
 		inventory = new ArrayList<Item>();
 		health = 100;
-		
-		//Sets the player in the starting room, also creates the beginning room
-		currentRoom = Room.createStartingRoom();
 	}
 	
 	//Getters for the player
