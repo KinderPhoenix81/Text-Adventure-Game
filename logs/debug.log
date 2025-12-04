@@ -1,4 +1,28 @@
-11-02-2025 13:40:27.579 INFO  [LoggingExample] - You're number was2
-11-02-2025 13:40:27.579 INFO  [LoggingExample] - You're number was2
-11-02-2025 13:41:39.228 INFO  [LoggingExample] - You're number was 5
-11-02-2025 13:41:39.228 INFO  [LoggingExample] - You're number was 5
+12-03-2025 18:51:36.173 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:51:36.173 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:52:52.508 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:52:52.508 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:55:03.093 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:55:03.093 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:55:57.334 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:55:57.334 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-03-2025 18:58:49.649 WARN  [LoggingExample] - There was no table to drop
+12-03-2025 18:58:49.649 WARN  [LoggingExample] - There was no table to drop
+12-03-2025 18:58:49.651 INFO  [LoggingExample] - Existing tables have been dropped.
+12-03-2025 18:58:49.651 INFO  [LoggingExample] - Existing tables have been dropped.
+12-03-2025 18:58:49.719 INFO  [LoggingExample] - Database created successfully!
+12-03-2025 18:58:49.719 INFO  [LoggingExample] - Database created successfully!
+12-03-2025 18:58:49.721 ERROR [LoggingExample] - There seems to have been an issue creating database items, please try again.
+12-03-2025 18:58:49.721 ERROR [LoggingExample] - There seems to have been an issue creating database items, please try again.
+12-03-2025 18:58:49.723 ERROR [LoggingExample] - There seems to have been an issue creating database interactables, please try again.
+12-03-2025 18:58:49.723 ERROR [LoggingExample] - There seems to have been an issue creating database interactables, please try again.
+12-03-2025 18:58:49.724 ERROR [LoggingExample] - There seems to have been an issue creating database rooms, please try again.
+12-03-2025 18:58:49.724 ERROR [LoggingExample] - There seems to have been an issue creating database rooms, please try again.
+12-03-2025 18:58:49.727 INFO  [LoggingExample] - Objects properly instantiated!
+12-03-2025 18:58:49.727 INFO  [LoggingExample] - Objects properly instantiated!
+12-03-2025 18:58:49.774 INFO  [LoggingExample] - Game objects properly loaded!
+12-03-2025 18:58:49.774 INFO  [LoggingExample] - Game objects properly loaded!
+12-03-2025 18:58:49.774 INFO  [LoggingExample] - Game objects properly mapped!
+12-03-2025 18:58:49.774 INFO  [LoggingExample] - Game objects properly mapped!
+12-03-2025 18:58:49.795 INFO  [LoggingExample] - Game objects sorted!
+12-03-2025 18:58:49.795 INFO  [LoggingExample] - Game objects sorted!

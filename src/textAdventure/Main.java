@@ -1,6 +1,9 @@
 package textAdventure;
 
 public class Main {
-	//Run the gameManagement constructor
-	GameManagement newGame = new GameManagement();
+	
+	public static void main(String[] args) {
+		//Run the gameManagement constructor
+		GameManagement newGame = new GameManagement();
+	}
 }

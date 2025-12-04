@@ -21,9 +21,10 @@ public class Database {
 		
 		//Try catch block for database transactions
 		try {
-			//Make a connection
+			//Make a connection and database
 			EmbeddedDataSource ds = new EmbeddedDataSource();
 			ds.setDatabaseName("Game_Database");
+			ds.setCreateDatabase("create");
 			Connection conn = ds.getConnection();
 			
 			//Drop existing tables
@@ -271,7 +272,7 @@ public class Database {
 			Statement dropTableStatement = conn.createStatement();
 			dropTableStatement.executeUpdate("DROP TABLE Items; DROP TABLE Rooms; DROP TABLE Interactables;");
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			//Log out a message 
 			log.warn("There was no table to drop");
 		}
