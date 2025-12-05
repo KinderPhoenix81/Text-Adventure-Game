@@ -34,7 +34,11 @@ public class GameManagement {
 	 */
 	public GameManagement() {
 		//Load game content
-		createGameContent();
+		roomList = new ArrayList<Room>();
+		itemList = new ArrayList<Item>();
+		interactableList = new ArrayList<BaseInteractable>();
+		
+		createGameContent(roomList, itemList, interactableList);
 		
 		//Load starting screen content
 		createStartingScreenContent();
@@ -90,9 +94,10 @@ public class GameManagement {
 		}
 	
 	//Create the content for the game
-	public static void createGameContent() {
+	public static void createGameContent(ArrayList<Room> rooms, ArrayList<Item> items, ArrayList<BaseInteractable> interactables) {
 	//Loading the objects from the database into the gameManagement lists
 	Database.createGameDatabase(itemList, interactableList, roomList);
+	
 	}
 
 	//Create the title screen content for the game

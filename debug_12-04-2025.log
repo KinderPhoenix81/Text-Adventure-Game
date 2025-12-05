@@ -1,0 +1,6 @@
+12-04-2025 22:31:25.290 WARN  [LoggingExample] - There was no table to drop
+12-04-2025 22:31:25.290 WARN  [LoggingExample] - There was no table to drop
+12-04-2025 22:31:25.293 INFO  [LoggingExample] - Existing tables have been dropped.
+12-04-2025 22:31:25.293 INFO  [LoggingExample] - Existing tables have been dropped.
+12-04-2025 22:31:25.317 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-04-2025 22:31:25.317 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
