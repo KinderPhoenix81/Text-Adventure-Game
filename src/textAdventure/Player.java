@@ -8,7 +8,7 @@ public class Player {
 	private String name;
 	private ArrayList<Item> inventory;
 	private int health;
-	private Room currentRoom;
+	private static Room currentRoom;
 	
 	//Constructor
 	public Player(String name) {
@@ -16,9 +16,6 @@ public class Player {
 		this.name = name;
 		inventory = new ArrayList<Item>();
 		health = 100;
-		
-		//Sets the player in the starting room, also creates the beginning room
-		currentRoom = Room.createStartingRoom();
 	}
 	
 	//Getters for the player
@@ -34,7 +31,7 @@ public class Player {
 		return health;
 	}
 	
-	public Room getCurrentRoom() {
+	public static Room getCurrentRoom() {
 		return currentRoom;
 	}
 	

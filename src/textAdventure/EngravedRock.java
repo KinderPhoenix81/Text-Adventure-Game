@@ -1,13 +1,17 @@
 package textAdventure;
 
 public class EngravedRock extends BaseInteractable{
-
-	//Fields for an engraved rock
-	
 	
 	//Constructor
-	public EngravedRock(String name, String desc, String lore) {
+	public EngravedRock(int id, String name, String desc, String lore) {
 		//Uses parent constructor
-		super(name, desc, lore);
+		super(id, name, desc, lore);
 	}
+
+	@Override
+	public int compareTo(Interactable o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.getID(), o.getID());
+	}
+	
 }

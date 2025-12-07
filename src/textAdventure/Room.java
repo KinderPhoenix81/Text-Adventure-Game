@@ -2,10 +2,11 @@ package textAdventure;
 
 import java.util.ArrayList;
 
-public class Room {
+public class Room implements Comparable<Room>{
 
 	//Fields for a room
 	private String name;
+	private int id;
 	
 	//Used for the text prompt field in GameManagement, describes the environment
 	private String description;
@@ -23,46 +24,24 @@ public class Room {
 	}
 	
 	//Constructor
-	public Room(String name, String roomDesc, ArrayList<String> roomActions, ArrayList<BaseInteractable> interactableList, ArrayList<Item> itemList) {
+	public Room(String name, String roomDesc, int id, ArrayList<String> roomActions, ArrayList<BaseInteractable> interactableList, ArrayList<Item> itemList) {
 		this.name = name;
 		this.description = roomDesc;
+		this.id = id;
 		this.roomActions = roomActions;
 		this.interactableList = interactableList;
 		this.itemList = itemList;
 	}
-
-	//Method to create the starting room
-	public static Room createStartingRoom() {
-		//Properties for the current room
-		ArrayList<Item> roomItems = new ArrayList<Item>();
-		ArrayList<BaseInteractable> roomInteractables = new ArrayList<BaseInteractable>();
-		ArrayList<String> roomActions = new ArrayList<String>();
-		
-		//Create a door interactable
-		Door cryptDoor = new Door("Crypt Door", "Crypt Door Desc...", "Crypt Door Lore");
-		roomInteractables.add(cryptDoor);
-		
-		//Create an action for the crypt entrance and moving to other gardens
-		String entranceAction = "Open Crypt Door";
-		String moveNorth = "Move North";
-		String moveEast = "Move East";
-		String moveSouth = "Move South";
-		String moveWest = "Move West";
-		
-		//Add these actions to the list of actions for this room
-		roomActions.add(entranceAction);
-		roomActions.add(moveNorth);
-		roomActions.add(moveEast);
-		roomActions.add(moveSouth);
-		roomActions.add(moveWest);
-		
-		//Create a room for the crypt entrance
-		Room room = new Room("Crypt Entrance- Outside", "Crypt Entrance Description", roomActions, roomInteractables, roomItems);
 	
-		//Return this room object
-		return room;
-	}
-	
+	//Constructor without needing actions, interactables, or items
+	public Room(String name, String roomDesc, int id) {
+		this.name = name;
+		this.description = roomDesc;
+		this.id = id;
+		this.roomActions = null;
+		this.interactableList = null;
+		this.itemList = null;
+	}	
 	
 	//Getters for fields
 	public String getName() {
@@ -71,6 +50,10 @@ public class Room {
 	
 	public String getRoomDesc() {
 		return description;
+	}
+	
+	public int getID() {
+		return id;
 	}
 	
 	public ArrayList<String> getRoomActions() {
@@ -94,6 +77,10 @@ public class Room {
 		description = desc;
 	}
 	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
 	public void setRoomActions(ArrayList<String> roomActions) {
 		this.roomActions = roomActions;
 	}
@@ -104,6 +91,12 @@ public class Room {
 	
 	public void setItemList(ArrayList<Item> itemList) {
 		this.itemList = itemList;
+	}
+
+	@Override
+	public int compareTo(Room o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.getID(), o.getID());
 	}
 	
 }

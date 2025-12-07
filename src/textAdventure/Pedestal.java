@@ -5,15 +5,22 @@ public class Pedestal extends BaseInteractable {
 	//Fields for a pedestal
 	private Item displayedItem;
 	private Boolean pedestalHasItem;
+	private int correctItemID;
 	
 	//Constructor for the pedestal
-	public Pedestal(String name, String desc, String lore, Item displayedItem) {
+	public Pedestal(int id, String name, String desc, String lore, Item displayedItem) {
 		//Uses parent constructor
-		super(name, desc, lore);
+		super(id, name, desc, lore);
 		
 		//Places an item on the pedestal upon start
 		this.displayedItem = displayedItem;
 		pedestalHasItem = true;
+	}
+	
+	//Overloaded constructor without the item
+	public Pedestal(int id, String name, String desc, String lore) {
+		//Uses parent
+		super(id, name, desc, lore);
 	}
 	
 	//Getters for a pedestal
@@ -33,6 +40,18 @@ public class Pedestal extends BaseInteractable {
 			pedestalHasItem = true;
 			return pedestalHasItem;
 		}
+	}
+	
+	//Setter for pedestal item
+	public void setPedestalItem(Item item) {
+		displayedItem = item;
+	}
+
+	//Comparison method
+	@Override
+	public int compareTo(Interactable o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.getID(), o.getID());
 	}
 	
 }
