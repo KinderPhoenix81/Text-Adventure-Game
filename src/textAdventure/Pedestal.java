@@ -5,6 +5,7 @@ public class Pedestal extends BaseInteractable {
 	//Fields for a pedestal
 	private Item displayedItem;
 	private Boolean pedestalHasItem;
+	private int correctItemID;
 	
 	//Constructor for the pedestal
 	public Pedestal(int id, String name, String desc, String lore, Item displayedItem) {
@@ -46,6 +47,7 @@ public class Pedestal extends BaseInteractable {
 		displayedItem = item;
 	}
 
+	//Comparison method
 	@Override
 	public int compareTo(Interactable o) {
 		// TODO Auto-generated method stub

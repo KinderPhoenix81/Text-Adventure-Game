@@ -1,7 +1,7 @@
 package textAdventure;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Consumer;
 
 public class GameManagement {
 	//Class to manage the game functions
@@ -15,7 +15,7 @@ public class GameManagement {
 	private static ArrayList<BaseInteractable> interactableList;
 	private Player player;
 	
-	//Provides information about the current environment
+	//Provides information about the current environment, compiling all information about a room
 	private String environmentPrompt;
 	
 	//Provides information about actions that can be taken in the environment
@@ -53,12 +53,14 @@ public class GameManagement {
 	 * Main methods of the game management class
 	 * 
 	 */
+	//Set the text of a room, it's lore, description, and all actions
+	public static Consumer<Room> displayRoom = room -> {
+		System.out.println("\n");
+		System.out.println("~~~ " + room.getName() + " ~~~\n");
+		System.out.println(room.getRoomDesc() + "\n");
+		room.getRoomActions().forEach(System.out::println);
+	};
 	
-	//Update the current environment text based on the player's current room
-	public void refreshEnvironmentPrompt(Room room) {
-		//Get the room description and assign it to environment description
-		environmentPrompt = room.getRoomDesc();
-	}
 	
 	//Update the current set of actions based on the player's current room
 	public void refreshActionPrompt(Room room) {
@@ -85,13 +87,6 @@ public class GameManagement {
 		//Set the value of playerActions
 		playerActionsPrompt = playerActions;
 	}
-	
-		//Displays the current text prompt loaded into the field
-		public void displayText() {
-			System.out.println(environmentPrompt);
-			System.out.println(actionPrompt);
-			System.out.println(playerActionsPrompt);
-		}
 	
 	//Create the content for the game
 	public static void createGameContent(ArrayList<Room> rooms, ArrayList<Item> items, ArrayList<BaseInteractable> interactables) {
@@ -146,8 +141,8 @@ public class GameManagement {
 		GameManagement.titleScreenActions = titleScreenActions;
 	}
 	
-	//Getter and setter for room, item, and interactable lists
-	public ArrayList<Room> getRoomList() {
+	//Getter and setter for room list
+	public static ArrayList<Room> getRoomList() {
 		return GameManagement.roomList;
 	}
 	
@@ -155,6 +150,7 @@ public class GameManagement {
 		GameManagement.roomList = roomList;
 	}
 	
+	//Getter and setter for the item list
 	public ArrayList<Item> getItemList() {
 		return GameManagement.itemList;
 	}
@@ -163,6 +159,7 @@ public class GameManagement {
 		GameManagement.itemList = itemList;
 	}
 	
+	//Getter and setter for interactable list
 	public ArrayList<BaseInteractable> getInteractables() {
 		return GameManagement.interactableList;
 	}
