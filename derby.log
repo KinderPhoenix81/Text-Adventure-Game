@@ -1,11 +1,16 @@
 ----------------------------------------------------------------
-Sun Dec 07 11:56:50 CST 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019a-f9f5-8a97-00000f257d00 
-on database directory C:\Users\Blake\Documents\GitHub\Text-Adventure-Game\Game_Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5c647e05 
-Loaded from file:/C:/Users/Blake/Documents/GitHub/Text-Adventure-Game/dbLibrary/derby.jar
+<<<<<<< Updated upstream
+Sat Dec 06 23:16:22 CST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019a-f73d-52fc-00001e712a58 
+=======
+Sun Dec 07 12:11:03 CST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019a-fa02-90c5-00001e6ed318 
+>>>>>>> Stashed changes
+on database directory C:\Users\Alex\Text-Adventure-Game\Game_Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5c647e05 
+Loaded from file:/C:/Users/Alex/Text-Adventure-Game/dbLibrary/derby.jar
 java.vendor=Eclipse Adoptium
 java.runtime.version=21.0.8+9-LTS
-user.dir=C:\Users\Blake\Documents\GitHub\Text-Adventure-Game
+user.dir=C:\Users\Alex\Text-Adventure-Game
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0

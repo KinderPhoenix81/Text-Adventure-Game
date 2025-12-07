@@ -2,6 +2,7 @@ package textAdventure;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.function.UnaryOperator;
 
 public class GameManagement {
 	//Class to manage the game functions
@@ -108,6 +109,11 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
+<<<<<<< Updated upstream
+=======
+	
+	//Unary operator for parsing commands
+	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
 	
 	//handles player commands
 	public boolean handleCommand(String input) {
@@ -128,7 +134,7 @@ public class GameManagement {
 	public void movePlayer(String directionString) {
 		Direction direction;
 		try {
-			direction = Direction.valueOf(directionString.toUpperCase());
+			direction = Direction.valueOf(properInputFormat.apply(directionString));
 		} catch (IllegalArgumentException e) {
 			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
 			return;
@@ -146,6 +152,7 @@ public class GameManagement {
 		
 		
 	}
+>>>>>>> Stashed changes
 		
 	/**
 	 * Getters and setters for the class
