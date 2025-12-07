@@ -41,40 +41,7 @@ public class Room implements Comparable<Room>{
 		this.roomActions = null;
 		this.interactableList = null;
 		this.itemList = null;
-	}
-
-	//Method to create the starting room
-	public static Room createStartingRoom() {
-		//Properties for the current room
-		ArrayList<Item> roomItems = new ArrayList<Item>();
-		ArrayList<BaseInteractable> roomInteractables = new ArrayList<BaseInteractable>();
-		ArrayList<String> roomActions = new ArrayList<String>();
-		
-		//Create a door interactable
-		Door cryptDoor = new Door(1, "Crypt Door", "Crypt Door Desc...", "Crypt Door Lore");
-		roomInteractables.add(cryptDoor);
-		
-		//Create an action for the crypt entrance and moving to other gardens
-		String entranceAction = "Open Crypt Door";
-		String moveNorth = "Move North";
-		String moveEast = "Move East";
-		String moveSouth = "Move South";
-		String moveWest = "Move West";
-		
-		//Add these actions to the list of actions for this room
-		roomActions.add(entranceAction);
-		roomActions.add(moveNorth);
-		roomActions.add(moveEast);
-		roomActions.add(moveSouth);
-		roomActions.add(moveWest);
-		
-		//Create a room for the crypt entrance
-		Room room = new Room("Crypt Entrance- Outside", "Crypt Entrance Description", 1, roomActions, roomInteractables, roomItems);
-	
-		//Return this room object
-		return room;
-	}
-	
+	}	
 	
 	//Getters for fields
 	public String getName() {

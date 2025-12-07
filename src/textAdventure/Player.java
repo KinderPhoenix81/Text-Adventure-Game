@@ -8,7 +8,7 @@ public class Player {
 	private String name;
 	private ArrayList<Item> inventory;
 	private int health;
-	private Room currentRoom;
+	private static Room currentRoom;
 	
 	//Constructor
 	public Player(String name) {
@@ -31,7 +31,7 @@ public class Player {
 		return health;
 	}
 	
-	public Room getCurrentRoom() {
+	public static Room getCurrentRoom() {
 		return currentRoom;
 	}
 	
