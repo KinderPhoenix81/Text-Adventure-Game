@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 12-06-2025 23:03:46.708 INFO  [LoggingExample] - Existing tables have been dropped.
 12-06-2025 23:03:46.708 INFO  [LoggingExample] - Existing tables have been dropped.
 12-06-2025 23:03:46.734 INFO  [LoggingExample] - Database created successfully!
@@ -134,3 +135,17 @@
 12-06-2025 23:16:23.029 INFO  [LoggingExample] - Game objects properly mapped!
 12-06-2025 23:16:23.029 INFO  [LoggingExample] - Game objects sorted!
 12-06-2025 23:16:23.029 INFO  [LoggingExample] - Game objects sorted!
+=======
+12-07-2025 12:11:03.754 INFO  [LoggingExample] - Existing tables have been dropped.
+12-07-2025 12:11:03.754 INFO  [LoggingExample] - Existing tables have been dropped.
+12-07-2025 12:11:03.783 INFO  [LoggingExample] - Database created successfully!
+12-07-2025 12:11:03.783 INFO  [LoggingExample] - Database created successfully!
+12-07-2025 12:11:03.824 INFO  [LoggingExample] - Objects properly instantiated!
+12-07-2025 12:11:03.824 INFO  [LoggingExample] - Objects properly instantiated!
+12-07-2025 12:11:03.844 INFO  [LoggingExample] - Game objects properly loaded!
+12-07-2025 12:11:03.844 INFO  [LoggingExample] - Game objects properly loaded!
+12-07-2025 12:11:03.858 INFO  [LoggingExample] - Game objects properly mapped!
+12-07-2025 12:11:03.858 INFO  [LoggingExample] - Game objects properly mapped!
+12-07-2025 12:11:03.859 INFO  [LoggingExample] - Game objects sorted!
+12-07-2025 12:11:03.859 INFO  [LoggingExample] - Game objects sorted!
+>>>>>>> Stashed changes
