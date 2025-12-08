@@ -1,6 +1,8 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 
@@ -47,6 +49,9 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
+		
+		//Show the starting room
+		displayRoom.accept(Player.getCurrentRoom());
 	}
 	
 	
@@ -55,10 +60,10 @@ public class GameManagement {
 	 * 
 	 */
 	//Set the text of a room, it's lore, description, and all actions
-	public static Consumer<Room> displayRoom = room -> {
+	public Consumer<Room> displayRoom = room -> {
 		System.out.println("\n");
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
-		System.out.println(room.getRoomDesc() + "\n");
+		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
 		room.getRoomActions().forEach(System.out::println);
 	};
 	
@@ -109,8 +114,8 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
-<<<<<<< Updated upstream
-=======
+//<<<<<<< Updated upstream
+//=======
 	
 	//Unary operator for parsing commands
 	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
@@ -152,7 +157,14 @@ public class GameManagement {
 		
 		
 	}
->>>>>>> Stashed changes
+	
+	public String localizedDesc(String descKey)
+	{
+		Locale locale = player.getLocale();
+		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
+		return rb.getString(descKey);
+	}
+//>>>>>>> Stashed changes
 		
 	/**
 	 * Getters and setters for the class

@@ -8,8 +8,8 @@ public class Main {
 		//Run the gameManagement constructor
 		GameManagement newGame = new GameManagement();
 		
-		//Show the starting room
-		GameManagement.displayRoom.accept(Player.getCurrentRoom());
+		
+		
 		
 		//scanner which will take user text and complete actions
 		Scanner scanner = new Scanner(System.in);

@@ -156,22 +156,22 @@ public class Database {
 			//Use the connection to make some statements
 			Statement roomEntryStatement = conn.createStatement();
 			roomEntryStatement.executeUpdate("Insert Into Rooms (id, name, description) "
-					+ "Values (1, 'Outer Garden Center', 'The center of King Kroz’s Garden. Known to be his favorite place, it naturally must lead to his final resting place.\nIn each cardinal direction lies in the main areas of the garden. Right in the middle is a stone tablet nestled in the grass.'), "
-					+ "(2, 'North Garden', 'The north side of the garden is filled with lots of cool-colored plants and trees. Holly berries and Poinsettias grow, and the air is noticeably chilly.\nA stone pedestal sits in the center.'), "
-					+ "(3, 'West Garden', 'The west side of the garden has plants that are just beginning to bud. Flowers wait to bloom, and the leaves are a pleasant light green.\nA stone pedestal sits in the center.'), "
-					+ "(4, 'East Garden', 'The east side of the garden is full of plants displaying vibrant orange, brown, yellow, and red colors. The air is cooler, but not uncomfortable.\nA stone pedestal sits in the center.'), "
-					+ "(5, 'South Garden', 'The south side of the garden has lots of lush green plants and widely blooming flowers. The sun shines brightly and it’s comfortably warm.\nA stone pedestal sits in the center.' ), "
-					+ "(6, 'Crypt Entrance', 'At the bottom of the stairs lies the threshold of the sunlight. Beyond lies nothing but darkness. Being underground, there is no light to be seen.' ), "
-					+ "(7, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(8, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(9, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(10, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(11, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(12, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(13, 'Crypt Hallway', 'This hall seems completely normal. There’s nothing special about it. What’s special is what it leads to.' ), "
-					+ "(14, 'Split Hallway', 'The hallway no longer goes forward. The only continuing paths are two doors, one on either side.\nThe door on the left gives off a haunting feeling, like something is waiting for you. The door on the right gives off a warm feeling, like sunlight.'), "
-					+ "(15, 'Spirit Room', 'In the middle of the room is a single vase on a stand. However, it feels regal and melancholic.\nYou are drawn to the vase in a way you can’t quite explain.'), "
-					+ "(16, 'Artifact Room', 'In the middle of the room is a golden artifact on a stand. A single ray of light shines through the ceiling,\nperfectly highlighting the artifact. The room glows with the light of this treasure you have come so far to find.')");
+					+ "Values (1, 'Outer Garden Center', 'CenterGarden'), "
+					+ "(2, 'North Garden', 'NorthGarden'), "
+					+ "(3, 'West Garden','WestGarden'), "
+					+ "(4, 'East Garden', 'EastGarden'), "
+					+ "(5, 'South Garden', 'SouthGarden' ), "
+					+ "(6, 'Crypt Entrance', 'CryptEntrance' ), "
+					+ "(7, 'Dark Room', 'DarkRoom' ), "
+					+ "(8, 'Dark Room', 'DarkRoom' ), "
+					+ "(9, 'Dark Room', 'DarkRoom' ), "
+					+ "(10, 'Dark Room', 'DarkRoom' ), "
+					+ "(11, 'Dark Room', 'DarkRoom' ), "
+					+ "(12, 'Dark Room', 'DarkRoom' ), "
+					+ "(13, 'Crypt Hallway', 'CryptHallway' ), "
+					+ "(14, 'Split Hallway', 'SplitHallway'), "
+					+ "(15, 'Spirit Room', 'SpiritRoom'), "
+					+ "(16, 'Artifact Room', 'TreasureRoom')");
 			
 		} catch (SQLException e) {
 			//Print errors
