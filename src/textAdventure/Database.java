@@ -64,6 +64,7 @@ public class Database {
 			mapItems(rooms, items);
 			mapInteractables(rooms, interactables);
 			mapRoomActions(rooms);
+			mapRoomExits(rooms);
 			
 			//Log progress
 			log.info("Game objects properly mapped!");
@@ -407,6 +408,39 @@ public class Database {
 			//Add the interactable(s) to the room
 			room.setInteractableList(interactables);
 		}
+	}
+	
+	/*
+	 * Mapping method for setting room exits
+	 */
+	public static void mapRoomExits(ArrayList<Room> rooms) {
+		Room outerGarden = rooms.get(0);
+		Room northGarden = rooms.get(1);
+		Room westGarden = rooms.get(3);
+		Room eastGarden = rooms.get(4);
+		Room southGarden = rooms.get(5);
+		Room cryptEntrance = rooms.get(6);
+		
+		//outer garden exits
+		outerGarden.setExit(Direction.NORTH, northGarden);
+		outerGarden.setExit(Direction.WEST, westGarden);
+		outerGarden.setExit(Direction.EAST, eastGarden);
+		outerGarden.setExit(Direction.SOUTH, southGarden);
+		
+		//north garden exits
+		northGarden.setExit(Direction.SOUTH, outerGarden);
+		
+		//west garden exits
+		westGarden.setExit(Direction.EAST, outerGarden);
+		
+		//east garden exits
+		eastGarden.setExit(Direction.WEST, outerGarden);
+		
+		//south garden exits
+		southGarden.setExit(Direction.NORTH, outerGarden);
+		
+		
+		
 	}
 	
 	//Map room actions

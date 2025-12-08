@@ -1,5 +1,7 @@
 package textAdventure;
 
+import java.util.function.Predicate;
+
 public class Pedestal extends BaseInteractable {
 
 	//Fields for a pedestal
@@ -23,6 +25,17 @@ public class Pedestal extends BaseInteractable {
 		super(id, name, desc, lore);
 	}
 	
+	//Predicate for checking correct item
+	Predicate<Pedestal> hasCorrectItem = pedestal -> {
+		//Check if pedestal has an item to start
+		if(!pedestal.getPedestalHasItem()) {
+			return false;
+		}
+		
+		//Check to see if the pedestal has the right item
+		return pedestal.getDisplayedItem().getID() == pedestal.getPedestalCorrectItemID();
+	};
+	
 	//Getters for a pedestal
 	public Item getDisplayedItem() {
 		return displayedItem;
@@ -40,6 +53,11 @@ public class Pedestal extends BaseInteractable {
 			pedestalHasItem = true;
 			return pedestalHasItem;
 		}
+	}
+	
+	//Getter for pedestal correct item id
+	public int getPedestalCorrectItemID() {
+		return correctItemID;
 	}
 	
 	//Setter for pedestal item

@@ -1,6 +1,8 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Room implements Comparable<Room>{
 
@@ -11,6 +13,9 @@ public class Room implements Comparable<Room>{
 	//Used for the text prompt field in GameManagement, describes the environment
 	private String description;
 	
+	//used for allowing you to move from place to place
+	private final Map<Direction, Room> exits;
+	
 	//Used for the action prompt field in GameManagement, describes potential actions
 	private ArrayList<String> roomActions;
 	
@@ -20,7 +25,10 @@ public class Room implements Comparable<Room>{
 	
 	//Empty Constructor
 	public Room() {
-		
+		this.exits = new HashMap<>();
+		this.roomActions = new ArrayList<>();
+		this.interactableList  = new ArrayList<>();
+		this.itemList = new ArrayList<>();
 	}
 	
 	//Constructor
@@ -31,6 +39,7 @@ public class Room implements Comparable<Room>{
 		this.roomActions = roomActions;
 		this.interactableList = interactableList;
 		this.itemList = itemList;
+		this.exits = new HashMap<>();
 	}
 	
 	//Constructor without needing actions, interactables, or items
@@ -41,6 +50,7 @@ public class Room implements Comparable<Room>{
 		this.roomActions = null;
 		this.interactableList = null;
 		this.itemList = null;
+		this.exits = new HashMap<>();
 	}	
 	
 	//Getters for fields
@@ -91,6 +101,19 @@ public class Room implements Comparable<Room>{
 	
 	public void setItemList(ArrayList<Item> itemList) {
 		this.itemList = itemList;
+	}
+	
+	//logic for room exits
+	public void setExit(Direction direction, Room neighbor) {
+		exits.put(direction, neighbor);
+	}
+	
+	public Room getExit(Direction direction) {
+		return exits.get(direction);
+	}
+	
+	public Map<Direction, Room> getExits() {
+		return exits;
 	}
 
 	@Override
