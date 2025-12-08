@@ -109,8 +109,6 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
-<<<<<<< Updated upstream
-=======
 	
 	//Unary operator for parsing commands
 	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
@@ -152,7 +150,6 @@ public class GameManagement {
 		
 		
 	}
->>>>>>> Stashed changes
 		
 	/**
 	 * Getters and setters for the class
