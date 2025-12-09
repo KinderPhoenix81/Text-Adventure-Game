@@ -65,6 +65,7 @@ public class Database {
 			mapInteractables(rooms, interactables);
 			mapRoomActions(rooms);
 			mapRoomExits(rooms);
+			mapPedestalItems(interactables);
 			
 			//Log progress
 			log.info("Game objects properly mapped!");
@@ -271,10 +272,20 @@ public class Database {
 			};
 			
 			//Add the new interactable to the list by using the function above
-			interactableList.add(createInteractable.apply(type));
+			BaseInteractable newInteractable = createInteractable.apply(type);
+			
+			//Check if the interactable was applied properly
+			if(newInteractable == null) {
+				//Throw an error
+				throw new InvalidInteractableTypeException(type);
+			} else {
+				//Add to list
+				interactableList.add(newInteractable);
+			}
+
 		}
 			
-		} catch (SQLException e) {
+		} catch (SQLException | InvalidInteractableTypeException e) {
 			//Print errors
 			log.error("There seems to have been an issue loading database interactables, please try again.");
 			e.printStackTrace();
@@ -462,5 +473,35 @@ public class Database {
 		rooms.get(13).setRoomActions((ArrayList<String>) RoomActionSupplier.cryptSplitHallwayActions.get());
 		rooms.get(14).setRoomActions((ArrayList<String>) RoomActionSupplier.spiritRoomActions.get());
 		rooms.get(15).setRoomActions((ArrayList<String>) RoomActionSupplier.artifactRoomActions.get());
+	}
+	
+	//Map pedestal items
+	public static void mapPedestalItems(ArrayList<BaseInteractable> interactables) {
+		//Make a stream for the pedestals
+		interactables.stream()
+		
+		//Filter pedestals from interactables
+		.filter(i -> i instanceof Pedestal)
+		
+		//Cast each interactable as a pedestal
+		.map(i -> (Pedestal) i)
+		
+		//Loop through each pedestal, get the id, assign the correct item ID
+		.forEach(p -> {
+			//North pedestal for fish
+			if (p.getID() == 2) {
+				p.setPedestalCorrectItemID(4);
+			//West pedestal for wheat
+			} else if (p.getID() == 4) {
+				p.setPedestalCorrectItemID(1);
+			//East pedestal for lumber
+			} else if (p.getID() == 6) {
+				p.setPedestalCorrectItemID(2);
+			//South pedestal for sword
+			} else if (p.getID() == 8) {
+				p.setPedestalCorrectItemID(3);
+			}
+		}
+		);
 	}
 }

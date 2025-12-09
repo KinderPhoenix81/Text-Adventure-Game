@@ -60,6 +60,11 @@ public class Pedestal extends BaseInteractable {
 		return correctItemID;
 	}
 	
+	//Setter for pedestal correct item id
+	public void setPedestalCorrectItemID(int id) {
+		correctItemID = id;
+	}
+	
 	//Setter for pedestal item
 	public void setPedestalItem(Item item) {
 		displayedItem = item;
