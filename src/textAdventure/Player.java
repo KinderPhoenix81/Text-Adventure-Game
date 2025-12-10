@@ -1,6 +1,7 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Player {
 
@@ -9,7 +10,8 @@ public class Player {
 	private ArrayList<Item> inventory;
 	private int health;
 	private static Room currentRoom;
-	
+	private Locale locale = new Locale("en", "US");
+	//private Locale locale = new Locale("es", "SP");
 	//Constructor
 	public Player(String name) {
 		//Sets properties of the player
@@ -35,6 +37,11 @@ public class Player {
 		return currentRoom;
 	}
 	
+	public Locale getLocale()
+	{
+		return locale;
+	}
+	
 	//Setters for player fields
 	public void setHealth(int newHealthValue) {
 		health = newHealthValue;
@@ -52,4 +59,8 @@ public class Player {
 		currentRoom = room;
 	}
 	
+	public void setLocale (Locale setLocale)
+	{
+		locale = setLocale;
+	}
 }

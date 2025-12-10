@@ -1,6 +1,9 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 
@@ -47,6 +50,9 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
+		
+		//Show the starting room
+		displayRoom.accept(Player.getCurrentRoom());
 	}
 	
 	
@@ -55,10 +61,10 @@ public class GameManagement {
 	 * 
 	 */
 	//Set the text of a room, it's lore, description, and all actions
-	public static Consumer<Room> displayRoom = room -> {
+	public Consumer<Room> displayRoom = room -> {
 		System.out.println("\n");
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
-		System.out.println(room.getRoomDesc() + "\n");
+		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
 		room.getRoomActions().forEach(System.out::println);
 	};
 	
@@ -109,6 +115,8 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
+//<<<<<<< Updated upstream
+//=======
 	
 	//Unary operator for parsing commands
 	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
@@ -122,6 +130,9 @@ public class GameManagement {
 		switch (commandWord) {
 			case "go":
 				movePlayer(argument);
+				break;
+			case "examine":
+				examineInteractable(argument);
 				break;
 		}
 		
@@ -150,6 +161,75 @@ public class GameManagement {
 		
 		
 	}
+	//examine interactable objects, displays descriptions
+	public void examineInteractable(String examineObject)
+	{
+		String doorName = null;
+		if(examineObject.contains("door"))
+		{
+			doorName = examineObject;
+			examineObject = "door";
+		}
+		
+		switch(examineObject)
+		{
+		 case "pedestal":
+			 Pedestal pedestal = interactableList.stream()
+			 	.filter(i-> i instanceof Pedestal)
+			 	.map(i-> (Pedestal) i)
+			 	.findFirst()
+			 	.orElse(null);
+			 
+			 if (pedestal != null)
+			 {
+				 System.out.println(localizedDesc(pedestal.getDesc()));
+				 
+			 }
+			 break;
+		 case "engraved rock":
+			 EngravedRock engravedRock = interactableList.stream()
+			 .filter(i-> i instanceof EngravedRock)
+			 .map(i-> (EngravedRock) i)
+			 .findFirst()
+			 .orElse(null);
+			 
+			 if (engravedRock != null)
+			 {
+				 System.out.println(localizedDesc(engravedRock.getDesc()));
+			 }
+			 break;
+		 case "door":
+			 List<Door> doors = interactableList.stream()
+			 .filter(i-> i instanceof Door)
+			 .map(i -> (Door) i)
+			 .toList();
+			 
+			 //make a final version of door name so this stuff stops yelling at me
+			 final String finalDoorName = doorName;
+			 
+			 Door selectedDoor = doors.stream()
+					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
+					 .findFirst()
+					 .orElse(null);
+			 
+			 if (selectedDoor != null)
+			 {
+				 System.out.println(localizedDesc(selectedDoor.getDesc()));
+			 }
+		}
+		
+	}
+	
+	//returns text based on language selected
+	public String localizedDesc(String descKey)
+	{
+		Locale locale = player.getLocale();
+		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
+		return rb.getString(descKey);
+	}
+	
+	
+//>>>>>>> Stashed changes
 		
 	/**
 	 * Getters and setters for the class
