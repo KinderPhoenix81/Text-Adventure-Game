@@ -463,4 +463,5 @@ public class Database {
 		rooms.get(14).setRoomActions((ArrayList<String>) RoomActionSupplier.spiritRoomActions.get());
 		rooms.get(15).setRoomActions((ArrayList<String>) RoomActionSupplier.artifactRoomActions.get());
 	}
+	
 }

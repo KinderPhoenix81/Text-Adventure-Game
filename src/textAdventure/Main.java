@@ -11,6 +11,9 @@ public class Main {
 		//Show the starting room
 		GameManagement.displayRoom.accept(Player.getCurrentRoom());
 		
+		//create input handler
+		InputHandler inputHandler = newGame.getInputHandler();
+		
 		//scanner which will take user text and complete actions
 		Scanner scanner = new Scanner(System.in);
 		boolean playing = true;
@@ -20,7 +23,7 @@ public class Main {
 			String input = scanner.nextLine().trim();
 			
 			//handle the command from the user
-			playing = newGame.handleCommand(input);
+			playing = inputHandler.handleCommand(input);
 		}
 		
 		

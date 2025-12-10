@@ -2,7 +2,6 @@ package textAdventure;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import java.util.function.UnaryOperator;
 
 public class GameManagement {
 	//Class to manage the game functions
@@ -29,6 +28,9 @@ public class GameManagement {
 	private static String titleScreenDescription;
 	private static ArrayList<String> titleScreenActions;
 	
+	//create new InputHandler
+	private final InputHandler inputHandler;
+	
 	/**
 	 * Constructor
 	 * 
@@ -47,6 +49,7 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
+		this.inputHandler = new InputHandler(player);
 	}
 	
 	
@@ -61,7 +64,6 @@ public class GameManagement {
 		System.out.println(room.getRoomDesc() + "\n");
 		room.getRoomActions().forEach(System.out::println);
 	};
-	
 	
 	//Update the current set of actions based on the player's current room
 	public void refreshActionPrompt(Room room) {
@@ -109,50 +111,7 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
-<<<<<<< Updated upstream
-=======
 	
-	//Unary operator for parsing commands
-	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
-	
-	//handles player commands
-	public boolean handleCommand(String input) {
-		String[] parts = input.toLowerCase().split(" ", 2);
-		String commandWord = parts[0];
-		String argument = parts[1];
-		
-		switch (commandWord) {
-			case "go":
-				movePlayer(argument);
-				break;
-		}
-		
-		return true;
-	}
-	
-	//handles player movement
-	public void movePlayer(String directionString) {
-		Direction direction;
-		try {
-			direction = Direction.valueOf(properInputFormat.apply(directionString));
-		} catch (IllegalArgumentException e) {
-			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
-			return;
-		}
-		
-		Room currentRoom = player.getCurrentRoom();
-		Room nextRoom = currentRoom.getExit(direction);
-		
-		if (nextRoom != null) {
-			player.setCurrentRoom(nextRoom);
-			displayRoom.accept(nextRoom);
-		} else {
-			System.out.println("You can not travel that direction from here.");
-		}
-		
-		
-	}
->>>>>>> Stashed changes
 		
 	/**
 	 * Getters and setters for the class
@@ -196,7 +155,7 @@ public class GameManagement {
 	}
 	
 	//Getter and setter for the item list
-	public ArrayList<Item> getItemList() {
+	public static ArrayList<Item> getItemList() {
 		return GameManagement.itemList;
 	}
 	
@@ -205,11 +164,15 @@ public class GameManagement {
 	}
 	
 	//Getter and setter for interactable list
-	public ArrayList<BaseInteractable> getInteractables() {
+	public static ArrayList<BaseInteractable> getInteractables() {
 		return GameManagement.interactableList;
 	}
 	
 	public void setInteractableList(ArrayList<BaseInteractable> interactableList) {
 		GameManagement.interactableList = interactableList;
+	}
+	
+	public InputHandler getInputHandler() {
+		return this.inputHandler;
 	}
 }
