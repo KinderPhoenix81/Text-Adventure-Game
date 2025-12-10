@@ -127,18 +127,18 @@ public class Database {
 			//Use the connection to make some statements
 			Statement interactableEntryStatement = conn.createStatement();
 			interactableEntryStatement.executeUpdate("Insert Into Interactables (id, name, description, lore, type) "
-					+ "Values (1, 'Crypt Door', 'A moss-covered stone door rises from the forest floor, half-swallowed by roots and earth, its iron handle cold with the weight of forgotten centuries.', 'Crypt Door- Outer', 'Door'), "
-					+ "(2, 'North Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(3, 'North Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the north provide fish', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(4, 'West Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(5, 'West Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the west provide crops', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(6, 'East Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(7, 'East Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the east provide lumber', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(8, 'South Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(9, 'South Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the south provide protection', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(10, 'Crypt Door', 'A heavy stone door dominates the crypt’s entrance, its edges glowing faintly where moss filters through the cracks. Roots cling to the slab like rigid fingers, and the cold iron handle hangs motionless in the dim, stale air.', 'Crypt Door- Inner', 'Door'), "
-					+ "(11, 'Artifact Door', 'The warm feeling entices you to choose the right door. A warmth washes over you.', 'Artifact Door', 'Door'), "
-					+ "(12, 'Spirit Door', 'The strange feeling lures you to open the door. A chill runs through you', 'Spirit Door', 'Door')");
+					+ "Values (1, 'Crypt Door', 'CryptDoorOuter', 'Crypt Door- Outer', 'Door'), "
+					+ "(2, 'North Pedestal', 'NorthPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(3, 'North Tablet', 'NorthTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(4, 'West Pedestal', 'WestPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(5, 'West Tablet', 'WestTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(6, 'East Pedestal', 'EastPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(7, 'East Tablet', 'EastTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(8, 'South Pedestal', 'SouthPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(9, 'South Tablet', 'SouthTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(10, 'Crypt Door', 'CryptDoorInner', 'Crypt Door- Inner', 'Door'), "
+					+ "(11, 'Artifact Door', 'ArtifactDoor', 'Artifact Door', 'Door'), "
+					+ "(12, 'Spirit Door', 'SpiritDoor', 'Spirit Door', 'Door')");
 			
 		} catch (SQLException e) {
 			//Print errors

@@ -1,6 +1,7 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
@@ -130,6 +131,9 @@ public class GameManagement {
 			case "go":
 				movePlayer(argument);
 				break;
+			case "examine":
+				examineInteractable(argument);
+				break;
 		}
 		
 		return true;
@@ -157,13 +161,74 @@ public class GameManagement {
 		
 		
 	}
+	//examine interactable objects, displays descriptions
+	public void examineInteractable(String examineObject)
+	{
+		String doorName = null;
+		if(examineObject.contains("door"))
+		{
+			doorName = examineObject;
+			examineObject = "door";
+		}
+		
+		switch(examineObject)
+		{
+		 case "pedestal":
+			 Pedestal pedestal = interactableList.stream()
+			 	.filter(i-> i instanceof Pedestal)
+			 	.map(i-> (Pedestal) i)
+			 	.findFirst()
+			 	.orElse(null);
+			 
+			 if (pedestal != null)
+			 {
+				 System.out.println(localizedDesc(pedestal.getDesc()));
+				 
+			 }
+			 break;
+		 case "engraved rock":
+			 EngravedRock engravedRock = interactableList.stream()
+			 .filter(i-> i instanceof EngravedRock)
+			 .map(i-> (EngravedRock) i)
+			 .findFirst()
+			 .orElse(null);
+			 
+			 if (engravedRock != null)
+			 {
+				 System.out.println(localizedDesc(engravedRock.getDesc()));
+			 }
+			 break;
+		 case "door":
+			 List<Door> doors = interactableList.stream()
+			 .filter(i-> i instanceof Door)
+			 .map(i -> (Door) i)
+			 .toList();
+			 
+			 //make a final version of door name so this stuff stops yelling at me
+			 final String finalDoorName = doorName;
+			 
+			 Door selectedDoor = doors.stream()
+					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
+					 .findFirst()
+					 .orElse(null);
+			 
+			 if (selectedDoor != null)
+			 {
+				 System.out.println(localizedDesc(selectedDoor.getDesc()));
+			 }
+		}
+		
+	}
 	
+	//returns text based on language selected
 	public String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
 		return rb.getString(descKey);
 	}
+	
+	
 //>>>>>>> Stashed changes
 		
 	/**

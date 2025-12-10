@@ -10,8 +10,8 @@ public class Player {
 	private ArrayList<Item> inventory;
 	private int health;
 	private static Room currentRoom;
-	//private Locale locale = new Locale("en", "US");
-	private Locale locale = new Locale("es", "SP");
+	private Locale locale = new Locale("en", "US");
+	//private Locale locale = new Locale("es", "SP");
 	//Constructor
 	public Player(String name) {
 		//Sets properties of the player
