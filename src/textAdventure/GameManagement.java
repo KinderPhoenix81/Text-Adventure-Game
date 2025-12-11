@@ -174,7 +174,7 @@ public class GameManagement {
 		switch(examineObject)
 		{
 		 case "pedestal":
-			 Pedestal pedestal = interactableList.stream()
+			 Pedestal pedestal = Player.getCurrentRoom().getInteractableList().stream()
 			 	.filter(i-> i instanceof Pedestal)
 			 	.map(i-> (Pedestal) i)
 			 	.findFirst()
@@ -187,7 +187,7 @@ public class GameManagement {
 			 }
 			 break;
 		 case "engraved rock":
-			 EngravedRock engravedRock = interactableList.stream()
+			 EngravedRock engravedRock = Player.getCurrentRoom().getInteractableList().stream()
 			 .filter(i-> i instanceof EngravedRock)
 			 .map(i-> (EngravedRock) i)
 			 .findFirst()
@@ -199,7 +199,7 @@ public class GameManagement {
 			 }
 			 break;
 		 case "door":
-			 List<Door> doors = interactableList.stream()
+			 List<Door> doors = Player.getCurrentRoom().getInteractableList().stream()
 			 .filter(i-> i instanceof Door)
 			 .map(i -> (Door) i)
 			 .toList();

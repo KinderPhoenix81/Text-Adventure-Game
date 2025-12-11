@@ -417,7 +417,7 @@ public class Database {
 			}
 			
 			//Add the interactable(s) to the room
-			room.setInteractableList(interactables);
+			room.setInteractableList(roomInteractables);
 		}
 	}
 	
