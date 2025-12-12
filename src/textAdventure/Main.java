@@ -8,6 +8,8 @@ public class Main {
 		//Run the gameManagement constructor
 		GameManagement newGame = new GameManagement();
 		
+		//create input handler
+		InputHandler inputHandler = newGame.getInputHandler();
 		
 		
 		
@@ -20,7 +22,7 @@ public class Main {
 			String input = scanner.nextLine().trim();
 			
 			//handle the command from the user
-			playing = newGame.handleCommand(input);
+			playing = inputHandler.handleCommand(input);
 		}
 		
 		

@@ -17,7 +17,7 @@ public class GameManagement {
 	private static ArrayList<Room> roomList;
 	private static ArrayList<Item> itemList;
 	private static ArrayList<BaseInteractable> interactableList;
-	private Player player;
+	private static Player player;
 	
 	//Provides information about the current environment, compiling all information about a room
 	private String environmentPrompt;
@@ -31,6 +31,9 @@ public class GameManagement {
 	//Initial fields for the start menu / title screen
 	private static String titleScreenDescription;
 	private static ArrayList<String> titleScreenActions;
+	
+	//create new InputHandler
+	private final InputHandler inputHandler;
 	
 	/**
 	 * Constructor
@@ -50,6 +53,7 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
+		this.inputHandler = new InputHandler(player);
 		
 		//Show the starting room
 		displayRoom.accept(Player.getCurrentRoom());
@@ -61,7 +65,7 @@ public class GameManagement {
 	 * 
 	 */
 	//Set the text of a room, it's lore, description, and all actions
-	public Consumer<Room> displayRoom = room -> {
+	public static Consumer<Room> displayRoom = room -> {
 		System.out.println("\n");
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
 		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
@@ -221,7 +225,7 @@ public class GameManagement {
 	}
 	
 	//returns text based on language selected
-	public String localizedDesc(String descKey)
+	public static String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
@@ -273,7 +277,7 @@ public class GameManagement {
 	}
 	
 	//Getter and setter for the item list
-	public ArrayList<Item> getItemList() {
+	public static ArrayList<Item> getItemList() {
 		return GameManagement.itemList;
 	}
 	
@@ -282,11 +286,15 @@ public class GameManagement {
 	}
 	
 	//Getter and setter for interactable list
-	public ArrayList<BaseInteractable> getInteractables() {
+	public static ArrayList<BaseInteractable> getInteractables() {
 		return GameManagement.interactableList;
 	}
 	
 	public void setInteractableList(ArrayList<BaseInteractable> interactableList) {
 		GameManagement.interactableList = interactableList;
+	}
+	
+	public InputHandler getInputHandler() {
+		return this.inputHandler;
 	}
 }
