@@ -8,10 +8,11 @@ import java.util.function.UnaryOperator;
 
 public class InputHandler {
 	private final Player player;
-	
+	private final Inventory playerInventory;
 
 	public InputHandler(Player player) {
 		this.player = player;
+		playerInventory = player.getInventory();
 	}
 
 	//Unary operator for parsing commands
@@ -19,6 +20,9 @@ public class InputHandler {
 
 	//handles player commands
 	public boolean handleCommand(String input) {
+		//set this to false as default
+		player.setIsViewingInventory(false);
+		
 		//trim input and make uppercase to avoid capitalization issues
 		String playerInput = input.trim().toUpperCase();
 
@@ -32,30 +36,39 @@ public class InputHandler {
 		String[] parts = playerInput.split(" ", 2);
 		String commandWord = parts[0];
 		String argument = "";
+		Commands command = Commands.getCommandFromString(commandWord);
 
 		//make sure there is a noun
 		if (parts.length > 1) {
 			argument = parts[1].trim();
+			
+			//create instance of Command
+			switch (command) {
+				case GO:
+					movePlayer(argument);
+					break;
+				case EXAMINE:
+					examineItem(argument, player.getIsViewingInventory());
+					break;
+				case GRAB:
+					grabItem(argument);
+					break;
+				default:
+					System.out.println("I don't recognize that command.");
+			}
+			
 		} else {
-			System.out.println("???");
-		}
-
-		//create instance of Command
-		Commands command = Commands.getCommandFromString(commandWord);
-
-		switch (command) {
-			case GO:
-				movePlayer(argument);
-				break;
-			case EXAMINE:
-				examineItem(argument);
-				break;
-			case GRAB:
-				grabItem(argument);
+			switch (command) {
+			case INVENTORY:
+				player.setIsViewingInventory(true);
+				System.out.println(playerInventory.displayAllInventory());
 				break;
 			default:
 				System.out.println("I don't recognize that command.");
+			}
 		}
+
+
 
 		return true;
 	}
@@ -96,45 +109,71 @@ public class InputHandler {
 	/*
 	 * handles the EXAMINE command (TAKE ITEM_NAME)
 	 */
-	public void examineItem(String itemName) {
-		ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+	public void examineItem(String itemName, boolean isViewingInventory) {
+		//if viewing inventory, then get list from inventory, otherwise from room
 		BaseInteractable foundInteractable = null;
-
-		for(BaseInteractable interactable : interactableList) {
-			if(interactable.getName().toUpperCase().contains(itemName)) {
-				foundInteractable = interactable;
-				break;
+		
+		if(!isViewingInventory) {		
+			ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+			
+			for(BaseInteractable interactable : interactableList) {
+				if(interactable.getName().toUpperCase().contains(itemName)) {
+					foundInteractable = interactable;
+					break;
+				}
 			}
 		}
 
 		if (foundInteractable != null) {
 			System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
-			System.out.println(foundInteractable.getLore() + "\n");
+			System.out.println(foundInteractable.getLore());
+			System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+			
 		} else {
-			System.out.println("There is nothing here for examination...");
+			ArrayList<Item> itemList = (ArrayList<Item>) player.getInventory().getAllInventory();
+			Item foundItem = null;
+			
+			for(Item item : itemList) {
+				if(item.getName().toUpperCase().contains(itemName)) {
+					foundItem = item;
+					break;
+				}
+			}
+			
+			if (foundItem != null) {
+				System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
+				System.out.println(foundItem.getLore());
+				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
+				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				
+			} else {
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("There is nothing here for examination...");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+			}			
 		}
-				//TODO: display item description
 	}
 	
 	/*
 	 * handles the GRAB command (GRAB ITEM_NAME)
 	 */
 	public void grabItem(String itemName) {
-		ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
-		BaseInteractable foundInteractable = null;
+		ArrayList<Item> itemList = player.getCurrentRoom().getItemList();
+				Item foundItem = null;
 
-		for(BaseInteractable interactable : interactableList) {
-			if(interactable.getName().toUpperCase().contains(itemName)) {
-				foundInteractable = interactable;
+		for(Item item : itemList) {
+			if(item.getName().toUpperCase().contains(itemName)) {
+				foundItem = item;
 				break;
 			}
 		}
 
-		if (foundInteractable != null) {
-			player.getCurrentRoom().removeInteractable(foundInteractable);
-			System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
-			System.out.println(foundInteractable.getLore() + "\n");
+		if (foundItem != null) {
+			player.getInventory().addItem(foundItem);
+			player.getCurrentRoom().removeItem(foundItem);
+			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
+			System.out.println(foundItem.getLore() + "\n");
 			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 		} else {
 			System.out.println("There is nothing here for examination...");

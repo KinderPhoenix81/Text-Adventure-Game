@@ -11,6 +11,7 @@ public class Player {
 	private int health;
 	private static Room currentRoom;
 	private Locale locale = new Locale("en", "US");
+	private boolean isViewingInventory = false;
 	
 	//private Locale locale = new Locale("es", "SP");
 	//Constructor
@@ -25,6 +26,10 @@ public class Player {
 		return name;
 	}
 	
+	public Inventory getInventory() {
+		return inventory;
+	}
+	
 	public int getHealth() {
 		return health;
 	}
@@ -36,6 +41,10 @@ public class Player {
 	public Locale getLocale()
 	{
 		return locale;
+	}
+	
+	public boolean getIsViewingInventory() {
+		return isViewingInventory;
 	}
 	
 	//Setters for player fields
@@ -59,4 +68,9 @@ public class Player {
 	{
 		locale = setLocale;
 	}
+	
+	public void setIsViewingInventory(boolean isViewing ) {
+		isViewingInventory = isViewing;
+	}
+	
 }

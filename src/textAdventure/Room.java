@@ -122,8 +122,8 @@ public class Room implements Comparable<Room>{
 		return Integer.compare(this.getID(), o.getID());
 	}
 	
-	public void removeInteractable(Interactable interactable) {
-		this.interactableList.remove(interactable);
+	public void removeItem(Item item) {
+		this.itemList.remove(item);
 	}
 	
 }

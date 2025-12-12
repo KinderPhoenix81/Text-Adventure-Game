@@ -20,12 +20,16 @@ public class Inventory {
 		items.remove(item);
 	}
 	
+	public List<Item> getAllInventory(){
+		return items;
+	}
+	
 	public String displayAllInventory() {
 		if (items.isEmpty()) {
 			return "You are not carrying anything.";
 		}
 		
-		String inventoryDisplayString = "";
+		String inventoryDisplayString = "INVENTORY~~~~~~~~~~~";
 		for (Item item : items) {
 			inventoryDisplayString = "\nExamine " + item.getName();
 		}
