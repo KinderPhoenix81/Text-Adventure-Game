@@ -8,7 +8,6 @@ public class Player {
 	//Fields for player
 	private String name;
 	private Inventory inventory = new Inventory();
-	private int health;
 	private static Room currentRoom;
 	private Locale locale = new Locale("en", "US");
 	private boolean isViewingInventory = false;
@@ -18,7 +17,6 @@ public class Player {
 	public Player(String name) {
 		//Sets properties of the player
 		this.name = name;
-		health = 100;
 	}
 	
 	//Getters for the player
@@ -28,10 +26,6 @@ public class Player {
 	
 	public Inventory getInventory() {
 		return inventory;
-	}
-	
-	public int getHealth() {
-		return health;
 	}
 	
 	public static Room getCurrentRoom() {
@@ -48,18 +42,6 @@ public class Player {
 	}
 	
 	//Setters for player fields
-	public void setHealth(int newHealthValue) {
-		health = newHealthValue;
-	}
-	
-	public void decrementHealth(int damage) {
-		health -= damage;
-	}
-	
-	public void recoverHealth(int healing) {
-		health += healing;
-	}
-	
 	public void setCurrentRoom(Room room) {
 		currentRoom = room;
 	}

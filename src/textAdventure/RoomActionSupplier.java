@@ -67,8 +67,7 @@ public class RoomActionSupplier {
 	public static Supplier<List<String>> darkCellAActions = () -> 
 		new ArrayList<>(List.of(
 			"Go East",
-			"Go South",
-			"Grab Health Potion"
+			"Go South"
 			));
 
 	//Dark room (B) actions
@@ -107,8 +106,7 @@ public class RoomActionSupplier {
 	public static Supplier<List<String>> darkCellFActions = () -> 
 		new ArrayList<>(List.of(
 			"Go North",
-			"Go West",
-			"Grab Health Potion"
+			"Go West"
 			));
 	
 	//Crypt hallway actions

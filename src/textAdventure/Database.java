@@ -107,10 +107,8 @@ public class Database {
 					+ "(3, 'Sword Totem', 'A carved wooden totem depicting a sword.', 'Garden Totem Puzzle Item', 'Inspect'), "
 					+ "(4, 'Fish Totem', 'A carved wooden totem depicting a fish.', 'Garden Totem Puzzle Item', 'Inspect'), "
 					+ "(5, 'Torch', 'A standard torch, complete with a sturdy wooden handle and a ball of cloth on the end.', 'Source of Light', 'Use'), "
-					+ "(6, 'Health Potion', 'A glass bottle containing red liquid. Smelling it already makes you feel better. It must be restorative.', 'Restorative Item', 'Drink'), "
-					+ "(7, 'Health Potion', 'A glass bottle containing red liquid. Smelling it already makes you feel better. It must be restorative.', 'Restorative Item', 'Drink'),"
-					+ "(8, 'Haunted Vase', 'A vase, ornately painted and embedded with gemstones. It feels empty and full at the same time. This is undoubtedly the source of the haunted feeling in this room. Holding it compels you to open it for a reason you’re unsure of.', 'Ending Item', 'Open'), "
-					+ "(9, 'Golden Artifact', 'A small golden statue. A large ruby is set in the center. It feels special to hold.', 'Ending Item', 'Inspect') ");
+					+ "(6, 'Haunted Vase', 'A vase, ornately painted and embedded with gemstones. It feels empty and full at the same time. This is undoubtedly the source of the haunted feeling in this room. Holding it compels you to open it for a reason you’re unsure of.', 'Ending Item', 'Open'), "
+					+ "(7, 'Golden Artifact', 'A small golden statue. A large ruby is set in the center. It feels special to hold.', 'Ending Item', 'Inspect') ");
 			
 		} catch (SQLException e) {
 			//Print errors
@@ -347,21 +345,13 @@ public class Database {
 			case 6:
 				currentItems.add(items.get(4));
 				break;
-			//Health potion in dark room- cell A
-			case 7:
-				currentItems.add(items.get(5));
-				break;
-			//Health potion in dark room- cell F
-			case 12:
-				currentItems.add(items.get(6));
-				break;
 			//Haunted vase in spirit room
 			case 15:
-				currentItems.add(items.get(7));
+				currentItems.add(items.get(5));
 				break;
 			//Golden artifact in artifact room
 			case 16:
-				currentItems.add(items.get(8));
+				currentItems.add(items.get(6));
 			}
 			
 			//Add the item list to the room
