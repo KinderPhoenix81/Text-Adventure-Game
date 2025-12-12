@@ -171,7 +171,7 @@ public class Room implements Comparable<Room>{
 			
 			if(upperStoredRoomAction.equals(roomAction)) {
 				this.roomActions.remove(storedRoomAction);
-				break;
+				return;
 			}
 		}
 		
