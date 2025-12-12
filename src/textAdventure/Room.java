@@ -126,4 +126,18 @@ public class Room implements Comparable<Room>{
 		this.itemList.remove(item);
 	}
 	
+	public void removeRoomAction(String roomAction) {
+		//need to evaluate toUpper strings
+		for (String storedRoomAction : this.roomActions) {
+			String upperStoredRoomAction = storedRoomAction.toUpperCase();		
+			
+			if(upperStoredRoomAction.equals(roomAction)) {
+				this.roomActions.remove(storedRoomAction);
+				break;
+			}
+		}
+		
+		
+	}
+	
 }

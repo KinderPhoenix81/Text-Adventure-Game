@@ -392,3 +392,113 @@
 12-11-2025 22:29:59.958 INFO  [LoggingExample] - Game objects properly mapped!
 12-11-2025 22:29:59.958 INFO  [LoggingExample] - Game objects sorted!
 12-11-2025 22:29:59.958 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:44:55.903 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:44:55.903 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:44:55.945 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:44:55.945 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:44:56.014 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:44:56.014 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:44:56.040 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:44:56.040 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:44:56.044 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:44:56.044 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:44:56.044 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:44:56.044 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:45:51.424 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-11-2025 22:45:51.424 ERROR [LoggingExample] - There seems to have been an issue initializing the database, please try again.
+12-11-2025 22:46:12.469 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:46:12.469 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:46:12.510 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:46:12.510 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:46:12.578 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:46:12.578 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:46:12.603 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:46:12.603 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:46:12.607 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:46:12.607 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:46:12.607 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:46:12.607 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:52:21.740 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:52:21.740 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:52:21.780 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:52:21.780 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:52:21.847 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:52:21.847 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:52:21.872 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:52:21.872 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:52:21.878 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:52:21.878 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:52:21.878 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:52:21.878 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:53:16.387 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:53:16.387 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:53:16.429 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:53:16.429 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:53:16.495 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:53:16.495 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:53:16.519 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:53:16.519 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:53:16.523 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:53:16.523 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:53:16.524 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:53:16.524 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:53:44.558 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:53:44.558 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:53:44.601 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:53:44.601 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:53:44.669 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:53:44.669 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:53:44.694 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:53:44.694 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:53:44.698 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:53:44.698 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:53:44.698 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:53:44.698 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:54:19.259 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:54:19.259 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:54:19.301 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:54:19.301 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:54:19.368 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:54:19.368 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:54:19.392 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:54:19.392 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:54:19.398 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:54:19.398 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:54:19.398 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:54:19.398 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:55:07.084 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:55:07.084 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:55:07.123 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:55:07.123 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:55:07.193 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:55:07.193 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:55:07.215 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:55:07.215 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:55:07.221 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:55:07.221 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:55:07.221 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:55:07.221 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:56:03.956 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:56:03.956 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:56:03.997 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:56:03.997 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:56:04.064 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:56:04.064 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:56:04.087 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:56:04.087 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:56:04.094 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:56:04.094 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:56:04.095 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:56:04.095 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:56:51.480 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:56:51.480 INFO  [LoggingExample] - Existing tables have been dropped.
+12-11-2025 22:56:51.519 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:56:51.519 INFO  [LoggingExample] - Database created successfully!
+12-11-2025 22:56:51.587 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:56:51.587 INFO  [LoggingExample] - Objects properly instantiated!
+12-11-2025 22:56:51.611 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:56:51.611 INFO  [LoggingExample] - Game objects properly loaded!
+12-11-2025 22:56:51.614 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:56:51.614 INFO  [LoggingExample] - Game objects properly mapped!
+12-11-2025 22:56:51.615 INFO  [LoggingExample] - Game objects sorted!
+12-11-2025 22:56:51.615 INFO  [LoggingExample] - Game objects sorted!
