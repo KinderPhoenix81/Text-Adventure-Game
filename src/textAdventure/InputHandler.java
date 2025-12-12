@@ -278,7 +278,7 @@ public class InputHandler {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
 				}
 			case "Completed":
-				if(player.hasItem(specialConditionNoun.toUpperCase())) {
+				if(player.completedQuest(specialConditionNoun)) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
 				}
 		}
