@@ -87,17 +87,17 @@ public class GameManagement {
 	}
 	
 	//Update the current player actions based on their inventory
-	public void refreshPlayerActionPrompt(Player player) {
-		ArrayList<String> playerActions = new ArrayList<String>();
-		
-		//For each item in the player's inventory, get the item's action
-		for(Item item : player.getInventory()) {
-			playerActions.add(item.getAction());
-		}
-		
-		//Set the value of playerActions
-		playerActionsPrompt = playerActions;
-	}
+//	public void refreshPlayerActionPrompt(Player player) {
+//		ArrayList<String> playerActions = new ArrayList<String>();
+//		
+//		//For each item in the player's inventory, get the item's action
+//		for(Item item : player.getInventory()) {
+//			playerActions.add(item.getAction());
+//		}
+//		
+//		//Set the value of playerActions
+//		playerActionsPrompt = playerActions;
+//	}
 	
 	//Create the content for the game
 	public static void createGameContent(ArrayList<Room> rooms, ArrayList<Item> items, ArrayList<BaseInteractable> interactables) {

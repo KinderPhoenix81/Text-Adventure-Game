@@ -8,6 +8,7 @@ import java.util.function.UnaryOperator;
 
 public class InputHandler {
 	private final Player player;
+	
 
 	public InputHandler(Player player) {
 		this.player = player;
@@ -48,6 +49,9 @@ public class InputHandler {
 				break;
 			case EXAMINE:
 				examineItem(argument);
+				break;
+			case GRAB:
+				grabItem(argument);
 				break;
 			default:
 				System.out.println("I don't recognize that command.");
@@ -111,6 +115,30 @@ public class InputHandler {
 			System.out.println("There is nothing here for examination...");
 		}
 				//TODO: display item description
+	}
+	
+	/*
+	 * handles the GRAB command (GRAB ITEM_NAME)
+	 */
+	public void grabItem(String itemName) {
+		ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+		BaseInteractable foundInteractable = null;
+
+		for(BaseInteractable interactable : interactableList) {
+			if(interactable.getName().toUpperCase().contains(itemName)) {
+				foundInteractable = interactable;
+				break;
+			}
+		}
+
+		if (foundInteractable != null) {
+			player.getCurrentRoom().removeInteractable(foundInteractable);
+			System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
+			System.out.println(foundInteractable.getLore() + "\n");
+			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+		} else {
+			System.out.println("There is nothing here for examination...");
+		}
 	}
 	
 //	public void examineInteractable(String examineObject)

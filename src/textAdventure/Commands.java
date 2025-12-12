@@ -6,7 +6,7 @@ import java.util.Map;
 public enum Commands {
 	
 	GO("go", 1, "MOVE"), //takes direction
-	TAKE("take", 1, "GET_ITEM"), //takes itmeem
+	GRAB("grab", 1, "GET_ITEM"), //takes itmeem
 	EXAMINE("examine", 1, "LOOK_AT"), //takes item
 	USE("use", 2, "USE_ITEM"), //takes item and something to interact with
 	INVENTORY("inventory", 0, "CHECK_INVENTORY"), //no params
