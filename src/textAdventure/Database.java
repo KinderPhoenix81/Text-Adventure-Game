@@ -65,6 +65,7 @@ public class Database {
 			mapInteractables(rooms, interactables);
 			mapRoomActions(rooms);
 			mapRoomExits(rooms);
+			mapRoomConditions(rooms);
 			mapPedestalItems(interactables);
 			
 			//Log progress
