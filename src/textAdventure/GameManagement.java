@@ -119,121 +119,14 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
-//<<<<<<< Updated upstream
-//=======
-	
-	//Unary operator for parsing commands
-	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
-	
-	//handles player commands
-	public boolean handleCommand(String input) {
-		String[] parts = input.toLowerCase().split(" ", 2);
-		String commandWord = parts[0];
-		String argument = parts[1];
-		
-		switch (commandWord) {
-			case "go":
-				movePlayer(argument);
-				break;
-			case "examine":
-				examineInteractable(argument);
-				break;
-		}
-		
-		return true;
-	}
-	
-	//handles player movement
-	public void movePlayer(String directionString) {
-		Direction direction;
-		try {
-			direction = Direction.valueOf(properInputFormat.apply(directionString));
-		} catch (IllegalArgumentException e) {
-			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
-			return;
-		}
-		
-		Room currentRoom = player.getCurrentRoom();
-		Room nextRoom = currentRoom.getExit(direction);
-		
-		if (nextRoom != null) {
-			player.setCurrentRoom(nextRoom);
-			displayRoom.accept(nextRoom);
-		} else {
-			System.out.println("You can not travel that direction from here.");
-		}
-		
-		
-	}
-	//examine interactable objects, displays descriptions
-	public void examineInteractable(String examineObject)
-	{
-		String doorName = null;
-		if(examineObject.contains("door"))
-		{
-			doorName = examineObject;
-			examineObject = "door";
-		}
-		
-		switch(examineObject)
-		{
-		 case "pedestal":
-			 Pedestal pedestal = Player.getCurrentRoom().getInteractableList().stream()
-			 	.filter(i-> i instanceof Pedestal)
-			 	.map(i-> (Pedestal) i)
-			 	.findFirst()
-			 	.orElse(null);
-			 
-			 if (pedestal != null)
-			 {
-				 System.out.println(localizedDesc(pedestal.getDesc()));
-				 
-			 }
-			 break;
-		 case "engraved rock":
-			 EngravedRock engravedRock = Player.getCurrentRoom().getInteractableList().stream()
-			 .filter(i-> i instanceof EngravedRock)
-			 .map(i-> (EngravedRock) i)
-			 .findFirst()
-			 .orElse(null);
-			 
-			 if (engravedRock != null)
-			 {
-				 System.out.println(localizedDesc(engravedRock.getDesc()));
-			 }
-			 break;
-		 case "door":
-			 List<Door> doors = Player.getCurrentRoom().getInteractableList().stream()
-			 .filter(i-> i instanceof Door)
-			 .map(i -> (Door) i)
-			 .toList();
-			 
-			 //make a final version of door name so this stuff stops yelling at me
-			 final String finalDoorName = doorName;
-			 
-			 Door selectedDoor = doors.stream()
-					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
-					 .findFirst()
-					 .orElse(null);
-			 
-			 if (selectedDoor != null)
-			 {
-				 System.out.println(localizedDesc(selectedDoor.getDesc()));
-			 }
-		}
-		
-	}
-	
-	//returns text based on language selected
+
+//	//returns text based on language selected
 	public static String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
 		return rb.getString(descKey);
 	}
-	
-	
-//>>>>>>> Stashed changes
 		
 	/**
 	 * Getters and setters for the class

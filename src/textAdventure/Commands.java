@@ -7,7 +7,7 @@ public enum Commands {
 	
 	GO("go", 1, "MOVE"), //takes direction
 	TAKE("take", 1, "GET_ITEM"), //takes itmeem
-	INSPECT("examine", 1, "LOOK_AT"), //takes item
+	EXAMINE("examine", 1, "LOOK_AT"), //takes item
 	USE("use", 2, "USE_ITEM"), //takes item and something to interact with
 	INVENTORY("inventory", 0, "CHECK_INVENTORY"), //no params
 	HELP("help", 0, "SHOW_HELP"), // no params

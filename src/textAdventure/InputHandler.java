@@ -1,6 +1,9 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
 public class InputHandler {
@@ -43,9 +46,10 @@ public class InputHandler {
 			case GO:
 				movePlayer(argument);
 				break;
-			case INSPECT:
-				inspectItem(argument);
-
+			case EXAMINE:
+				System.out.println("made it here");
+				examineInteractable(argument);
+				break;
 			default:
 				System.out.println("I don't recognize that command.");
 		}
@@ -87,26 +91,85 @@ public class InputHandler {
 	}
 
 	/*
-	 * handles the INSPECT command (TAKE ITEM_NAME)
+	 * handles the EXAMINE command (TAKE ITEM_NAME)
 	 */
-	public void inspectItem(String itemName) {
-		System.out.println(itemName);
-		ArrayList<BaseInteractable> interactableList = GameManagement.getInteractables();
-		BaseInteractable foundInteractable = null;
-
-		for(BaseInteractable interactable : interactableList) {
-			if(interactable.getName().equalsIgnoreCase(itemName)) {
-				foundInteractable = interactable;
-				break;
-			}
+//	public void examineItem(String itemName) {
+//		System.out.println("item name: " + itemName);
+//		ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+//		BaseInteractable foundInteractable = null;
+//
+//		for(BaseInteractable interactable : interactableList) {
+//			if(interactable.getName().equalsIgnoreCase(itemName)) {
+//				foundInteractable = interactable;
+//				break;
+//			}
+//		}
+//
+//		if (foundInteractable != null) {
+//			System.out.println(foundInteractable.getDesc());
+//		} else {
+//			System.out.println("There is nothing here for examination...");
+//		}
+//				//TODO: display item description
+//	}
+	
+	public void examineInteractable(String examineObject)
+	{
+		String doorName = null;
+		if(examineObject.contains("door"))
+		{
+			doorName = examineObject;
+			examineObject = "door";
 		}
-
-		if (foundInteractable != null) {
-			System.out.println(foundInteractable.getDesc());
-		} else {
-			System.out.println("There is nothing here for inspection...");
+		
+		switch(examineObject)
+		{
+		 case "pedestal":
+			 Pedestal pedestal = Player.getCurrentRoom().getInteractableList().stream()
+			 	.filter(i-> i instanceof Pedestal)
+			 	.map(i-> (Pedestal) i)
+			 	.findFirst()
+			 	.orElse(null);
+			 
+			 if (pedestal != null)
+			 {
+				 System.out.println(GameManagement.localizedDesc(pedestal.getDesc()));
+				 
+			 }
+			 break;
+		 case "engraved rock":
+			 System.out.println("here");
+			 EngravedRock engravedRock = Player.getCurrentRoom().getInteractableList().stream()
+			 .filter(i-> i instanceof EngravedRock)
+			 .map(i-> (EngravedRock) i)
+			 .findFirst()
+			 .orElse(null);
+			 
+			 if (engravedRock != null)
+			 {
+				 System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
+			 }
+			 break;
+		 case "door":
+			 List<Door> doors = Player.getCurrentRoom().getInteractableList().stream()
+			 .filter(i-> i instanceof Door)
+			 .map(i -> (Door) i)
+			 .toList();
+			 
+			 //make a final version of door name so this stuff stops yelling at me
+			 final String finalDoorName = doorName;
+			 
+			 Door selectedDoor = doors.stream()
+					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
+					 .findFirst()
+					 .orElse(null);
+			 
+			 if (selectedDoor != null)
+			 {
+				 System.out.println(GameManagement.localizedDesc(selectedDoor.getDesc()));
+			 }
 		}
-				//TODO: display item description
+		
 	}
 
 	/*
@@ -121,4 +184,5 @@ public class InputHandler {
 
 		//TODO: make use of the item
 	}
+	
 }
