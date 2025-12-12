@@ -47,8 +47,7 @@ public class InputHandler {
 				movePlayer(argument);
 				break;
 			case EXAMINE:
-				System.out.println("made it here");
-				examineInteractable(argument);
+				examineItem(argument);
 				break;
 			default:
 				System.out.println("I don't recognize that command.");
@@ -93,84 +92,87 @@ public class InputHandler {
 	/*
 	 * handles the EXAMINE command (TAKE ITEM_NAME)
 	 */
-//	public void examineItem(String itemName) {
-//		System.out.println("item name: " + itemName);
-//		ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
-//		BaseInteractable foundInteractable = null;
-//
-//		for(BaseInteractable interactable : interactableList) {
-//			if(interactable.getName().equalsIgnoreCase(itemName)) {
-//				foundInteractable = interactable;
-//				break;
-//			}
-//		}
-//
-//		if (foundInteractable != null) {
-//			System.out.println(foundInteractable.getDesc());
-//		} else {
-//			System.out.println("There is nothing here for examination...");
-//		}
-//				//TODO: display item description
-//	}
-	
-	public void examineInteractable(String examineObject)
-	{
-		String doorName = null;
-		if(examineObject.contains("door"))
-		{
-			doorName = examineObject;
-			examineObject = "door";
+	public void examineItem(String itemName) {
+		ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+		BaseInteractable foundInteractable = null;
+
+		for(BaseInteractable interactable : interactableList) {
+			if(interactable.getName().toUpperCase().contains(itemName)) {
+				foundInteractable = interactable;
+				break;
+			}
 		}
-		
-		switch(examineObject)
-		{
-		 case "pedestal":
-			 Pedestal pedestal = Player.getCurrentRoom().getInteractableList().stream()
-			 	.filter(i-> i instanceof Pedestal)
-			 	.map(i-> (Pedestal) i)
-			 	.findFirst()
-			 	.orElse(null);
-			 
-			 if (pedestal != null)
-			 {
-				 System.out.println(GameManagement.localizedDesc(pedestal.getDesc()));
-				 
-			 }
-			 break;
-		 case "engraved rock":
-			 System.out.println("here");
-			 EngravedRock engravedRock = Player.getCurrentRoom().getInteractableList().stream()
-			 .filter(i-> i instanceof EngravedRock)
-			 .map(i-> (EngravedRock) i)
-			 .findFirst()
-			 .orElse(null);
-			 
-			 if (engravedRock != null)
-			 {
-				 System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
-			 }
-			 break;
-		 case "door":
-			 List<Door> doors = Player.getCurrentRoom().getInteractableList().stream()
-			 .filter(i-> i instanceof Door)
-			 .map(i -> (Door) i)
-			 .toList();
-			 
-			 //make a final version of door name so this stuff stops yelling at me
-			 final String finalDoorName = doorName;
-			 
-			 Door selectedDoor = doors.stream()
-					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
-					 .findFirst()
-					 .orElse(null);
-			 
-			 if (selectedDoor != null)
-			 {
-				 System.out.println(GameManagement.localizedDesc(selectedDoor.getDesc()));
-			 }
+
+		if (foundInteractable != null) {
+			System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
+			System.out.println(foundInteractable.getLore() + "\n");
+			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+		} else {
+			System.out.println("There is nothing here for examination...");
 		}
-		
+				//TODO: display item description
 	}
+	
+//	public void examineInteractable(String examineObject)
+//	{
+//		System.out.println("Made it in examineInteractable");
+//		System.out.println(examineObject);
+//		String doorName = null;
+//		if(examineObject.contains("door"))
+//		{
+//			doorName = examineObject;
+//			examineObject = "door";
+//		}
+//		
+//		switch(examineObject)
+//		{
+//		 case "pedestal":
+//			 Pedestal pedestal = Player.getCurrentRoom().getInteractableList().stream()
+//			 	.filter(i-> i instanceof Pedestal)
+//			 	.map(i-> (Pedestal) i)
+//			 	.findFirst()
+//			 	.orElse(null);
+//			 
+//			 if (pedestal != null)
+//			 {
+//				 System.out.println(GameManagement.localizedDesc(pedestal.getDesc()));
+//				 
+//			 }
+//			 break;
+//		 case "engraved rock":
+//			 System.out.println("here");
+//			 EngravedRock engravedRock = Player.getCurrentRoom().getInteractableList().stream()
+//			 .filter(i-> i instanceof EngravedRock)
+//			 .map(i-> (EngravedRock) i)
+//			 .findFirst()
+//			 .orElse(null);
+//			 
+//			 if (engravedRock != null)
+//			 {
+//				 System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
+//			 }
+//			 break;
+//		 case "door":
+//			 List<Door> doors = Player.getCurrentRoom().getInteractableList().stream()
+//			 .filter(i-> i instanceof Door)
+//			 .map(i -> (Door) i)
+//			 .toList();
+//			 
+//			 //make a final version of door name so this stuff stops yelling at me
+//			 final String finalDoorName = doorName;
+//			 
+//			 Door selectedDoor = doors.stream()
+//					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
+//					 .findFirst()
+//					 .orElse(null);
+//			 
+//			 if (selectedDoor != null)
+//			 {
+//				 System.out.println(GameManagement.localizedDesc(selectedDoor.getDesc()));
+//			 }
+//		}
+//		
+//	}
 
 	/*
 	 * handles the TAKE command (TAKE ITEM_NAME)
