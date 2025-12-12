@@ -427,10 +427,10 @@ public class Database {
 	public static void mapRoomExits(ArrayList<Room> rooms) {
 		Room outerGarden = rooms.get(0);
 		Room northGarden = rooms.get(1);
-		Room westGarden = rooms.get(3);
-		Room eastGarden = rooms.get(4);
-		Room southGarden = rooms.get(5);
-		Room cryptEntrance = rooms.get(6);
+		Room westGarden = rooms.get(2);
+		Room eastGarden = rooms.get(3);
+		Room southGarden = rooms.get(4);
+		Room cryptEntrance = rooms.get(5);
 		
 		//outer garden exits
 		outerGarden.setExit(Direction.NORTH, northGarden);
@@ -448,10 +448,7 @@ public class Database {
 		eastGarden.setExit(Direction.WEST, outerGarden);
 		
 		//south garden exits
-		southGarden.setExit(Direction.NORTH, outerGarden);
-		
-		
-		
+		southGarden.setExit(Direction.NORTH, outerGarden);		
 	}
 	
 	//Map room actions
