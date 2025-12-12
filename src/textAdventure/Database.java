@@ -451,6 +451,43 @@ public class Database {
 		southGarden.setExit(Direction.NORTH, outerGarden);		
 	}
 	
+	/*
+	 * Mapping method for setting room special items
+	 */
+	public static void mapRoomConditions(ArrayList<Room> rooms) {
+		Room outerGarden = rooms.get(0);
+		Room northGarden = rooms.get(1);
+		Room westGarden = rooms.get(2);
+		Room eastGarden = rooms.get(3);
+		Room southGarden = rooms.get(4);
+		Room cryptEntrance = rooms.get(5);
+		
+		//outer garden exits
+		outerGarden.setSpecialConditionVerb("Completed");
+		outerGarden.setSpecialConditionNoun("Totem Quest");
+		outerGarden.setSpecialAction("Enter Crypt Door");
+		
+		//north garden exits
+		northGarden.setSpecialConditionVerb("Has");
+		northGarden.setSpecialConditionNoun("Lumber Totem");
+		northGarden.setSpecialAction("Use Lumber Totem");
+		
+		//west garden exits
+		westGarden.setSpecialConditionVerb("Has");
+		westGarden.setSpecialConditionNoun("Wheat Totem");
+		westGarden.setSpecialAction("Use Wheat Totem");
+		
+		//east garden exits
+		eastGarden.setSpecialConditionVerb("Has");
+		eastGarden.setSpecialConditionNoun("Fish Totem");
+		eastGarden.setSpecialAction("Use Fish Totem");
+		
+		//south garden exits
+		southGarden.setSpecialConditionVerb("Has");
+		southGarden.setSpecialConditionNoun("Sword Totem");
+		southGarden.setSpecialAction("Use Sword Totem");
+	}
+	
 	//Map room actions
 	public static void mapRoomActions(ArrayList<Room> rooms) {
 		//Map room actions to each room

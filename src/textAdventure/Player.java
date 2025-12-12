@@ -73,4 +73,13 @@ public class Player {
 		isViewingInventory = isViewing;
 	}
 	
+	public boolean hasItem(String itemName) {
+		for (Item item : inventory.getAllInventory()) {
+			if(item.getName().toUpperCase().equals(itemName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
