@@ -277,7 +277,10 @@ public class InputHandler {
 				if(player.hasItem(specialConditionNoun.toUpperCase())) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
 				}
-				
+			case "Completed":
+				if(player.hasItem(specialConditionNoun.toUpperCase())) {
+					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+				}
 		}
 		
 	}
