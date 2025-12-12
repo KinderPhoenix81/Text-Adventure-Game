@@ -3,6 +3,7 @@ package textAdventure;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -87,6 +88,8 @@ public class InputHandler {
 		Room nextRoom = currentRoom.getExit(direction);
 
 		if (nextRoom != null) {
+			//check if player can have special actions
+			checkSpecialConditions(nextRoom);
 			player.setCurrentRoom(nextRoom);
 			GameManagement.displayRoom.accept(nextRoom);
 		} else {
@@ -252,6 +255,33 @@ public class InputHandler {
 		}
 
 		//TODO: make use of the item
+	}
+	
+	private void checkSpecialConditions(Room nextRoom) {
+		String specialConditionVerb = nextRoom.getSpecialConditionVerb();
+		String specialConditionNoun = nextRoom.getSpecialConditionNoun();
+		
+		if(specialConditionVerb == null || specialConditionVerb.isEmpty()) {
+			return;
+		}
+		
+		if(specialConditionNoun == null || specialConditionNoun.isEmpty()) {
+			return;
+		}
+		
+		boolean conditionMet = false;
+		
+		switch (specialConditionVerb) {
+			case "Has":
+				if(player.hasItem(specialConditionNoun.toUpperCase())) {
+					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+				}
+			case "Completed":
+				if(player.completedQuest(specialConditionNoun)) {
+					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+				}
+		}
+		
 	}
 	
 }

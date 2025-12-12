@@ -16,6 +16,13 @@ public class Room implements Comparable<Room>{
 	//used for allowing you to move from place to place
 	private final Map<Direction, Room> exits;
 	
+	//used to determine if the player has met a special condition when entering a room
+	private String specialConditionVerb;
+	private String specialConditionNoun;
+	
+	//holds the special action tied to the special condition
+	private String specialAction;
+	
 	//Used for the action prompt field in GameManagement, describes potential actions
 	private ArrayList<String> roomActions;
 	
@@ -103,6 +110,31 @@ public class Room implements Comparable<Room>{
 		this.itemList = itemList;
 	}
 	
+	public void setSpecialConditionVerb(String verb) {
+		specialConditionVerb = verb;
+	}
+	
+	public void setSpecialConditionNoun(String noun) {
+		specialConditionNoun = noun;
+	}
+	
+	public String getSpecialConditionVerb() {
+		return this.specialConditionVerb;
+	}	
+	
+	public String getSpecialConditionNoun() {
+		return this.specialConditionNoun;
+	}	
+	
+	public void setSpecialAction(String action) {
+		
+		specialAction = action;
+	}
+	
+	public String getSpecialAction() {
+		return this.specialAction;
+	}	
+	
 	//logic for room exits
 	public void setExit(Direction direction, Room neighbor) {
 		exits.put(direction, neighbor);
@@ -124,6 +156,26 @@ public class Room implements Comparable<Room>{
 	
 	public void removeItem(Item item) {
 		this.itemList.remove(item);
+	}
+	
+	public void addRoomAction(String action) {
+		if (!this.roomActions.contains(action)) {
+			this.roomActions.add(action);
+		}
+	}
+	
+	public void removeRoomAction(String roomAction) {
+		//need to evaluate toUpper strings
+		for (String storedRoomAction : this.roomActions) {
+			String upperStoredRoomAction = storedRoomAction.toUpperCase();		
+			
+			if(upperStoredRoomAction.equals(roomAction)) {
+				this.roomActions.remove(storedRoomAction);
+				break;
+			}
+		}
+		
+		
 	}
 	
 }
