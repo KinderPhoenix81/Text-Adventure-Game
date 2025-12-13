@@ -6,10 +6,10 @@ import java.util.Map;
 public enum Commands {
 	
 	GO("go", 1, "MOVE"), //takes direction
-	TAKE("take", 1, "GET_ITEM"), //takes itmeem
+	GRAB("grab", 1, "GET_ITEM"), //takes itmeem
 	EXAMINE("examine", 1, "LOOK_AT"), //takes item
 	USE("use", 2, "USE_ITEM"), //takes item and something to interact with
-	INVTENTORY("inventory", 0, "CHECK_INVENTORY"), //no params
+	INVENTORY("inventory", 0, "CHECK_INVENTORY"), //no params
 	HELP("help", 0, "SHOW_HELP"), // no params
 	QUIT("quit", 0, "EXIT_GAME"), // no params
 	UNKNOWN("unknown", 0, "INVALID_COMMAND"); // no params

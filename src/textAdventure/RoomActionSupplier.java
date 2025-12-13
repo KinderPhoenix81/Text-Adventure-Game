@@ -12,53 +12,53 @@ public class RoomActionSupplier {
 	//Crypt entrance actions
 	public static Supplier<List<String>> cryptEntranceActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
-			"Move East",
-			"Move West",
-			"Move South",
-			"Inspect Crypt Door"
+			"Go North",
+			"Go East",
+			"Go West",
+			"Go South",
+			"Examine Crypt Door"
 			));
 	
 	//North garden actions
 	public static Supplier<List<String>> northGardensActions = () -> 
 		new ArrayList<>(List.of(
-			"Move South",
-			"Inspect Engraved Rock",
-			"Inspect Pedestal",
-			"Pick up Wheat Totem"
+			"Go South",
+			"Examine Engraved Rock",
+			"Examine Pedestal",
+			"Grab Wheat Totem"
 			));
 	
 	//West garden actions
 	public static Supplier<List<String>> westGardensActions = () -> 
 		new ArrayList<>(List.of(
-			"Move East",
-			"Inspect Engraved Rock",
-			"Inspect Pedestal",
-			"Pick up Lumber Totem"
+			"Go East",
+			"Examine Engraved Rock",
+			"Examine Pedestal",
+			"Grab Lumber Totem"
 			));
 	
 	//East garden actions
 	public static Supplier<List<String>> eastGardensActions = () -> 
 		new ArrayList<>(List.of(
-			"Move West",
-			"Inspect Engraved Rock",
-			"Inspect Pedestal",
-			"Pick up Sword Totem"
+			"Go West",
+			"Examine Engraved Rock",
+			"Examine Pedestal",
+			"Grab Sword Totem"
 			));
 	
 	//South garden actions
 	public static Supplier<List<String>> southGardensActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
-			"Inspect Engraved Rock",
-			"Inspect Pedestal",
-			"Pick up Fish Totem"
+			"Go North",
+			"Examine Engraved Rock",
+			"Examine Pedestal",
+			"Grab Fish Totem"
 			));
 	
 	//Inner crypt entrance actions
 	public static Supplier<List<String>> innerCryptEntranceActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
+			"Go North",
 			"Grab Torch",
 			"Exit Crypt"
 			));
@@ -66,56 +66,54 @@ public class RoomActionSupplier {
 	//Dark room (A) actions
 	public static Supplier<List<String>> darkCellAActions = () -> 
 		new ArrayList<>(List.of(
-			"Move East",
-			"Move South",
-			"Pick up Health Potion"
+			"Go East",
+			"Go South"
 			));
 
 	//Dark room (B) actions
 	public static Supplier<List<String>> darkCellBActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
-			"Move East",
-			"Move South",
-			"Move West"
+			"Go North",
+			"Go East",
+			"Go South",
+			"Go West"
 			));
 	
 	//Dark room (C) actions
 	public static Supplier<List<String>> darkCellCActions = () -> 
 		new ArrayList<>(List.of(
-			"Move South",
-			"Move West"
+			"Go South",
+			"Go West"
 			));
 	
 	//Dark room (D) actions
 	public static Supplier<List<String>> darkCellDActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
-			"Move East"
+			"Go North",
+			"Go East"
 			));
 	
 	//Dark room (E) actions
 	public static Supplier<List<String>> darkCellEActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
-			"Move East",
-			"Move South",
-			"Move West"
+			"Go North",
+			"Go East",
+			"Go South",
+			"Go West"
 			));
 	
 	//Dark room (F) actions
 	public static Supplier<List<String>> darkCellFActions = () -> 
 		new ArrayList<>(List.of(
-			"Move North",
-			"Move West",
-			"Pick up Health Potion"
+			"Go North",
+			"Go West"
 			));
 	
 	//Crypt hallway actions
 	public static Supplier<List<String>> cryptHallwayActions = () -> 
 	new ArrayList<>(List.of(
-			"Move North",
-			"Move South"
+			"Go North",
+			"Go South"
 			));
 	
 	//Crypt split hallway actions
@@ -135,7 +133,7 @@ public class RoomActionSupplier {
 	//Artifact room actions
 	public static Supplier<List<String>> artifactRoomActions = () -> 
 	new ArrayList<>(List.of(
-			"Take Artifact",
+			"Grab Artifact",
 			"Exit Room"
 			));
 }

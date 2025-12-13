@@ -65,6 +65,7 @@ public class Database {
 			mapInteractables(rooms, interactables);
 			mapRoomActions(rooms);
 			mapRoomExits(rooms);
+			mapRoomConditions(rooms);
 			mapPedestalItems(interactables);
 			
 			//Log progress
@@ -107,10 +108,8 @@ public class Database {
 					+ "(3, 'Sword Totem', 'A carved wooden totem depicting a sword.', 'Garden Totem Puzzle Item', 'Inspect'), "
 					+ "(4, 'Fish Totem', 'A carved wooden totem depicting a fish.', 'Garden Totem Puzzle Item', 'Inspect'), "
 					+ "(5, 'Torch', 'A standard torch, complete with a sturdy wooden handle and a ball of cloth on the end.', 'Source of Light', 'Use'), "
-					+ "(6, 'Health Potion', 'A glass bottle containing red liquid. Smelling it already makes you feel better. It must be restorative.', 'Restorative Item', 'Drink'), "
-					+ "(7, 'Health Potion', 'A glass bottle containing red liquid. Smelling it already makes you feel better. It must be restorative.', 'Restorative Item', 'Drink'),"
-					+ "(8, 'Haunted Vase', 'A vase, ornately painted and embedded with gemstones. It feels empty and full at the same time. This is undoubtedly the source of the haunted feeling in this room. Holding it compels you to open it for a reason you’re unsure of.', 'Ending Item', 'Open'), "
-					+ "(9, 'Golden Artifact', 'A small golden statue. A large ruby is set in the center. It feels special to hold.', 'Ending Item', 'Inspect') ");
+					+ "(6, 'Haunted Vase', 'A vase, ornately painted and embedded with gemstones. It feels empty and full at the same time. This is undoubtedly the source of the haunted feeling in this room. Holding it compels you to open it for a reason you’re unsure of.', 'Ending Item', 'Open'), "
+					+ "(7, 'Golden Artifact', 'A small golden statue. A large ruby is set in the center. It feels special to hold.', 'Ending Item', 'Inspect') ");
 			
 		} catch (SQLException e) {
 			//Print errors
@@ -128,18 +127,18 @@ public class Database {
 			//Use the connection to make some statements
 			Statement interactableEntryStatement = conn.createStatement();
 			interactableEntryStatement.executeUpdate("Insert Into Interactables (id, name, description, lore, type) "
-					+ "Values (1, 'Crypt Door', 'A moss-covered stone door rises from the forest floor, half-swallowed by roots and earth, its iron handle cold with the weight of forgotten centuries.', 'Crypt Door- Outer', 'Door'), "
-					+ "(2, 'North Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(3, 'North Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the north provide fish', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(4, 'West Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(5, 'West Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the west provide crops', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(6, 'East Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(7, 'East Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the east provide lumber', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(8, 'South Pedestal', 'A stone pedestal. There is a wooden totem sitting on top.', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
-					+ "(9, 'South Tablet', 'The stone tablet holds the Great Decree of the King. It reads: May the tribe in the south provide protection', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
-					+ "(10, 'Crypt Door', 'A heavy stone door dominates the crypt’s entrance, its edges glowing faintly where moss filters through the cracks. Roots cling to the slab like rigid fingers, and the cold iron handle hangs motionless in the dim, stale air.', 'Crypt Door- Inner', 'Door'), "
-					+ "(11, 'Artifact Door', 'The warm feeling entices you to choose the right door. A warmth washes over you.', 'Artifact Door', 'Door'), "
-					+ "(12, 'Spirit Door', 'The strange feeling lures you to open the door. A chill runs through you', 'Spirit Door', 'Door')");
+					+ "Values (1, 'Crypt Door', 'CryptDoorOuter', 'Crypt Door- Outer', 'Door'), "
+					+ "(2, 'North Pedestal', 'NorthPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(3, 'North Tablet', 'NorthTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(4, 'West Pedestal', 'WestPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(5, 'West Tablet', 'WestTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(6, 'East Pedestal', 'EastPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(7, 'East Tablet', 'EastTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(8, 'South Pedestal', 'SouthPedestal', 'A stone pedestal. There is a slot on the top to hold a totem.', 'Pedestal'), "
+					+ "(9, 'South Tablet', 'SouthTablet', 'Gives the Garden Totem Puzzle', 'Engraved-Rock'), "
+					+ "(10, 'Crypt Door', 'CryptDoorInner', 'Crypt Door- Inner', 'Door'), "
+					+ "(11, 'Artifact Door', 'ArtifactDoor', 'Artifact Door', 'Door'), "
+					+ "(12, 'Spirit Door', 'SpiritDoor', 'Spirit Door', 'Door')");
 			
 		} catch (SQLException e) {
 			//Print errors
@@ -157,22 +156,22 @@ public class Database {
 			//Use the connection to make some statements
 			Statement roomEntryStatement = conn.createStatement();
 			roomEntryStatement.executeUpdate("Insert Into Rooms (id, name, description) "
-					+ "Values (1, 'Outer Garden Center', 'The center of King Kroz’s Garden. Known to be his favorite place, it naturally must lead to his final resting place.\nIn each cardinal direction lies in the main areas of the garden. Right in the middle is a stone tablet nestled in the grass.'), "
-					+ "(2, 'North Garden', 'The north side of the garden is filled with lots of cool-colored plants and trees. Holly berries and Poinsettias grow, and the air is noticeably chilly.\nA stone pedestal sits in the center.'), "
-					+ "(3, 'West Garden', 'The west side of the garden has plants that are just beginning to bud. Flowers wait to bloom, and the leaves are a pleasant light green.\nA stone pedestal sits in the center.'), "
-					+ "(4, 'East Garden', 'The east side of the garden is full of plants displaying vibrant orange, brown, yellow, and red colors. The air is cooler, but not uncomfortable.\nA stone pedestal sits in the center.'), "
-					+ "(5, 'South Garden', 'The south side of the garden has lots of lush green plants and widely blooming flowers. The sun shines brightly and it’s comfortably warm.\nA stone pedestal sits in the center.' ), "
-					+ "(6, 'Crypt Entrance', 'At the bottom of the stairs lies the threshold of the sunlight. Beyond lies nothing but darkness. Being underground, there is no light to be seen.' ), "
-					+ "(7, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(8, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(9, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(10, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(11, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(12, 'Dark Room', 'It is impossibly dark. You can’t make out anything at all, and your eyes will not adjust.\nThe light from the staircase does not reach this room' ), "
-					+ "(13, 'Crypt Hallway', 'This hall seems completely normal. There’s nothing special about it. What’s special is what it leads to.' ), "
-					+ "(14, 'Split Hallway', 'The hallway no longer goes forward. The only continuing paths are two doors, one on either side.\nThe door on the left gives off a haunting feeling, like something is waiting for you. The door on the right gives off a warm feeling, like sunlight.'), "
-					+ "(15, 'Spirit Room', 'In the middle of the room is a single vase on a stand. However, it feels regal and melancholic.\nYou are drawn to the vase in a way you can’t quite explain.'), "
-					+ "(16, 'Artifact Room', 'In the middle of the room is a golden artifact on a stand. A single ray of light shines through the ceiling,\nperfectly highlighting the artifact. The room glows with the light of this treasure you have come so far to find.')");
+					+ "Values (1, 'Outer Garden Center', 'CenterGarden'), "
+					+ "(2, 'North Garden', 'NorthGarden'), "
+					+ "(3, 'West Garden','WestGarden'), "
+					+ "(4, 'East Garden', 'EastGarden'), "
+					+ "(5, 'South Garden', 'SouthGarden' ), "
+					+ "(6, 'Crypt Entrance', 'CryptEntrance' ), "
+					+ "(7, 'Dark Room', 'DarkRoom' ), "
+					+ "(8, 'Dark Room', 'DarkRoom' ), "
+					+ "(9, 'Dark Room', 'DarkRoom' ), "
+					+ "(10, 'Dark Room', 'DarkRoom' ), "
+					+ "(11, 'Dark Room', 'DarkRoom' ), "
+					+ "(12, 'Dark Room', 'DarkRoom' ), "
+					+ "(13, 'Crypt Hallway', 'CryptHallway' ), "
+					+ "(14, 'Split Hallway', 'SplitHallway'), "
+					+ "(15, 'Spirit Room', 'SpiritRoom'), "
+					+ "(16, 'Artifact Room', 'TreasureRoom')");
 			
 		} catch (SQLException e) {
 			//Print errors
@@ -347,21 +346,13 @@ public class Database {
 			case 6:
 				currentItems.add(items.get(4));
 				break;
-			//Health potion in dark room- cell A
-			case 7:
-				currentItems.add(items.get(5));
-				break;
-			//Health potion in dark room- cell F
-			case 12:
-				currentItems.add(items.get(6));
-				break;
 			//Haunted vase in spirit room
 			case 15:
-				currentItems.add(items.get(7));
+				currentItems.add(items.get(5));
 				break;
 			//Golden artifact in artifact room
 			case 16:
-				currentItems.add(items.get(8));
+				currentItems.add(items.get(6));
 			}
 			
 			//Add the item list to the room
@@ -417,7 +408,7 @@ public class Database {
 			}
 			
 			//Add the interactable(s) to the room
-			room.setInteractableList(interactables);
+			room.setInteractableList(roomInteractables);
 		}
 	}
 	
@@ -427,10 +418,10 @@ public class Database {
 	public static void mapRoomExits(ArrayList<Room> rooms) {
 		Room outerGarden = rooms.get(0);
 		Room northGarden = rooms.get(1);
-		Room westGarden = rooms.get(3);
-		Room eastGarden = rooms.get(4);
-		Room southGarden = rooms.get(5);
-		Room cryptEntrance = rooms.get(6);
+		Room westGarden = rooms.get(2);
+		Room eastGarden = rooms.get(3);
+		Room southGarden = rooms.get(4);
+		Room cryptEntrance = rooms.get(5);
 		
 		//outer garden exits
 		outerGarden.setExit(Direction.NORTH, northGarden);
@@ -448,10 +439,44 @@ public class Database {
 		eastGarden.setExit(Direction.WEST, outerGarden);
 		
 		//south garden exits
-		southGarden.setExit(Direction.NORTH, outerGarden);
+		southGarden.setExit(Direction.NORTH, outerGarden);		
+	}
+	
+	/*
+	 * Mapping method for setting room special items
+	 */
+	public static void mapRoomConditions(ArrayList<Room> rooms) {
+		Room outerGarden = rooms.get(0);
+		Room northGarden = rooms.get(1);
+		Room westGarden = rooms.get(2);
+		Room eastGarden = rooms.get(3);
+		Room southGarden = rooms.get(4);
+		Room cryptEntrance = rooms.get(5);
 		
+		//outer garden exits
+		outerGarden.setSpecialConditionVerb("Completed");
+		outerGarden.setSpecialConditionNoun("Totem Quest");
+		outerGarden.setSpecialAction("Enter Crypt Door");
 		
+		//north garden exits
+		northGarden.setSpecialConditionVerb("Has");
+		northGarden.setSpecialConditionNoun("Lumber Totem");
+		northGarden.setSpecialAction("Use Lumber Totem");
 		
+		//west garden exits
+		westGarden.setSpecialConditionVerb("Has");
+		westGarden.setSpecialConditionNoun("Wheat Totem");
+		westGarden.setSpecialAction("Use Wheat Totem");
+		
+		//east garden exits
+		eastGarden.setSpecialConditionVerb("Has");
+		eastGarden.setSpecialConditionNoun("Fish Totem");
+		eastGarden.setSpecialAction("Use Fish Totem");
+		
+		//south garden exits
+		southGarden.setSpecialConditionVerb("Has");
+		southGarden.setSpecialConditionNoun("Sword Totem");
+		southGarden.setSpecialAction("Use Sword Totem");
 	}
 	
 	//Map room actions

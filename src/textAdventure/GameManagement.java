@@ -1,6 +1,9 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 
@@ -14,7 +17,7 @@ public class GameManagement {
 	private static ArrayList<Room> roomList;
 	private static ArrayList<Item> itemList;
 	private static ArrayList<BaseInteractable> interactableList;
-	private Player player;
+	private static Player player;
 	
 	//Provides information about the current environment, compiling all information about a room
 	private String environmentPrompt;
@@ -28,6 +31,9 @@ public class GameManagement {
 	//Initial fields for the start menu / title screen
 	private static String titleScreenDescription;
 	private static ArrayList<String> titleScreenActions;
+	
+	//create new InputHandler
+	private final InputHandler inputHandler;
 	
 	/**
 	 * Constructor
@@ -47,6 +53,10 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
+		this.inputHandler = new InputHandler(player);
+		
+		//Show the starting room
+		displayRoom.accept(Player.getCurrentRoom());
 	}
 	
 	
@@ -58,7 +68,7 @@ public class GameManagement {
 	public static Consumer<Room> displayRoom = room -> {
 		System.out.println("\n");
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
-		System.out.println(room.getRoomDesc() + "\n");
+		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
 		room.getRoomActions().forEach(System.out::println);
 	};
 	
@@ -77,17 +87,17 @@ public class GameManagement {
 	}
 	
 	//Update the current player actions based on their inventory
-	public void refreshPlayerActionPrompt(Player player) {
-		ArrayList<String> playerActions = new ArrayList<String>();
-		
-		//For each item in the player's inventory, get the item's action
-		for(Item item : player.getInventory()) {
-			playerActions.add(item.getAction());
-		}
-		
-		//Set the value of playerActions
-		playerActionsPrompt = playerActions;
-	}
+//	public void refreshPlayerActionPrompt(Player player) {
+//		ArrayList<String> playerActions = new ArrayList<String>();
+//		
+//		//For each item in the player's inventory, get the item's action
+//		for(Item item : player.getInventory()) {
+//			playerActions.add(item.getAction());
+//		}
+//		
+//		//Set the value of playerActions
+//		playerActionsPrompt = playerActions;
+//	}
 	
 	//Create the content for the game
 	public static void createGameContent(ArrayList<Room> rooms, ArrayList<Item> items, ArrayList<BaseInteractable> interactables) {
@@ -109,46 +119,13 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
-	
-	//Unary operator for parsing commands
-	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
-	
-	//handles player commands
-	public boolean handleCommand(String input) {
-		String[] parts = input.toLowerCase().split(" ", 2);
-		String commandWord = parts[0];
-		String argument = parts[1];
-		
-		switch (commandWord) {
-			case "go":
-				movePlayer(argument);
-				break;
-		}
-		
-		return true;
-	}
-	
-	//handles player movement
-	public void movePlayer(String directionString) {
-		Direction direction;
-		try {
-			direction = Direction.valueOf(properInputFormat.apply(directionString));
-		} catch (IllegalArgumentException e) {
-			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
-			return;
-		}
-		
-		Room currentRoom = player.getCurrentRoom();
-		Room nextRoom = currentRoom.getExit(direction);
-		
-		if (nextRoom != null) {
-			player.setCurrentRoom(nextRoom);
-			displayRoom.accept(nextRoom);
-		} else {
-			System.out.println("You can not travel that direction from here.");
-		}
-		
-		
+
+//	//returns text based on language selected
+	public static String localizedDesc(String descKey)
+	{
+		Locale locale = player.getLocale();
+		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
+		return rb.getString(descKey);
 	}
 		
 	/**
@@ -193,7 +170,7 @@ public class GameManagement {
 	}
 	
 	//Getter and setter for the item list
-	public ArrayList<Item> getItemList() {
+	public static ArrayList<Item> getItemList() {
 		return GameManagement.itemList;
 	}
 	
@@ -202,11 +179,15 @@ public class GameManagement {
 	}
 	
 	//Getter and setter for interactable list
-	public ArrayList<BaseInteractable> getInteractables() {
+	public static ArrayList<BaseInteractable> getInteractables() {
 		return GameManagement.interactableList;
 	}
 	
 	public void setInteractableList(ArrayList<BaseInteractable> interactableList) {
 		GameManagement.interactableList = interactableList;
+	}
+	
+	public InputHandler getInputHandler() {
+		return this.inputHandler;
 	}
 }
