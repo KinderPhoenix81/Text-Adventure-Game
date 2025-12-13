@@ -1,11 +1,9 @@
 package textAdventure;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
-import java.util.function.UnaryOperator;
 
 public class GameManagement {
 	//Class to manage the game functions
@@ -70,6 +68,7 @@ public class GameManagement {
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
 		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
 		room.getRoomActions().forEach(System.out::println);
+		System.out.println("~~~~~~~~~\nInventory");
 	};
 	
 	

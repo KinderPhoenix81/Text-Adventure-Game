@@ -131,7 +131,8 @@ public class InputHandler {
 			System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
 			System.out.println(foundInteractable.getLore());
 			System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+			Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+			System.out.println("~~~~~~~~~\nInventory");
 			
 		} else {
 			ArrayList<Item> itemList = (ArrayList<Item>) player.getInventory().getAllInventory();
@@ -149,6 +150,7 @@ public class InputHandler {
 				System.out.println(foundItem.getLore());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				System.out.println("~~~~~~~~~\nInventory");
 				
 			} else {
 				System.out.println("~~~~~~~~~~~~~~~~~~~~");
