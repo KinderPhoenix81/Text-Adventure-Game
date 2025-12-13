@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 //Holds schema and inserts for database
 public class Database {
 
-	/*
+	/**
 	 * Fields for the database instance
 	 */
 	final static Logger log = LogManager.getLogger("LoggingExample");
