@@ -16,7 +16,11 @@ public class InputHandler {
 		playerInventory = player.getInventory();
 	}
 
-	//Unary operator for parsing commands
+	/*
+	 * Unary operator for parsing commands
+	 * 
+	 * 4.2: Use of Functional Interface (Unary)
+	 */
 	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
 
 	//handles player commands
@@ -84,7 +88,7 @@ public class InputHandler {
 			return;
 		}
 
-		Room currentRoom = this.player.getCurrentRoom();
+		Room currentRoom = Player.getCurrentRoom();
 		Room nextRoom = currentRoom.getExit(direction);
 
 		if (nextRoom != null) {
@@ -117,7 +121,7 @@ public class InputHandler {
 		BaseInteractable foundInteractable = null;
 		
 		if(!isViewingInventory) {		
-			ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+			ArrayList<BaseInteractable> interactableList = Player.getCurrentRoom().getInteractableList();
 			
 			for(BaseInteractable interactable : interactableList) {
 				if(interactable.getName().toUpperCase().contains(itemName)) {
@@ -149,7 +153,7 @@ public class InputHandler {
 				System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 				System.out.println(foundItem.getLore());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				System.out.println("~~~~~~~~~\nInventory");
 				
 			} else {
@@ -164,7 +168,7 @@ public class InputHandler {
 	 * handles the GRAB command (GRAB ITEM_NAME)
 	 */
 	public void grabItem(String itemName) {
-		ArrayList<Item> itemList = player.getCurrentRoom().getItemList();
+		ArrayList<Item> itemList = Player.getCurrentRoom().getItemList();
 				Item foundItem = null;
 
 		for(Item item : itemList) {
@@ -176,11 +180,11 @@ public class InputHandler {
 
 		if (foundItem != null) {
 			player.getInventory().addItem(foundItem);
-			player.getCurrentRoom().removeItem(foundItem);
-			player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
+			Player.getCurrentRoom().removeItem(foundItem);
+			Player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 			System.out.println(foundItem.getLore() + "\n");
-			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+			Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 		} else {
 			System.out.println("There is nothing here for examination...");
 		}

@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 public class RoomActionSupplier {
 	/*
 	 * Suppliers for each room's actions
+	 * 
+	 * 2.1: Use of Lambda Expressions
+	 * 4.2: Use of Functional Interface (Supplier)
 	 */
 	
 	//Crypt entrance actions

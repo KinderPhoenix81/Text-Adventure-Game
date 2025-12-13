@@ -14,7 +14,11 @@ public class Door extends BaseInteractable {
 		openedStatus = false;
 	}
 	
-	//Overloaded constructor to specfiy door status
+	/*
+	 * Overloaded door constructor
+	 * 
+	 * 1.3: Overloaded Constructor
+	 */
 	public Door(int id, String name, String desc, String lore, Boolean openedStatus) {
 		//Uses the constructor from parent class
 		super(id, name, desc, lore);

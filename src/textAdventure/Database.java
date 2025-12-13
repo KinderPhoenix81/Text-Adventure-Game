@@ -20,7 +20,11 @@ public class Database {
 	 */
 	public static void createGameDatabase(ArrayList<Item> items, ArrayList<BaseInteractable> interactables, ArrayList<Room> rooms) {
 		
-		//Try catch block for database transactions
+		/*
+		 * Try catch block for database transactions
+		 * 
+		 * 6.1: Use of Try-Catch Block
+		 */
 		try {
 			//Make a connection and database
 			EmbeddedDataSource ds = new EmbeddedDataSource();
@@ -262,7 +266,11 @@ public class Database {
 				String lore = interactables.getString("lore");
 				String type = interactables.getString("type");
 				
-				//Use a function to create a new interactable based on the type
+				/*
+				 * Use a function to create a new interactable based on the type
+				 * 
+				 * 4.2: Functional Interface (Function)
+				 */
 				Function<String, BaseInteractable> createInteractable = interactableType -> {
 				return 	type.toLowerCase().equals("door") ? new Door(id, name, desc, lore) :
 					   	type.toLowerCase().equals("pedestal") ? new Pedestal(id, name, desc, lore) :
@@ -275,7 +283,11 @@ public class Database {
 			
 			//Check if the interactable was applied properly
 			if(newInteractable == null) {
-				//Throw an error
+				/*
+				 * Throw an error
+				 * 
+				 * 6.3: Use Custom Exception
+				 */
 				throw new InvalidInteractableTypeException(type);
 			} else {
 				//Add to list
@@ -502,7 +514,11 @@ public class Database {
 	
 	//Map pedestal items
 	public static void mapPedestalItems(ArrayList<BaseInteractable> interactables) {
-		//Make a stream for the pedestals
+		/*
+		 * Make a stream for the pedestals
+		 * 
+		 * 4.5: Use of Stream Pipeline
+		 */
 		interactables.stream()
 		
 		//Filter pedestals from interactables
@@ -511,7 +527,12 @@ public class Database {
 		//Cast each interactable as a pedestal
 		.map(i -> (Pedestal) i)
 		
-		//Loop through each pedestal, get the id, assign the correct item ID
+		/*
+		 * Loop through pedestals for correct id
+		 * 
+		 * 3.5: Use of ForEach Statement
+		 * 4.1: Use of variable in Lambda Expression
+		 */
 		.forEach(p -> {
 			//North pedestal for fish
 			if (p.getID() == 2) {

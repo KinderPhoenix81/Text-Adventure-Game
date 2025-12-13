@@ -1,5 +1,8 @@
 package textAdventure;
 
+/*
+ * 1.2: Use of Interface
+ */
 public interface Interactable {
 
 	//default behvaiors of any interactable

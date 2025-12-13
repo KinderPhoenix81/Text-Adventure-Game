@@ -2,6 +2,9 @@ package textAdventure;
 
 import java.util.Comparator;
 
+/*
+ * 2.2: Encapsulation Example
+ */
 public class Item implements Comparable<Item>{
 
 	//Fields for an item
@@ -14,7 +17,11 @@ public class Item implements Comparable<Item>{
 	//Ex: Use Health Potion, Place Totem, Equip Torch, etc.
 	private String action;
 	
-	//Comparators
+	/*
+	 * Comparators
+	 * 
+	 * 3.4: Use of Comparator
+	 */
 	public static final Comparator<Item> BY_NAME = Comparator.comparing(Item::getName);
 	public static final Comparator<Item> BY_ID = Comparator.comparing(Item::getID);
 	

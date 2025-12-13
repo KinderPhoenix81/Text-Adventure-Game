@@ -1,5 +1,8 @@
 package textAdventure;
 
+/*
+ * 1.2: Use of Parent Class
+ */
 public abstract class BaseInteractable implements Interactable, Comparable<BaseInteractable> {
 
 	//Fields for any interactable

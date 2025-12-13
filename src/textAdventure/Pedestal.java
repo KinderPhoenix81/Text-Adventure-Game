@@ -70,7 +70,11 @@ public class Pedestal extends BaseInteractable {
 		displayedItem = item;
 	}
 
-	//Comparison method
+	/*
+	 * Comparison Method
+	 * 
+	 * 1.9: Use of @Override
+	 */
 	@Override
 	public int compareTo(Interactable o) {
 		// TODO Auto-generated method stub

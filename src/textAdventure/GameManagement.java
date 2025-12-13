@@ -5,12 +5,19 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+/*
+ * 2.2: Use of Encapsulation
+ */
 public class GameManagement {
 	//Class to manage the game functions
 	
 	/**
 	 * Fields of the GameManagementClass
 	 * 
+	 * 1.1: Use of Visibility Modifiers
+	 * 1.5: Use of Static Keyword
+	 * 1.6: Use of Final Keyword
+	 * 3.2: Use of ArrayList
 	 */
 	private static ArrayList<Room> roomList;
 	private static ArrayList<Item> itemList;
@@ -119,7 +126,11 @@ public class GameManagement {
 		titleScreenActions = titleScrActions;
 	}
 
-//	//returns text based on language selected
+	/*
+	 * Returns text based on language selected
+	 * 
+	 * 5.3: Localization & Resource Bundle
+	 */
 	public static String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
@@ -129,7 +140,6 @@ public class GameManagement {
 		
 	/**
 	 * Getters and setters for the class
-	 * 
 	 */
 	
 	//Getter and setter for the text prompt, describing base details of the surrounding area
