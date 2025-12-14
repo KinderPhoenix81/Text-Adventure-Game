@@ -15,6 +15,8 @@ public class Database {
 
 	/**
 	 * Fields for the database instance
+	 * 
+	 * log: logger for logging
 	 */
 	final static Logger log = LogManager.getLogger("LoggingExample");
 	

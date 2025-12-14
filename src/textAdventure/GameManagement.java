@@ -1,12 +1,14 @@
 package textAdventure;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
+import java.util.function.UnaryOperator;
 
-/*
- * 2.2: Use of Encapsulation
+/**
+ * Class for managing the game
  */
 public class GameManagement {
 	//Class to manage the game functions
@@ -14,40 +16,52 @@ public class GameManagement {
 	/**
 	 * Fields of the GameManagementClass
 	 * 
-	 * 1.1: Use of Visibility Modifiers
-	 * 1.5: Use of Static Keyword
-	 * 1.6: Use of Final Keyword
-	 * 3.2: Use of ArrayList
+	 * roomList: Array List of rooms
+	 * itemList: Array List of items
+	 * interactableList: Array List of interactables
+	 * player: tracking the player
 	 */
 	private static ArrayList<Room> roomList;
 	private static ArrayList<Item> itemList;
 	private static ArrayList<BaseInteractable> interactableList;
 	private static Player player;
 	
+	/**
+	 * The description that plays the first time 
+	 * the player enters a room
+	 */
 	//Provides information about the current environment, compiling all information about a room
 	private String environmentPrompt;
 	
+	/**
+	 * The actions that a player can take
+	 * in a room
+	 */
 	//Provides information about actions that can be taken in the environment
 	private ArrayList<String> actionPrompt;
 	
+	/**
+	 * The actions a player can take
+	 */
 	//Provides base information about basic actions
 	private ArrayList<String> playerActionsPrompt;
 	
-	private boolean isNorthTotemPlaced = false;
-	private boolean isEastTotemPlaced = false;
-	private boolean isSouthTotemPlaced = false;
-	private boolean isWestTotemPlaced = false;
-	
+	/**
+	 * The actions a player can take
+	 * on the title screen
+	 */
 	//Initial fields for the start menu / title screen
 	private static String titleScreenDescription;
 	private static ArrayList<String> titleScreenActions;
 	
+	/**
+	 * Create an InputHandler object for handling user input
+	 */
 	//create new InputHandler
-	private InputHandler inputHandler;
+	private final InputHandler inputHandler;
 	
 	/**
-	 * Constructor
-	 * 
+	 * Constructor for creating a GameManagement object
 	 */
 	public GameManagement() {
 		//Load game content
@@ -71,8 +85,7 @@ public class GameManagement {
 	
 	
 	/**
-	 * Main methods of the game management class
-	 * 
+	 * Set up a room for the player to be in
 	 */
 	//Set the text of a room, it's lore, description, and all actions
 	public static Consumer<Room> displayRoom = room -> {
@@ -80,10 +93,15 @@ public class GameManagement {
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
 		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
 		room.getRoomActions().forEach(System.out::println);
-		System.out.println("~~~~~~~~~\nInventory");
 	};
 	
 	
+	/**
+	 * Display the actions that can be performed
+	 * in the current room
+	 * 
+	 * @param room The room the player is currently in
+	 */
 	//Update the current set of actions based on the player's current room
 	public void refreshActionPrompt(Room room) {
 		ArrayList<String> roomActions = new ArrayList<String>();
@@ -110,6 +128,13 @@ public class GameManagement {
 //		playerActionsPrompt = playerActions;
 //	}
 	
+	/**
+	 * Create the database for the game
+	 * 
+	 * @param rooms Array list of rooms
+	 * @param items Array list of items
+	 * @param interactables Array list of interactables
+	 */
 	//Create the content for the game
 	public static void createGameContent(ArrayList<Room> rooms, ArrayList<Item> items, ArrayList<BaseInteractable> interactables) {
 	//Loading the objects from the database into the gameManagement lists
@@ -117,6 +142,9 @@ public class GameManagement {
 	
 	}
 
+	/**
+	 * Create the title screen to show when opening the game
+	 */
 	//Create the title screen content for the game
 	public static void createStartingScreenContent() {
 		//Assign the title screen info to some strings, then set those values
@@ -130,131 +158,141 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
-	
-	//check if totems are in place
-	public void checkTotems()
-	{
-		if(isNorthTotemPlaced==true &&isEastTotemPlaced == true && isSouthTotemPlaced == true && isWestTotemPlaced)
-		{
-			//unlockCryptDoor();
-		}
-	}
 
-	/*
-	 * Returns text based on language selected
+	/**
+	 * Method for localizing the game text
 	 * 
-	 * 5.3: Localization & Resource Bundle
+	 * @param descKey Key for retrieving the localized text
+	 * @return The localized text
 	 */
+//	//returns text based on language selected
 	public static String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
 		return rb.getString(descKey);
 	}
-
 		
-	/**
-	 * Getters and setters for the class
-	 */
 	
+	/**
+	 * Getter for environmentPrompt
+	 * 
+	 * @return the description of the current environment
+	 */
 	//Getter and setter for the text prompt, describing base details of the surrounding area
 	public String getEnvironmentPrompt() {
 		return environmentPrompt;
 	}
 	
+	/**
+	 * Setter for environmentPrompt
+	 * 
+	 * @param prompt Value to set
+	 */
 	public void setEnvironmentPrompt(String prompt) {
 		environmentPrompt = prompt;
 	}
 	
+	/**
+	 * Getter for the information on the title screen
+	 * 
+	 * @return The information for the title screen
+	 */ 
 	//Getter and setter for the title screen text (logo, game name, ASCII art, etc.)
 	public String getTitleScreenDesc() {
 		return titleScreenDescription;
 	}
 	
+	/**
+	 * Setter for the information on the title screen
+	 * 
+	 * @param desc Value to set
+	 */
 	public void setTitleScreenDesc(String desc) {
 		titleScreenDescription = desc;
 	}
 	
+	/**
+	 * Getter for the actions on the title screen
+	 * 
+	 * @return the actions on the title screen
+	 */
 	//Getter and setter for the title screen actions
 	public ArrayList<String> getTitleScreenActions() {
 		return titleScreenActions;
 	}
-	
+	/**
+	 * Setter for the actions on the title screen
+	 * 
+	 * @param titleScreenActions Value to set
+	 */
 	public void setTitleScreenActions(ArrayList<String> titleScreenActions) {
 		GameManagement.titleScreenActions = titleScreenActions;
 	}
 	
+	/**
+	 * Getter for the room list
+	 * 
+	 * @return the list of rooms
+	 */
 	//Getter and setter for room list
 	public static ArrayList<Room> getRoomList() {
 		return GameManagement.roomList;
 	}
 	
+	/**
+	 * Setter for the room list
+	 * 
+	 * @param roomList Value to set
+	 */
 	public void setRoomList(ArrayList<Room> roomList) {
 		GameManagement.roomList = roomList;
 	}
 	
+	/**
+	 * Getter for the item list
+	 * 
+	 * @return the list of items
+	 */
 	//Getter and setter for the item list
 	public static ArrayList<Item> getItemList() {
 		return GameManagement.itemList;
 	}
 	
+	/**
+	 * Setter for the item list
+	 * 
+	 * @param itemList Value to set
+	 */
 	public void setItemList(ArrayList<Item> itemList) {
 		GameManagement.itemList = itemList;
 	}
 	
+	/**
+	 * Getter for the interactable list
+	 * 
+	 * @return the list of interactables
+	 */
 	//Getter and setter for interactable list
 	public static ArrayList<BaseInteractable> getInteractables() {
 		return GameManagement.interactableList;
 	}
 	
+	/**
+	 * Setter for the interactable list
+	 * 
+	 * @param interactableList Value to set
+	 */
 	public void setInteractableList(ArrayList<BaseInteractable> interactableList) {
 		GameManagement.interactableList = interactableList;
 	}
 	
+	/**
+	 * Getter for the inputHandler
+	 * 
+	 * @return The inputHandler object
+	 */
 	public InputHandler getInputHandler() {
 		return this.inputHandler;
 	}
-	
-	//getters and setters for totem checks
-	
-	public boolean getNorthTotemStatus()
-	{
-		return isNorthTotemPlaced;
-	}
-	public boolean getEastTotemStatus()
-	{
-		return isEastTotemPlaced;
-	}
-	public boolean getSouthTotemStatus()
-	{
-		return isSouthTotemPlaced;
-	}
-	public boolean getWestTotemStatus()
-	{
-		return isWestTotemPlaced;
-	}
-	
-	public void setNorthTotemStatus(boolean value)
-	{
-		isNorthTotemPlaced = value;
-		checkTotems();
-	}
-	public void setEastTotemStatus(boolean value)
-	{
-		isEastTotemPlaced = value;
-		checkTotems();
-	}
-	public void setSouthTotemStatus(boolean value)
-	{
-		isSouthTotemPlaced = value;
-		checkTotems();
-	}
-	public void setWestTotemStatus(boolean value)
-	{
-		isWestTotemPlaced = value;
-		checkTotems();
-	}
-	
-	
-	
 }
