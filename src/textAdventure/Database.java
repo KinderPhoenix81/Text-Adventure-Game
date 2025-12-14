@@ -15,8 +15,13 @@ public class Database {
 	 */
 	final static Logger log = LogManager.getLogger("LoggingExample");
 	
-	/*
+	/**
 	 * Method to run database creation
+	 * 
+	 * @param items Array of items in the game
+	 * @param interactables Array of interactable points of interest in the game
+	 * @param rooms Array of rooms in the game
+	 * @throws SQLException if a SQL statement fails to execute
 	 */
 	public static void createGameDatabase(ArrayList<Item> items, ArrayList<BaseInteractable> interactables, ArrayList<Room> rooms) {
 		
@@ -96,8 +101,11 @@ public class Database {
 		
 	}
 	
-	/*
-	 * Methods to create entries in each table
+	/**
+	 * Methods to create entries in item table
+	 * 
+	 * @param conn Database connection
+	 * @throws SQLException if a SQL statement fails to execute
 	 */
 	//Item entries
 	public static void createItemEntries(Connection conn) {
@@ -123,6 +131,12 @@ public class Database {
 		
 	}
 	
+	/**
+	 * Methods to create entries in interactable table
+	 * 
+	 * @param conn Database connection string
+	 * @throws SQLException if a SQL statement fails to execute
+	 */
 	//Interactable entries
 	public static void createInteractableEntries(Connection conn) {
 
@@ -152,6 +166,12 @@ public class Database {
 		
 	}
 	
+	/**
+	 * Methods to create entries in room table
+	 * 
+	 * @param conn Database connection
+	 * @throws SQLException if a SQL statement fails to execute
+	 */
 	//Room entries
 	public static void createRoomEntries(Connection conn) {
 
@@ -185,8 +205,12 @@ public class Database {
 		
 	}
 	
-	/*
-	 * Loader methods for the database into creating objects in Java
+	/**
+	 * Loader method for the database to creating room objects in Java
+	 * 
+	 * @param conn Database connection
+	 * @param roomList Array list of rooms
+	 * @throws SQLException if a SQL statement fails to execute
 	 */
 	//Load rooms
 	public static void loadRooms(Connection conn, ArrayList<Room> roomList) {
@@ -217,6 +241,13 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Loader method for the database to create item objects in Java
+	 * 
+	 * @param conn Database connection
+	 * @param itemList Array list of items
+	 * @throws SQLException if a SQL statement fails to execute
+	 */
 	//Load items
 	public static void loadItems(Connection conn, ArrayList<Item> itemList) {
 		
@@ -248,6 +279,14 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Loader method for the database to create item objects in Java
+	 * 
+	 * @param conn Database connection
+	 * @param interactableList Array list of interactable points of interest
+	 * @throws SQLException if a SQL statement fails to execute
+	 * @throws InvalidInteractableTypeException if an interactable type failed to load into the database
+	 */
 	//Load interactables
 	public static void loadInteractables(Connection conn, ArrayList<BaseInteractable> interactableList) {
 		
@@ -303,8 +342,11 @@ public class Database {
 		}
 	}
 	
-	/*
+	/**
 	 * Drop tables method
+	 * 
+	 * @param conn Database connection
+	 * @throws SQLException if a SQL statement fails to execute
 	 */
 	private static void unloadTables(Connection conn) {
 		//Try-catch block
@@ -323,8 +365,11 @@ public class Database {
 		log.info("Existing tables have been dropped.");
 	}
 	
-	/*
-	 * Mapping methods items and interactables
+	/**
+	 * Mapping items to rooms they are found in
+	 * 
+	 * @param rooms Array list of rooms
+	 * @param items Array list of items
 	 */
 	//Map items
 	public static void mapItems(ArrayList<Room> rooms, ArrayList<Item> items) {
@@ -372,6 +417,12 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Mapping interactables to rooms they are found in
+	 * 
+	 * @param rooms Array list of rooms
+	 * @param interactables Array list of interactables
+	 */
 	//Map interactables
 	public static void mapInteractables(ArrayList<Room> rooms, ArrayList<BaseInteractable> interactables) {
 		//Loop through list of rooms, when it gets to a specific room, add interactables
@@ -424,8 +475,10 @@ public class Database {
 		}
 	}
 	
-	/*
+	/**
 	 * Mapping method for setting room exits
+	 * 
+	 * @param rooms Array list of rooms
 	 */
 	public static void mapRoomExits(ArrayList<Room> rooms) {
 		Room outerGarden = rooms.get(0);
@@ -454,8 +507,10 @@ public class Database {
 		southGarden.setExit(Direction.NORTH, outerGarden);		
 	}
 	
-	/*
+	/**
 	 * Mapping method for setting room special items
+	 * 
+	 * @param rooms Array list of rooms
 	 */
 	public static void mapRoomConditions(ArrayList<Room> rooms) {
 		Room outerGarden = rooms.get(0);
@@ -491,6 +546,11 @@ public class Database {
 		southGarden.setSpecialAction("Use Sword Totem");
 	}
 	
+	/**
+	 * Map the actions that can be performed in each room
+	 * 
+	 * @param rooms Array list of rooms
+	 */
 	//Map room actions
 	public static void mapRoomActions(ArrayList<Room> rooms) {
 		//Map room actions to each room
@@ -512,6 +572,11 @@ public class Database {
 		rooms.get(15).setRoomActions((ArrayList<String>) RoomActionSupplier.artifactRoomActions.get());
 	}
 	
+	/**
+	 * Set each pedestal's correct totem for checking puzzle completion later
+	 * 
+	 * @param interactables Array list of interactables
+	 */
 	//Map pedestal items
 	public static void mapPedestalItems(ArrayList<BaseInteractable> interactables) {
 		/*
