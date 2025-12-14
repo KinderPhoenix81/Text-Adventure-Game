@@ -9,6 +9,8 @@ public class Door extends BaseInteractable {
 
 	/**
 	 * Fields for Door
+	 * 
+	 * openedStatus: the state of the door being opened or closed
 	 */
 	//Fields for a door object specifically
 	private Boolean openedStatus;
