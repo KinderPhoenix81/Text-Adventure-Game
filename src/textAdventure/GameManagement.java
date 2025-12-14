@@ -33,12 +33,17 @@ public class GameManagement {
 	//Provides base information about basic actions
 	private ArrayList<String> playerActionsPrompt;
 	
+	private boolean isNorthTotemPlaced = false;
+	private boolean isEastTotemPlaced = false;
+	private boolean isSouthTotemPlaced = false;
+	private boolean isWestTotemPlaced = false;
+	
 	//Initial fields for the start menu / title screen
 	private static String titleScreenDescription;
 	private static ArrayList<String> titleScreenActions;
 	
 	//create new InputHandler
-	private final InputHandler inputHandler;
+	private InputHandler inputHandler;
 	
 	/**
 	 * Constructor
@@ -125,6 +130,15 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
+	
+	//check if totems are in place
+	public void checkTotems()
+	{
+		if(isNorthTotemPlaced==true &&isEastTotemPlaced == true && isSouthTotemPlaced == true && isWestTotemPlaced)
+		{
+			//unlockCryptDoor();
+		}
+	}
 
 	/*
 	 * Returns text based on language selected
@@ -137,6 +151,7 @@ public class GameManagement {
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
 		return rb.getString(descKey);
 	}
+
 		
 	/**
 	 * Getters and setters for the class
@@ -199,4 +214,47 @@ public class GameManagement {
 	public InputHandler getInputHandler() {
 		return this.inputHandler;
 	}
+	
+	//getters and setters for totem checks
+	
+	public boolean getNorthTotemStatus()
+	{
+		return isNorthTotemPlaced;
+	}
+	public boolean getEastTotemStatus()
+	{
+		return isEastTotemPlaced;
+	}
+	public boolean getSouthTotemStatus()
+	{
+		return isSouthTotemPlaced;
+	}
+	public boolean getWestTotemStatus()
+	{
+		return isWestTotemPlaced;
+	}
+	
+	public void setNorthTotemStatus(boolean value)
+	{
+		isNorthTotemPlaced = value;
+		checkTotems();
+	}
+	public void setEastTotemStatus(boolean value)
+	{
+		isEastTotemPlaced = value;
+		checkTotems();
+	}
+	public void setSouthTotemStatus(boolean value)
+	{
+		isSouthTotemPlaced = value;
+		checkTotems();
+	}
+	public void setWestTotemStatus(boolean value)
+	{
+		isWestTotemPlaced = value;
+		checkTotems();
+	}
+	
+	
+	
 }
