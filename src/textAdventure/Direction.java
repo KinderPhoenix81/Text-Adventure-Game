@@ -1,7 +1,7 @@
 package textAdventure;
 
-/*
- * 1.8: Use of Enumerations
+/**
+ * Enumeration holding the four directions the player can move in
  */
 public enum Direction {
 	NORTH,

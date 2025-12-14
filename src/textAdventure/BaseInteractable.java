@@ -1,7 +1,11 @@
 package textAdventure;
 
-/*
- * 1.2: Use of Parent Class
+/**
+ * Class for managing interactable objects
+ * 
+ * This class acts as the base for other interactable types
+ * BaseInteractable is a subclass of Interactable
+ * BaseInteractable uses a Comparable for comparing BaseInteractables
  */
 public abstract class BaseInteractable implements Interactable, Comparable<BaseInteractable> {
 
