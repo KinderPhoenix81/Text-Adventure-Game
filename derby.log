@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sun Dec 14 12:57:46 CST 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019b-1e39-d7f2-00001e6f04d0 
+Sun Dec 14 15:08:55 CST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019b-1eb1-ed53-00001e767d60 
 on database directory C:\Users\Alex\Text-Adventure-Game\Game_Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5c647e05 
 Loaded from file:/C:/Users/Alex/Text-Adventure-Game/dbLibrary/derby.jar
 java.vendor=Eclipse Adoptium

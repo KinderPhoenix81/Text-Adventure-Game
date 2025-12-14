@@ -39,7 +39,6 @@ public class InputHandler {
 			return true;
 		}
 
-
 		String[] parts = playerInput.split(" ", 2);
 		String commandWord = parts[0];
 		String argument = "";
@@ -49,7 +48,7 @@ public class InputHandler {
 		if (parts.length > 1) {
 			argument = parts[1].trim();
 			
-			//create instance of Command
+			//create instance of Command that uses a parameter
 			switch (command) {
 				case GO:
 					movePlayer(argument.toUpperCase());
@@ -66,12 +65,20 @@ public class InputHandler {
 				default:
 					System.out.println("I don't recognize that command.");
 			}
-			
 		} else {
+			//Commands that don't use a parameter
 			switch (command) {
 			case INVENTORY:
 				player.setIsViewingInventory(true);
 				System.out.println(playerInventory.displayAllInventory());
+				break;
+			case HELP:
+				System.out.print("~~~~~~~~~\nGuide:\n\nMove rooms with 'go (direction)'\nTake items with 'grab (item)'\nInspect objects with 'examine (interactable)'\nSave your inventory items to a text file with 'save (filePath)'\n~~~~~~~~~\nCurrent Location (Scroll Up for Help):");
+				GameManagement.displayRoom.accept(Player.getCurrentRoom());
+				break;
+			case QUIT:
+				System.out.println("Game Closed!");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("I don't recognize that command.");

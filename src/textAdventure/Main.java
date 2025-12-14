@@ -11,8 +11,6 @@ public class Main {
 		//create input handler
 		InputHandler inputHandler = newGame.getInputHandler();
 		
-		
-		
 		//scanner which will take user text and complete actions
 		Scanner scanner = new Scanner(System.in);
 		boolean playing = true;
