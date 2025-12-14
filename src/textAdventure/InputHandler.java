@@ -116,24 +116,54 @@ public class InputHandler {
 		//if viewing inventory, then get list from inventory, otherwise from room
 		BaseInteractable foundInteractable = null;
 		
-		if(!isViewingInventory) {		
+		if(!isViewingInventory) 
+		{		
 			ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
 			
-			for(BaseInteractable interactable : interactableList) {
-				if(interactable.getName().toUpperCase().contains(itemName)) {
-					foundInteractable = interactable;
-					break;
+			if(itemName.equalsIgnoreCase("ENGRAVED ROCK"))
+			{
+			
+				System.out.println("here");
+				EngravedRock engravedRock = interactableList.stream()
+						.filter(i-> i instanceof EngravedRock)
+						.map(i-> (EngravedRock) i)
+						.findFirst()
+						.orElse(null);
+			 
+				if (engravedRock != null)
+				{
+				 System.out.println("~~~~~ " +engravedRock.getName() + " ~~~~~");
+					System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
+					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
+				 
 				}
+			}
+		
+			
+			else
+			{
+				for(BaseInteractable interactable : interactableList) 
+				{
+					if(interactable.getName().toUpperCase().contains(itemName)) 
+					{
+						foundInteractable = interactable;
+						break;
+					}
+				}
+			
+				
+				if (foundInteractable != null) 
+				{
+					System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
+					System.out.println(foundInteractable.getLore());
+					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
+					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				} 
 			}
 		}
 
-		if (foundInteractable != null) {
-			System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
-			System.out.println(foundInteractable.getLore());
-			System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
-			
-		} else {
+		
+		else {
 			ArrayList<Item> itemList = (ArrayList<Item>) player.getInventory().getAllInventory();
 			Item foundItem = null;
 			
@@ -177,12 +207,14 @@ public class InputHandler {
 			player.getCurrentRoom().removeItem(foundItem);
 			player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
-			System.out.println(foundItem.getLore() + "\n");
+			System.out.println(foundItem.getDesc() + "\n");
 			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 		} else {
 			System.out.println("There is nothing here for examination...");
 		}
 	}
+	
+
 	
 //	public void examineInteractable(String examineObject)
 //	{
