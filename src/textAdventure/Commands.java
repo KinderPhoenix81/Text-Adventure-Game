@@ -27,7 +27,8 @@ public enum Commands {
 	INVENTORY("inventory", 0, "CHECK_INVENTORY"), //no params
 	HELP("help", 0, "SHOW_HELP"), // no params
 	QUIT("quit", 0, "EXIT_GAME"), // no params
-	UNKNOWN("unknown", 0, "INVALID_COMMAND"); // no params
+	UNKNOWN("unknown", 0, "INVALID_COMMAND"), // no params
+	SAVE("save", 1, "SAVE_GAME"); //no params
 	
 	/**
 	 * Fields for the methods below

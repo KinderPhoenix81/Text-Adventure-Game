@@ -5,12 +5,11 @@ import java.util.List;
 
 public class Inventory {
 	//set a list of items to be the inventory
-	private List<Item> items;
+	private static List<Item> items;
 	
 	public Inventory() {
-		this.items = new ArrayList<>();
+		Inventory.items = new ArrayList<>();
 	}
-	
 	
 	public void addItem(Item item) {
 		items.add(item);
@@ -20,7 +19,7 @@ public class Inventory {
 		items.remove(item);
 	}
 	
-	public List<Item> getAllInventory(){
+	public static List<Item> getAllInventory(){
 		return items;
 	}
 	

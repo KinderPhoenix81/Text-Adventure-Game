@@ -1,5 +1,11 @@
 package textAdventure;
 
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -25,7 +31,7 @@ public class InputHandler {
 		player.setIsViewingInventory(false);
 		
 		//trim input and make uppercase to avoid capitalization issues
-		String playerInput = input.trim().toUpperCase();
+		String playerInput = input.trim();
 
 		//ensure input is not empty
 		if (playerInput.isEmpty()) {
@@ -46,13 +52,16 @@ public class InputHandler {
 			//create instance of Command
 			switch (command) {
 				case GO:
-					movePlayer(argument);
+					movePlayer(argument.toUpperCase());
 					break;
 				case EXAMINE:
-					examineItem(argument, player.getIsViewingInventory());
+					examineItem(argument.toUpperCase(), player.getIsViewingInventory());
 					break;
 				case GRAB:
-					grabItem(argument);
+					grabItem(argument.toUpperCase());
+					break;
+				case SAVE:
+					saveGame((argument));
 					break;
 				default:
 					System.out.println("I don't recognize that command.");
@@ -214,7 +223,36 @@ public class InputHandler {
 		}
 	}
 	
-
+	/*
+	 * Handles saving the game
+	 */
+	public void saveGame(String filePath) {
+		//Try catch in case the file path is not valid
+		try {
+			//Create the file with a path
+			File saveFile = new File(filePath);
+			
+			//Create new buffered writer that casts a file writer
+			try(FileWriter writer = new FileWriter(saveFile)) {
+				//Loop through inventory items
+				for(Item item : Inventory.getAllInventory()) {
+					//Print out the name of each item
+					writer.write(item.getName() + "\n");
+				}
+				
+				//Save the file
+				writer.flush();
+			}
+			
+			//Print additional info
+			System.out.println("File Size: " + Files.size(saveFile.toPath()));
+			System.out.println("File Saved!");
+			
+		} catch (IOException e) {
+			//Print out invalid file path
+			System.out.println("The file path you tried to save to was invalid, please try again...");
+		}
+	}
 	
 //	public void examineInteractable(String examineObject)
 //	{
