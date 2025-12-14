@@ -60,6 +60,9 @@ public class InputHandler {
 				case GRAB:
 					grabItem(argument.toUpperCase());
 					break;
+				case USE:
+					useItem(argument.toUpperCase());
+					break;
 				case SAVE:
 					saveGame((argument));
 					break;
@@ -319,13 +322,55 @@ public class InputHandler {
 	 * handles the TAKE command (TAKE ITEM_NAME)
 	 */
 	public void useItem(String itemName) {
-		//TODO: 
-		if (itemName.isEmpty()) {
-			System.out.println("There is nothing here for the taking...");
-			return;
+		ArrayList<Item> playerItemList = (ArrayList<Item>) player.getInventory().getAllInventory();
+		ArrayList<BaseInteractable> roomInteractableList = player.getCurrentRoom().getInteractableList();
+		Item foundItem = null;
+		BaseInteractable foundInteractable = null;
+
+		for(Item item : playerItemList) {
+			if(item.getName().toUpperCase().contains(itemName)) {
+				foundItem = item;
+				break;
+			}
+		}
+		
+		String useItemOn = "";
+		if (foundItem != null) {
+			switch (foundItem.getName().toUpperCase()) {
+				case "WHEAT TOTEM":
+					useItemOn = "West Pedestal";
+					break;
+				case "FISH TOTEM":
+					useItemOn = "North Pedestal";
+					break;
+				case "SWORD TOTEM":
+					useItemOn = "South Pedestal";
+					break;
+				case "LUMBER TOTEM":
+					useItemOn = "East Pedestal";
+					break;
+				default:
+					System.out.println("You can't use that item now...");
+			}
+			
+			//set new pedestal examine text
+			//find pedestal 
+			for(BaseInteractable interactable : roomInteractableList) 
+			{
+				if(interactable.getName().toUpperCase().equals(itemName)) 
+				{
+					foundInteractable = interactable;
+					break;
+				}
+			}
+			
+			
+			//remove from inventory
+			player.getInventory().removeItem(foundItem);
+		} else {
+			System.out.println("You do not possess that item...");
 		}
 
-		//TODO: make use of the item
 	}
 	
 	private void checkSpecialConditions(Room nextRoom) {
@@ -347,10 +392,12 @@ public class InputHandler {
 				if(player.hasItem(specialConditionNoun.toUpperCase())) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
 				}
+				break;
 			case "Completed":
 				if(player.completedQuest(specialConditionNoun)) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
 				}
+				break;
 		}
 		
 	}
