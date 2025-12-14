@@ -1,5 +1,12 @@
 package textAdventure;
 
+/**
+ * Class for managing interactable objects
+ * 
+ * This class acts as the base for other interactable types
+ * BaseInteractable is a subclass of Interactable
+ * BaseInteractable uses a Comparable for comparing BaseInteractables
+ */
 public abstract class BaseInteractable implements Interactable, Comparable<BaseInteractable> {
 
 	//Fields for any interactable

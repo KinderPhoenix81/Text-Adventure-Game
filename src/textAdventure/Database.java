@@ -7,6 +7,9 @@ import org.apache.derby.jdbc.EmbeddedDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Class for managing interaction with the database
+ */
 //Holds schema and inserts for database
 public class Database {
 
@@ -36,7 +39,7 @@ public class Database {
 			//Drop existing tables
 			unloadTables(conn);
 			
-			//Create statments for each table
+			//Create statements for each table
 			Statement createItemSchema = conn.createStatement();
 			Statement createRoomSchema = conn.createStatement();
 			Statement createInteractableSchema = conn.createStatement();
