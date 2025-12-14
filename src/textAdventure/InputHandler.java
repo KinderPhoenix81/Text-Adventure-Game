@@ -139,7 +139,7 @@ public class InputHandler {
 			if(itemName.equalsIgnoreCase("ENGRAVED ROCK"))
 			{
 			
-				System.out.println("here");
+				
 				EngravedRock engravedRock = interactableList.stream()
 						.filter(i-> i instanceof EngravedRock)
 						.map(i-> (EngravedRock) i)
@@ -171,7 +171,7 @@ public class InputHandler {
 				if (foundInteractable != null) 
 				{
 					System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
-					System.out.println(foundInteractable.getLore());
+					System.out.println(GameManagement.localizedDesc(foundInteractable.getDesc()));
 					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				} 
@@ -192,7 +192,7 @@ public class InputHandler {
 			
 			if (foundItem != null) {
 				System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
-				System.out.println(foundItem.getLore());
+				System.out.println(foundItem.getDesc());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				
