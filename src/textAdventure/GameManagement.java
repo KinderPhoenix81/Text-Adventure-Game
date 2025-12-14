@@ -46,6 +46,13 @@ public class GameManagement {
 	//Provides base information about basic actions
 	private ArrayList<String> playerActionsPrompt;
 	
+	//add totem check booleans
+	private boolean isNorthTotemPlaced = false;
+	private boolean isEastTotemPlaced = false;
+	private boolean isSouthTotemPlaced = false;
+	private boolean isWestTotemPlaced = false;
+	
+	
 	/**
 	 * The actions a player can take
 	 * on the title screen
@@ -172,6 +179,14 @@ public class GameManagement {
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
 		return rb.getString(descKey);
 	}
+	
+	public void checkTotems()
+	{
+		if(isNorthTotemPlaced == true && isEastTotemPlaced== true && isSouthTotemPlaced == true && isWestTotemPlaced == true)
+		{
+			//unlockCryptDoor();
+		}
+	}
 		
 	
 	/**
@@ -294,5 +309,43 @@ public class GameManagement {
 	 */
 	public InputHandler getInputHandler() {
 		return this.inputHandler;
+	}
+	
+	public boolean getNorthTotemStatus()
+	{
+		return isNorthTotemPlaced;
+	}
+	public boolean getEastTotemStatus()
+	{
+		return isEastTotemPlaced;
+	}
+	public boolean getSouthTotemStatus()
+	{
+		return isSouthTotemPlaced;
+	}
+	public boolean getWestTotemStatus()
+	{
+		return isWestTotemPlaced;
+	}
+	
+	public void setNorthTotemStatus(boolean value)
+	{
+		isNorthTotemPlaced = value;
+		checkTotems();
+	}
+	public void setEastTotemStatus(boolean value)
+	{
+		isEastTotemPlaced = value;
+		checkTotems();
+	}
+	public void setSouthTotemStatus(boolean value)
+	{
+		isSouthTotemPlaced = value;
+		checkTotems();
+	}
+	public void setWestTotemStatus(boolean value)
+	{
+		isWestTotemPlaced = value;
+		checkTotems();
 	}
 }
