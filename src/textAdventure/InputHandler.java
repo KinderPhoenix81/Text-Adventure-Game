@@ -137,7 +137,7 @@ public class InputHandler {
 			
 		} else if ("Crypt Entrance".equals(player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
 			if(player.getHasLitTorch()) {
-				directionString = "DOWN";
+				directionString = "NORTH";
 			} else {
 				System.out.println("You're too scared of the darkness to head that way... \n");
 				GameManagement.displayRoom.accept(player.getCurrentRoom());
