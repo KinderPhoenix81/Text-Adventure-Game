@@ -126,9 +126,9 @@ public class InputHandler {
 	//handles player movement
 	public void movePlayer(String directionString) {
 		Direction direction;
-		if (directionString == "Crypt Entrance") {
+		if (directionString.equalsIgnoreCase("Crypt Door")) {
 			directionString = "DOWN";
-		} else if (directionString == "Outside Crypt") {
+		} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 			directionString = "UP";
 		}
 		try {
