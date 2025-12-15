@@ -430,6 +430,7 @@ public class InputHandler {
 					System.out.println("~~~~~The torch has been lit~~~~~");
 					System.out.println("It burns brightly.");
 					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+					return;
 				default:
 					System.out.println("You can't use that item now...");
 			}
