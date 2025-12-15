@@ -421,6 +421,13 @@ public class InputHandler {
 				pedestal.setPedestalItem(foundItem);
 				//remove from inventory
 				player.getInventory().removeItem(foundItem);
+				
+				//remove special action from room
+				checkSpecialConditions(player.getCurrentRoom());
+				
+				System.out.println("~~~~~" + foundItem.getName() + " Used~~~~~");
+				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				
 			}
 
 		} else {
