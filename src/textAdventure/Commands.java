@@ -22,7 +22,7 @@ public enum Commands {
 	 * UNKNOWN: 'error message' for invalid commands
 	 */
 	GO("go", 1, "MOVE"), //takes direction
-	ENTER("go", 1, "Move"), // another word for enter
+	ENTER("enter", 1, "Move"), // another word for enter
 	GRAB("grab", 1, "GET_ITEM"), //takes item
 	EXAMINE("examine", 1, "LOOK_AT"), //takes item
 	USE("use", 2, "USE_ITEM"), //takes item and something to interact with
