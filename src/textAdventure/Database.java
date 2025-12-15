@@ -525,7 +525,8 @@ public class Database {
 		cryptEntrance.setExit(Direction.NORTH, darkRoom1);
 		
 		//darkrooms
-		darkRoom1.setExit(Direction.EAST, darkRoom2);
+		darkRoom1.setExit(Direction.SOUTH, cryptEntrance);
+		darkRoom1.setExit(Direction.EAST, artifactRoom);
 	}
 	
 	/**
