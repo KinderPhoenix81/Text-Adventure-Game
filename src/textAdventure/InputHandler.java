@@ -338,26 +338,25 @@ public class InputHandler {
 		if (foundItem != null) {
 			switch (foundItem.getName().toUpperCase()) {
 				case "WHEAT TOTEM":
-					useItemOn = "West Pedestal";
+					useItemOn = "WEST PEDESTAL";
 					break;
 				case "FISH TOTEM":
-					useItemOn = "North Pedestal";
+					useItemOn = "NORTH PEDESTAL";
 					break;
 				case "SWORD TOTEM":
-					useItemOn = "South Pedestal";
+					useItemOn = "SOUTH PEDESTAL";
 					break;
 				case "LUMBER TOTEM":
-					useItemOn = "East Pedestal";
+					useItemOn = "EAST PEDESTAL";
 					break;
 				default:
 					System.out.println("You can't use that item now...");
 			}
 			
-			
 			//find pedestal 
 			for(BaseInteractable interactable : roomInteractableList) 
 			{
-				if(interactable.getName().toUpperCase().equals(itemName)) 
+				if(interactable.getName().toUpperCase().equals(useItemOn)) 
 				{
 					foundInteractable = interactable;
 					break;
