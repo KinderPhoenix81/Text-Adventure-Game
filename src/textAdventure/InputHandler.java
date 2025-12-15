@@ -436,7 +436,7 @@ public class InputHandler {
 					//if all pedestals are done, send a special message
 					int completedPedestals = 0;
 					for (BaseInteractable interactable : allInteractables) {
-						if (interactable instanceof Pedestal && ((Pedestal) interactable).getPedestalHasItem()) {
+						if (pedestal.getPedestalHasItem()) {
 							completedPedestals++;
 						}
 					}
