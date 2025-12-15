@@ -13,18 +13,41 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
+/**
+ * Class for handling user input
+ */
 public class InputHandler {
+	/**
+	 * Fields
+	 * 
+	 * player: object for the player's status
+	 * playerInventory: object for the player's inventory
+	 */
 	private final Player player;
 	private final Inventory playerInventory;
 
+	/**
+	 * Constructor for InputHandler
+	 * 
+	 * @param player Object for the player's status
+	 */
 	public InputHandler(Player player) {
 		this.player = player;
 		playerInventory = player.getInventory();
 	}
 
+	/**
+	 * Create a unary operator for taking input
+	 */
 	//Unary operator for parsing commands
 	UnaryOperator<String> properInputFormat = input -> input.toUpperCase();
 
+	/**
+	 * Method that handles and executes player commands
+	 * 
+	 * @param input The user input
+	 * @return true to keep the program going after this method
+	 */
 	//handles player commands
 	public boolean handleCommand(String input) {
 		//set this to false as default
@@ -90,6 +113,11 @@ public class InputHandler {
 		return true;
 	}
 
+	/**
+	 * Move the player
+	 * 
+	 * @param directionString The direction the player wishes to move in
+	 */
 	//handles player movement
 	public void movePlayer(String directionString) {
 		Direction direction;
@@ -113,8 +141,10 @@ public class InputHandler {
 		}		
 	}
 
-	/*
+	/**
 	 * handles the TAKE command (TAKE ITEM_NAME)
+	 * 
+	 * @param itemName the item the player is trying to take
 	 */
 	public void takeItem(String itemName) {
 		if (itemName.isEmpty()) {
@@ -125,8 +155,12 @@ public class InputHandler {
 		//TODO: add to inventory if possible
 	}
 
-	/*
+	/**
 	 * handles the EXAMINE command (TAKE ITEM_NAME)
+	 * 
+	 * @param itemName the item the player is trying to examine
+	 * @param isViewingInventory whether the player is viewing the inventory
+	 * 	(affects which items are viewable)
 	 */
 	public void examineItem(String itemName, boolean isViewingInventory) {
 		//if viewing inventory, then get list from inventory, otherwise from room
@@ -204,8 +238,10 @@ public class InputHandler {
 		}
 	}
 	
-	/*
+	/**
 	 * handles the GRAB command (GRAB ITEM_NAME)
+	 * 
+	 * @param itemName the item the player is trying to take
 	 */
 	public void grabItem(String itemName) {
 		ArrayList<Item> itemList = player.getCurrentRoom().getItemList();
@@ -230,8 +266,10 @@ public class InputHandler {
 		}
 	}
 	
-	/*
+	/**
 	 * Handles saving the game
+	 * 
+	 * @param filePath the path for the location of the file
 	 */
 	public void saveGame(String filePath) {
 		//Try catch in case the file path is not valid
@@ -322,8 +360,10 @@ public class InputHandler {
 //		
 //	}
 
-	/*
+	/**
 	 * handles the TAKE command (TAKE ITEM_NAME)
+	 * 
+	 * @param itemName the name of the item the player is taking
 	 */
 	public void useItem(String itemName) {
 		//TODO: 
@@ -335,6 +375,11 @@ public class InputHandler {
 		//TODO: make use of the item
 	}
 	
+	/**
+	 * Method for checking if the next room has a special condition
+	 * 
+	 * @param nextRoom The next room the player is trying to enter
+	 */
 	private void checkSpecialConditions(Room nextRoom) {
 		String specialConditionVerb = nextRoom.getSpecialConditionVerb();
 		String specialConditionNoun = nextRoom.getSpecialConditionNoun();
