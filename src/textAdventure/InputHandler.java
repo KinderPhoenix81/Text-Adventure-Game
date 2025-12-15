@@ -127,7 +127,12 @@ public class InputHandler {
 	public void movePlayer(String directionString) {
 		Direction direction;
 		if (directionString.equalsIgnoreCase("Crypt Door")) {
-			directionString = "DOWN";
+			if(player.completedQuest("Totem Quest")) {
+				directionString = "DOWN";
+			} else {
+				System.out.println("I don't recognize that command");
+			}
+			
 		} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 			directionString = "UP";
 		}
