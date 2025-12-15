@@ -85,15 +85,13 @@ public class Pedestal extends BaseInteractable {
 	 */
 	public Boolean getPedestalHasItem() {
 		//Logic
-		//If there is no item on the pedestal
-		if(displayedItem.equals(null)) {
-			pedestalHasItem = false;
-			return pedestalHasItem;
+		//If there is an item on the pedestal
+		if(displayedItem != null) {
+			return true;
 			
-			//If there is an item on the pedestal
+			//If there is no item on the pedestal
 		} else {
-			pedestalHasItem = true;
-			return pedestalHasItem;
+			return false;
 		}
 	}
 	

@@ -25,17 +25,16 @@ public class InputHandler {
 	 */
 	private final Player player;
 	private final Inventory playerInventory;
-	private final GameManagement game;
+	private GameManagement gameManagement;
 
 	/**
 	 * Constructor for InputHandler
 	 * 
 	 * @param player Object for the player's status
 	 */
-	public InputHandler(Player player,GameManagement game) {
+	public InputHandler(Player player) {
 		this.player = player;
 		playerInventory = player.getInventory();
-		this.game = game;
 	}
 
 	/**
@@ -84,6 +83,9 @@ public class InputHandler {
 				case GRAB:
 					grabItem(argument.toUpperCase());
 					break;
+				case USE:
+					useItem(argument.toUpperCase());
+					break;
 				case SAVE:
 					saveGame((argument));
 					break;
@@ -99,7 +101,7 @@ public class InputHandler {
 				break;
 			case HELP:
 				System.out.print("~~~~~~~~~\nGuide:\n\nMove rooms with 'go (direction)'\nTake items with 'grab (item)'\nInspect objects with 'examine (interactable)'\nSave your inventory items to a text file with 'save (filePath)'\n~~~~~~~~~\nCurrent Location (Scroll Up for Help):");
-				game.displayRoom.accept(Player.getCurrentRoom());
+				GameManagement.displayRoom.accept(Player.getCurrentRoom());
 				break;
 			case QUIT:
 				System.out.println("Game Closed!");
@@ -137,7 +139,7 @@ public class InputHandler {
 			//check if player can have special actions
 			checkSpecialConditions(nextRoom);
 			player.setCurrentRoom(nextRoom);
-			game.displayRoom.accept(nextRoom);
+			GameManagement.displayRoom.accept(nextRoom);
 		} else {
 			System.out.println("You can not travel that direction from here.");
 		}		
@@ -185,7 +187,7 @@ public class InputHandler {
 				if (engravedRock != null)
 				{
 				 System.out.println("~~~~~ " +engravedRock.getName() + " ~~~~~");
-					System.out.println(game.localizedDesc(engravedRock.getDesc()));
+					System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
 					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 				 
 				}
@@ -207,7 +209,7 @@ public class InputHandler {
 				if (foundInteractable != null) 
 				{
 					System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
-					System.out.println(game.localizedDesc(foundInteractable.getDesc()));
+					System.out.println(GameManagement.localizedDesc(foundInteractable.getDesc()));
 					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				} 
@@ -373,14 +375,10 @@ public class InputHandler {
 	 * @param itemName the name of the item the player is taking
 	 */
 	public void useItem(String itemName) {
-
-		//TODO: 
-		if (itemName.isEmpty()) {
-			System.out.println("There is nothing here for the taking...");
-			return;
-		}
 		ArrayList<Item> playerItemList = (ArrayList<Item>) player.getInventory().getAllInventory();
 		ArrayList<BaseInteractable> roomInteractableList = player.getCurrentRoom().getInteractableList();
+		ArrayList<BaseInteractable> allInteractables = gameManagement.getInteractables();
+		
 		Item foundItem = null;
 		BaseInteractable foundInteractable = null;
 
@@ -396,19 +394,15 @@ public class InputHandler {
 			switch (foundItem.getName().toUpperCase()) {
 				case "WHEAT TOTEM":
 					useItemOn = "WEST PEDESTAL";
-					game.setWestTotemStatus(true);
 					break;
 				case "FISH TOTEM":
 					useItemOn = "NORTH PEDESTAL";
-					game.setNorthTotemStatus(true);
 					break;
 				case "SWORD TOTEM":
 					useItemOn = "SOUTH PEDESTAL";
-					game.setSouthTotemStatus(true);
 					break;
 				case "LUMBER TOTEM":
 					useItemOn = "EAST PEDESTAL";
-					game.setEastTotemStatus(true);
 					break;
 				default:
 					System.out.println("You can't use that item now...");
@@ -425,27 +419,44 @@ public class InputHandler {
 			}
 			
 			if (foundInteractable != null) {
-				Pedestal pedestal = (Pedestal) foundInteractable;
-				//set item on pedestal
-				pedestal.setPedestalItem(foundItem);
-				//remove from inventory
-				player.getInventory().removeItem(foundItem);
-				
-				//remove special action from room
-				checkSpecialConditions(player.getCurrentRoom());
-				
-				System.out.println("~~~~~" + foundItem.getName() + " Used~~~~~");
-				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
-				
+				if (foundInteractable instanceof Pedestal) {
+					Pedestal pedestal = (Pedestal) foundInteractable;
+					//set item on pedestal
+					pedestal.setPedestalItem(foundItem);
+					//remove from inventory
+					player.getInventory().removeItem(foundItem);
+					
+					//remove special action from room
+					checkSpecialConditions(player.getCurrentRoom());
+					
+					System.out.println("~~~~~" + foundItem.getName() + " Used~~~~~");
+					System.out.println("The " + foundItem.getName() + " was set on the " + pedestal.getName() + "!\n");
+					
+					
+					//if all pedestals are done, send a special message
+					int completedPedestals = 0;
+					for (BaseInteractable interactable : allInteractables) {
+						if (interactable instanceof Pedestal) {
+							Pedestal currentPedestal = (Pedestal) interactable;
+							if(currentPedestal.getPedestalHasItem()) {
+								completedPedestals++;
+							}							
+						}
+					}
+					if(completedPedestals >=4) {
+						player.setQuestComplete("Totem Quest");
+						System.out.println("!!!A beacon of light shoots into the sky. It's coming from the crypt entrance.!!!\n");
+						
+					}
+					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				}
 			}
 
 		} else {
 			System.out.println("You do not possess that item...");
+		}
 
-		}}
-
-		//TODO: make use of the item
-	
+	}
 	
 	/**
 	 * Method for checking if the next room has a special condition
@@ -470,11 +481,15 @@ public class InputHandler {
 			case "Has":
 				if(player.hasItem(specialConditionNoun.toUpperCase())) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+				} else {
+					nextRoom.removeRoomAction(nextRoom.getSpecialAction());
 				}
+				break;
 			case "Completed":
 				if(player.completedQuest(specialConditionNoun)) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
 				}
+				break;
 		}
 		
 	}
