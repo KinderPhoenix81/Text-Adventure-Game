@@ -84,10 +84,11 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
-		this.inputHandler = new InputHandler(player);
+		this.inputHandler = new InputHandler(player,this);
 		
 		//Show the starting room
 		displayRoom.accept(Player.getCurrentRoom());
+		
 	}
 	
 	
@@ -95,7 +96,7 @@ public class GameManagement {
 	 * Set up a room for the player to be in
 	 */
 	//Set the text of a room, it's lore, description, and all actions
-	public static Consumer<Room> displayRoom = room -> {
+	public Consumer<Room> displayRoom = room -> {
 		System.out.println("\n");
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
 		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
@@ -173,7 +174,7 @@ public class GameManagement {
 	 * @return The localized text
 	 */
 //	//returns text based on language selected
-	public static String localizedDesc(String descKey)
+	public String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
@@ -184,8 +185,29 @@ public class GameManagement {
 	{
 		if(isNorthTotemPlaced == true && isEastTotemPlaced== true && isSouthTotemPlaced == true && isWestTotemPlaced == true)
 		{
-			//unlockCryptDoor();
+			unlockCryptDoor();
 		}
+	}
+	
+	public void unlockCryptDoor()
+	{
+		Room getRoom = null;
+		Room setRoomExit = null;
+		
+		for(Room room : roomList) {
+			if(room.getName().equalsIgnoreCase("Outer Garden Center")) {
+				getRoom = room;
+				
+			}}
+		for(Room room : roomList) {
+			if(room.getName().equalsIgnoreCase("Crypt Entrance")) {
+				setRoomExit = room;
+				
+			}}
+		
+		getRoom.setExit(Direction.DOWN, setRoomExit);
+		getRoom.getRoomActions().add("Go Down");
+		
 	}
 		
 	
