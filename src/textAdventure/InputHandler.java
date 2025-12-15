@@ -149,8 +149,8 @@ public class InputHandler {
 
 		if (nextRoom != null) {
 			//check if player can have special actions
-			checkSpecialConditions(nextRoom);
 			player.setCurrentRoom(nextRoom);
+			checkSpecialConditions(player.getCurrentRoom());
 			GameManagement.displayRoom.accept(nextRoom);
 		} else {
 			System.out.println("You can not travel that direction from here.");
@@ -473,11 +473,11 @@ public class InputHandler {
 	/**
 	 * Method for checking if the next room has a special condition
 	 * 
-	 * @param nextRoom The next room the player is trying to enter
+	 * @param currentRoom The next room the player is trying to enter
 	 */
-	private void checkSpecialConditions(Room nextRoom) {
-		String specialConditionVerb = nextRoom.getSpecialConditionVerb();
-		String specialConditionNoun = nextRoom.getSpecialConditionNoun();
+	private void checkSpecialConditions(Room currentRoom) {
+		String specialConditionVerb = currentRoom.getSpecialConditionVerb();
+		String specialConditionNoun = currentRoom.getSpecialConditionNoun();
 		
 		if(specialConditionVerb == null || specialConditionVerb.isEmpty()) {
 			return;
@@ -492,14 +492,14 @@ public class InputHandler {
 		switch (specialConditionVerb) {
 			case "Has":
 				if(player.hasItem(specialConditionNoun.toUpperCase())) {
-					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+					currentRoom.addRoomAction(currentRoom.getSpecialAction());
 				} else {
-					nextRoom.removeRoomAction(nextRoom.getSpecialAction());
+					currentRoom.removeRoomAction(currentRoom.getSpecialAction());
 				}
 				break;
 			case "Completed":
 				if(player.completedQuest(specialConditionNoun)) {
-					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+					currentRoom.addRoomAction(currentRoom.getSpecialAction());
 				}
 				break;
 		}
