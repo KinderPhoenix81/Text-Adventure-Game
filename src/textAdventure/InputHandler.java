@@ -287,12 +287,17 @@ public class InputHandler {
 				
 				//Save the file
 				writer.flush();
+				
+			} catch (IOException io) {
+				//Print issues about writing to the file
+				System.out.println("There was an issue writing to an external file, please try again...");
+				
+			} finally {
+				//Print file results info
+				System.out.println("File Size: " + Files.size(saveFile.toPath()));
+				System.out.println("File Saved!");
 			}
-			
-			//Print additional info
-			System.out.println("File Size: " + Files.size(saveFile.toPath()));
-			System.out.println("File Saved!");
-			
+		
 		} catch (IOException e) {
 			//Print out invalid file path
 			System.out.println("The file path you tried to save to was invalid, please try again...");
