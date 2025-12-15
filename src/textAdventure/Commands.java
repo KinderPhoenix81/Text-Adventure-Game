@@ -28,7 +28,7 @@ public enum Commands {
 	HELP("help", 0, "SHOW_HELP"), // no params
 	QUIT("quit", 0, "EXIT_GAME"), // no params
 	UNKNOWN("unknown", 0, "INVALID_COMMAND"), // no params
-	SAVE("save", 1, "SAVE_GAME"); //no params
+	SAVE("save", 1, "SAVE_GAME"); //takes file path
 	
 	/**
 	 * Fields for the methods below

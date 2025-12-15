@@ -35,13 +35,14 @@ public class Database {
 		 * 
 		 * 6.1: Use of Try-Catch Block
 		 */
-		try {
-			//Make a connection and database
-			EmbeddedDataSource ds = new EmbeddedDataSource();
-			ds.setDatabaseName("Game_Database");
-			ds.setCreateDatabase("create");
-			Connection conn = ds.getConnection();
-			
+		
+		//Make a connection and database
+		EmbeddedDataSource ds = new EmbeddedDataSource();
+		ds.setDatabaseName("Game_Database");
+		ds.setCreateDatabase("create");
+		
+		//Try with resources block for database
+		try (Connection conn = ds.getConnection()) {
 			//Drop existing tables
 			unloadTables(conn);
 			
@@ -94,9 +95,6 @@ public class Database {
 			
 			//Log progress
 			log.info("Game objects sorted!");
-			
-			//Close connection
-			conn.close();
 			
 		} catch (SQLException e) {
 			//Print errors
