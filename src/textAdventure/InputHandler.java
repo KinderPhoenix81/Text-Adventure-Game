@@ -77,6 +77,7 @@ public class InputHandler {
 			switch (command) {				
 				case GO:
 				case ENTER:
+				case LEAVE:
 					movePlayer(argument.toUpperCase());
 					break;				
 				case EXAMINE:
