@@ -32,9 +32,10 @@ public class InputHandler {
 	 * 
 	 * @param player Object for the player's status
 	 */
-	public InputHandler(Player player) {
+	public InputHandler(Player player, GameManagement gameManagement) {
 		this.player = player;
 		playerInventory = player.getInventory();
+		this.gameManagement = gameManagement;
 	}
 
 	/**

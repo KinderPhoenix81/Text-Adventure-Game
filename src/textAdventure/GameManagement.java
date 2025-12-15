@@ -84,7 +84,7 @@ public class GameManagement {
 		//Create the player & set current room to beginning
 		player = new Player("Player Name Here");
 		player.setCurrentRoom(roomList.get(0));
-		this.inputHandler = new InputHandler(player);
+		this.inputHandler = new InputHandler(player, this);
 		
 		//Show the starting room
 		displayRoom.accept(Player.getCurrentRoom());
