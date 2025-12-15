@@ -395,6 +395,8 @@ public class InputHandler {
 			case "Has":
 				if(player.hasItem(specialConditionNoun.toUpperCase())) {
 					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+				} else {
+					nextRoom.removeRoomAction(nextRoom.getSpecialAction());
 				}
 				break;
 			case "Completed":
