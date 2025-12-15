@@ -122,19 +122,6 @@ public class GameManagement {
 		actionPrompt = roomActions;
 	}
 	
-	//Update the current player actions based on their inventory
-//	public void refreshPlayerActionPrompt(Player player) {
-//		ArrayList<String> playerActions = new ArrayList<String>();
-//		
-//		//For each item in the player's inventory, get the item's action
-//		for(Item item : player.getInventory()) {
-//			playerActions.add(item.getAction());
-//		}
-//		
-//		//Set the value of playerActions
-//		playerActionsPrompt = playerActions;
-//	}
-	
 	/**
 	 * Create the database for the game
 	 * 
@@ -179,15 +166,6 @@ public class GameManagement {
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
 		return rb.getString(descKey);
 	}
-	
-	public void checkTotems()
-	{
-		if(isNorthTotemPlaced == true && isEastTotemPlaced== true && isSouthTotemPlaced == true && isWestTotemPlaced == true)
-		{
-			//unlockCryptDoor();
-		}
-	}
-		
 	
 	/**
 	 * Getter for environmentPrompt
@@ -309,43 +287,5 @@ public class GameManagement {
 	 */
 	public InputHandler getInputHandler() {
 		return this.inputHandler;
-	}
-	
-	public boolean getNorthTotemStatus()
-	{
-		return isNorthTotemPlaced;
-	}
-	public boolean getEastTotemStatus()
-	{
-		return isEastTotemPlaced;
-	}
-	public boolean getSouthTotemStatus()
-	{
-		return isSouthTotemPlaced;
-	}
-	public boolean getWestTotemStatus()
-	{
-		return isWestTotemPlaced;
-	}
-	
-	public void setNorthTotemStatus(boolean value)
-	{
-		isNorthTotemPlaced = value;
-		checkTotems();
-	}
-	public void setEastTotemStatus(boolean value)
-	{
-		isEastTotemPlaced = value;
-		checkTotems();
-	}
-	public void setSouthTotemStatus(boolean value)
-	{
-		isSouthTotemPlaced = value;
-		checkTotems();
-	}
-	public void setWestTotemStatus(boolean value)
-	{
-		isWestTotemPlaced = value;
-		checkTotems();
 	}
 }

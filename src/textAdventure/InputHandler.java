@@ -362,67 +362,6 @@ public class InputHandler {
 			System.out.println("The file path you tried to save to was invalid, please try again...");
 		}
 	}
-	
-//	public void examineInteractable(String examineObject)
-//	{
-//		System.out.println("Made it in examineInteractable");
-//		System.out.println(examineObject);
-//		String doorName = null;
-//		if(examineObject.contains("door"))
-//		{
-//			doorName = examineObject;
-//			examineObject = "door";
-//		}
-//		
-//		switch(examineObject)
-//		{
-//		 case "pedestal":
-//			 Pedestal pedestal = Player.getCurrentRoom().getInteractableList().stream()
-//			 	.filter(i-> i instanceof Pedestal)
-//			 	.map(i-> (Pedestal) i)
-//			 	.findFirst()
-//			 	.orElse(null);
-//			 
-//			 if (pedestal != null)
-//			 {
-//				 System.out.println(GameManagement.localizedDesc(pedestal.getDesc()));
-//				 
-//			 }
-//			 break;
-//		 case "engraved rock":
-//			 System.out.println("here");
-//			 EngravedRock engravedRock = Player.getCurrentRoom().getInteractableList().stream()
-//			 .filter(i-> i instanceof EngravedRock)
-//			 .map(i-> (EngravedRock) i)
-//			 .findFirst()
-//			 .orElse(null);
-//			 
-//			 if (engravedRock != null)
-//			 {
-//				 System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
-//			 }
-//			 break;
-//		 case "door":
-//			 List<Door> doors = Player.getCurrentRoom().getInteractableList().stream()
-//			 .filter(i-> i instanceof Door)
-//			 .map(i -> (Door) i)
-//			 .toList();
-//			 
-//			 //make a final version of door name so this stuff stops yelling at me
-//			 final String finalDoorName = doorName;
-//			 
-//			 Door selectedDoor = doors.stream()
-//					 .filter(i->i.getName().equalsIgnoreCase(finalDoorName))
-//					 .findFirst()
-//					 .orElse(null);
-//			 
-//			 if (selectedDoor != null)
-//			 {
-//				 System.out.println(GameManagement.localizedDesc(selectedDoor.getDesc()));
-//			 }
-//		}
-//		
-//	}
 
 	/**
 	 * handles the TAKE command (TAKE ITEM_NAME)
