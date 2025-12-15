@@ -41,6 +41,8 @@ public class Player {
 		this.name = name;
 		this.quests = new HashMap<>();
 		this.quests.put("Totem Quest", false);
+		this.quests.put("Artifact Ending Quest", false);
+		this.quests.put("Spirit Ending Quest", false);
 	}
 	
 	/**

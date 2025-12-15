@@ -86,6 +86,14 @@ public class InputHandler {
 				case SAVE:
 					saveGame((argument));
 					break;
+				case OPEN:
+					//Print message
+					System.out.println(GameManagement.localizedDesc("FreeKoz"));
+					//Remove room actions
+					ArrayList<Room> rooms = GameManagement.getRoomList();
+					rooms.get(9).removeRoomAction("Open Vase");
+					rooms.get(8).removeRoomAction("Enter Artifact Room");
+					break;
 				default:
 					System.out.println("I don't recognize that command.");
 			}
@@ -306,6 +314,12 @@ public class InputHandler {
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 			System.out.println(foundItem.getDesc() + "\n");
 			Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+			
+			//Removes the spirit room prompt when the artifact is grabbed
+			if(itemName.equals("Golden Artifact")) {
+				ArrayList<Room> rooms = GameManagement.getRoomList(); 
+				rooms.get(8).removeRoomAction("Enter Spirit Room");
+			}
 		} else {
 			System.out.println("There is nothing here for examination...");
 		}

@@ -27,6 +27,7 @@ public enum Commands {
 	GRAB("grab", 1, "GET_ITEM"), //takes item
 	EXAMINE("examine", 1, "LOOK_AT"), //takes item
 	USE("use", 2, "USE_ITEM"), //takes item and something to interact with
+	OPEN("open", 1, "OPEN"), //opens a container (vase)
 	INVENTORY("inventory", 0, "CHECK_INVENTORY"), //no params
 	HELP("help", 0, "SHOW_HELP"), // no params
 	QUIT("quit", 0, "EXIT_GAME"), // no params
