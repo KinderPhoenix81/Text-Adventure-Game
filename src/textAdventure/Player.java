@@ -170,7 +170,7 @@ public class Player {
 	 * @param isViewing Value to set
 	 */
 	public void setHasLitTorch(boolean hasLitTorch ) {
-		isViewingInventory = hasLitTorch;
+		hasLitTorch = hasLitTorch;
 	}
 	
 }
