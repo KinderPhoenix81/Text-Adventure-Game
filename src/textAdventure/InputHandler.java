@@ -134,6 +134,13 @@ public class InputHandler {
 				return;
 			}
 			
+		} else if (player.getCurrentRoom().getName() == "Crypt Entrance" && directionString.equalsIgnoreCase("NORTH")) {
+			if(player.getHasLitTorch()) {
+				directionString = "DOWN";
+			} else {
+				System.out.println("You're too scared of the darkness to head that way...");
+				return;
+			}
 		} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 			directionString = "UP";
 		}
