@@ -22,7 +22,7 @@ public class Player {
 	 */
 	//Fields for player
 	private String name;
-	private Inventory inventory = new Inventory();
+	private static Inventory inventory = new Inventory();
 	private static Room currentRoom;
 	private Locale locale = new Locale("en", "US");
 	private boolean isViewingInventory = false;
@@ -58,7 +58,7 @@ public class Player {
 	 * 
 	 * @return player inventory
 	 */
-	public Inventory getInventory() {
+	public static Inventory getInventory() {
 		return inventory;
 	}
 	

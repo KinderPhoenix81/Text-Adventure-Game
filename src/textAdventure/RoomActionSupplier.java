@@ -93,7 +93,7 @@ public class RoomActionSupplier {
 	//Dark room (A) actions
 	public static Supplier<List<String>> darkCellAActions = () -> 
 		new ArrayList<>(List.of(
-			"Go East",
+			"Go North",
 			"Go South"
 			));
 
@@ -104,51 +104,7 @@ public class RoomActionSupplier {
 	public static Supplier<List<String>> darkCellBActions = () -> 
 		new ArrayList<>(List.of(
 			"Go North",
-			"Go East",
-			"Go South",
-			"Go West"
-			));
-	
-		/**
-		 * Actions for dark room section C
-		 */
-	//Dark room (C) actions
-	public static Supplier<List<String>> darkCellCActions = () -> 
-		new ArrayList<>(List.of(
-			"Go South",
-			"Go West"
-			));
-	
-		/**
-		 * Actions for dark room section D
-		 */
-	//Dark room (D) actions
-	public static Supplier<List<String>> darkCellDActions = () -> 
-		new ArrayList<>(List.of(
-			"Go North",
-			"Go East"
-			));
-	
-		/**
-		 * Actions for dark room section E
-		 */
-	//Dark room (E) actions
-	public static Supplier<List<String>> darkCellEActions = () -> 
-		new ArrayList<>(List.of(
-			"Go North",
-			"Go East",
-			"Go South",
-			"Go West"
-			));
-	
-		/**
-		 * Actions for dark room section F
-		 */
-	//Dark room (F) actions
-	public static Supplier<List<String>> darkCellFActions = () -> 
-		new ArrayList<>(List.of(
-			"Go North",
-			"Go West"
+			"Go South"
 			));
 	
 		/**
@@ -157,19 +113,10 @@ public class RoomActionSupplier {
 	//Crypt hallway actions
 	public static Supplier<List<String>> cryptHallwayActions = () -> 
 	new ArrayList<>(List.of(
-			"Go North",
-			"Go South"
+			"Enter Silver Door",
+			"Enter Gilded Door"
 			));
 	
-	/**
-	 * Actions for crypt hallway split
-	 */
-	//Crypt split hallway actions
-	public static Supplier<List<String>> cryptSplitHallwayActions = () -> 
-	new ArrayList<>(List.of(
-			"Open Gilded Door",
-			"Open Silver Door"
-			));
 	
 	/**
 	 * Actions for spirit room

@@ -191,14 +191,9 @@ public class Database {
 					+ "(6, 'Crypt Entrance', 'CryptEntrance' ), "
 					+ "(7, 'Dark Room', 'DarkRoom' ), "
 					+ "(8, 'Dark Room', 'DarkRoom' ), "
-					+ "(9, 'Dark Room', 'DarkRoom' ), "
-					+ "(10, 'Dark Room', 'DarkRoom' ), "
-					+ "(11, 'Dark Room', 'DarkRoom' ), "
-					+ "(12, 'Dark Room', 'DarkRoom' ), "
-					+ "(13, 'Crypt Hallway', 'CryptHallway' ), "
-					+ "(14, 'Split Hallway', 'SplitHallway'), "
-					+ "(15, 'Spirit Room', 'SpiritRoom'), "
-					+ "(16, 'Artifact Room', 'TreasureRoom')");
+					+ "(9, 'Crypt Hallway', 'CryptHallway' ), "
+					+ "(10, 'Spirit Room', 'SpiritRoom'), "
+					+ "(11, 'Artifact Room', 'TreasureRoom')");
 			
 		} catch (SQLException e) {
 			//Print errors
@@ -407,11 +402,11 @@ public class Database {
 				currentItems.add(items.get(4));
 				break;
 			//Haunted vase in spirit room
-			case 15:
+			case 10:
 				currentItems.add(items.get(5));
 				break;
 			//Golden artifact in artifact room
-			case 16:
+			case 11:
 				currentItems.add(items.get(6));
 			}
 			
@@ -467,7 +462,7 @@ public class Database {
 				roomInteractables.add(interactables.get(9));
 				break;
 			//Artifact & Spirit doors to crypt split hallway
-			case 14:
+			case 9:
 				roomInteractables.add(interactables.get(10));
 				roomInteractables.add(interactables.get(11));
 				break;
@@ -492,14 +487,9 @@ public class Database {
 		Room cryptEntrance = rooms.get(5);
 		Room darkRoom1 = rooms.get(6);
 		Room darkRoom2 = rooms.get(7);
-		Room darkRoom3 = rooms.get(8);
-		Room darkRoom4 = rooms.get(9);
-		Room darkRoom5 = rooms.get(10);
-		Room darkRoom6 = rooms.get(11);
-		Room cryptHallway = rooms.get(12);
-		Room splitHallway = rooms.get(13);
-		Room spiritRoom = rooms.get(14);
-		Room artifactRoom = rooms.get(15);
+		Room cryptHallway = rooms.get(8);
+		Room spiritRoom = rooms.get(9);
+		Room artifactRoom = rooms.get(10);
 
 		
 		//outer garden exits
@@ -527,7 +517,21 @@ public class Database {
 		
 		//darkrooms
 		darkRoom1.setExit(Direction.SOUTH, cryptEntrance);
-		darkRoom1.setExit(Direction.EAST, artifactRoom);
+		darkRoom1.setExit(Direction.NORTH, darkRoom2);
+		
+		darkRoom2.setExit(Direction.SOUTH, darkRoom1);
+		darkRoom2.setExit(Direction.NORTH, cryptHallway);
+		
+		//Crypt hallway
+		cryptHallway.setExit(Direction.SOUTH, darkRoom2);
+		cryptHallway.setExit(Direction.EAST, artifactRoom);
+		cryptHallway.setExit(Direction.WEST, spiritRoom);
+		
+		//Artifact room
+		artifactRoom.setExit(Direction.WEST, cryptHallway);
+		
+		//Spirit room
+		spiritRoom.setExit(Direction.EAST, cryptHallway);
 	}
 	
 	/**
@@ -590,14 +594,9 @@ public class Database {
 		rooms.get(5).setRoomActions((ArrayList<String>) RoomActionSupplier.innerCryptEntranceActions.get());
 		rooms.get(6).setRoomActions((ArrayList<String>) RoomActionSupplier.darkCellAActions.get());
 		rooms.get(7).setRoomActions((ArrayList<String>) RoomActionSupplier.darkCellBActions.get());
-		rooms.get(8).setRoomActions((ArrayList<String>) RoomActionSupplier.darkCellCActions.get());
-		rooms.get(9).setRoomActions((ArrayList<String>) RoomActionSupplier.darkCellDActions.get());
-		rooms.get(10).setRoomActions((ArrayList<String>) RoomActionSupplier.darkCellEActions.get());
-		rooms.get(11).setRoomActions((ArrayList<String>) RoomActionSupplier.darkCellFActions.get());
-		rooms.get(12).setRoomActions((ArrayList<String>) RoomActionSupplier.cryptHallwayActions.get());
-		rooms.get(13).setRoomActions((ArrayList<String>) RoomActionSupplier.cryptSplitHallwayActions.get());
-		rooms.get(14).setRoomActions((ArrayList<String>) RoomActionSupplier.spiritRoomActions.get());
-		rooms.get(15).setRoomActions((ArrayList<String>) RoomActionSupplier.artifactRoomActions.get());
+		rooms.get(8).setRoomActions((ArrayList<String>) RoomActionSupplier.cryptHallwayActions.get());
+		rooms.get(9).setRoomActions((ArrayList<String>) RoomActionSupplier.spiritRoomActions.get());
+		rooms.get(10).setRoomActions((ArrayList<String>) RoomActionSupplier.artifactRoomActions.get());
 	}
 	
 	/**

@@ -5,12 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
 /**
@@ -34,7 +29,7 @@ public class InputHandler {
 	 */
 	public InputHandler(Player player, GameManagement gameManagement) {
 		this.player = player;
-		playerInventory = player.getInventory();
+		playerInventory = Player.getInventory();
 		this.gameManagement = gameManagement;
 	}
 
@@ -129,7 +124,7 @@ public class InputHandler {
 	public void movePlayer(String command, String directionString) {
 		Direction direction;
 		if("LEAVE".equalsIgnoreCase(command)) {
-			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(player.getCurrentRoom().getName())) {
+			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(Player.getCurrentRoom().getName())) {
 				directionString = "UP";
 			} else {
 				System.out.println("Oh... You're not leaving...");
@@ -143,12 +138,12 @@ public class InputHandler {
 					return;
 				}
 				
-			} else if ("Crypt Entrance".equals(player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
+			} else if ("Crypt Entrance".equals(Player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
 				if(player.getHasLitTorch()) {
 					directionString = "NORTH";
 				} else {
 					System.out.println("You're too scared of the darkness to head that way... \n");
-					GameManagement.displayRoom.accept(player.getCurrentRoom());
+					GameManagement.displayRoom.accept(Player.getCurrentRoom());
 					return;
 				}
 			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
@@ -162,13 +157,13 @@ public class InputHandler {
 			return;
 		}
 
-		Room currentRoom = this.player.getCurrentRoom();
+		Room currentRoom = Player.getCurrentRoom();
 		Room nextRoom = currentRoom.getExit(direction);
 
 		if (nextRoom != null) {
 			//check if player can have special actions
 			player.setCurrentRoom(nextRoom);
-			checkSpecialConditions(player.getCurrentRoom());
+			checkSpecialConditions(Player.getCurrentRoom());
 			GameManagement.displayRoom.accept(nextRoom);
 		} else {
 			System.out.println("You can not travel that direction from here.");
@@ -200,30 +195,30 @@ public class InputHandler {
 		//if viewing inventory, then get list from inventory, otherwise from room
 		BaseInteractable foundInteractable = null;
 		
+		//If the player is not viewing their inventory
 		if(!isViewingInventory) 
-		{		
-			ArrayList<BaseInteractable> interactableList = player.getCurrentRoom().getInteractableList();
+		{	
+			//List to store interactables in the player's current room
+			ArrayList<BaseInteractable> interactableList = Player.getCurrentRoom().getInteractableList();
 			
+			//If an engraved rock exists in the room
 			if(itemName.equalsIgnoreCase("ENGRAVED ROCK"))
 			{
-			
-				
+				//Find the engraved rock interactale
 				EngravedRock engravedRock = interactableList.stream()
 						.filter(i-> i instanceof EngravedRock)
 						.map(i-> (EngravedRock) i)
 						.findFirst()
 						.orElse(null);
-			 
+			//Display the description
 				if (engravedRock != null)
 				{
 				 System.out.println("~~~~~ " +engravedRock.getName() + " ~~~~~");
 					System.out.println(GameManagement.localizedDesc(engravedRock.getDesc()));
 					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-				 
 				}
 			}
-		
-			
+			//Display item description
 			else
 			{
 				for(BaseInteractable interactable : interactableList) 
@@ -234,21 +229,19 @@ public class InputHandler {
 						break;
 					}
 				}
-			
-				
+				//Display a basic interactable
 				if (foundInteractable != null) 
 				{
 					System.out.println("~~~~~ " +foundInteractable.getName() + " ~~~~~");
 					System.out.println(GameManagement.localizedDesc(foundInteractable.getDesc()));
 					System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+					Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				} 
 			}
 		}
-
-		
+		//Display the player's inventory
 		else {
-			ArrayList<Item> itemList = (ArrayList<Item>) player.getInventory().getAllInventory();
+			ArrayList<Item> itemList = (ArrayList<Item>) Inventory.getAllInventory();
 			Item foundItem = null;
 			
 			for(Item item : itemList) {
@@ -262,7 +255,7 @@ public class InputHandler {
 				System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 				System.out.println(foundItem.getDesc());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				
 			} else {
 				System.out.println("~~~~~~~~~~~~~~~~~~~~");
@@ -278,7 +271,7 @@ public class InputHandler {
 	 * @param itemName the item the player is trying to take
 	 */
 	public void grabItem(String itemName) {
-		ArrayList<Item> itemList = player.getCurrentRoom().getItemList();
+		ArrayList<Item> itemList = Player.getCurrentRoom().getItemList();
 				Item foundItem = null;
 
 		for(Item item : itemList) {
@@ -289,13 +282,13 @@ public class InputHandler {
 		}
 
 		if (foundItem != null) {
-			player.getInventory().addItem(foundItem);
-			player.getCurrentRoom().removeItem(foundItem);
-			player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
-			checkSpecialConditions(player.getCurrentRoom());
+			Player.getInventory().addItem(foundItem);
+			Player.getCurrentRoom().removeItem(foundItem);
+			Player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
+			checkSpecialConditions(Player.getCurrentRoom());
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 			System.out.println(foundItem.getDesc() + "\n");
-			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+			Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 		} else {
 			System.out.println("There is nothing here for examination...");
 		}
@@ -406,9 +399,9 @@ public class InputHandler {
 	 * @param itemName the name of the item the player is taking
 	 */
 	public void useItem(String itemName) {
-		ArrayList<Item> playerItemList = (ArrayList<Item>) player.getInventory().getAllInventory();
-		ArrayList<BaseInteractable> roomInteractableList = player.getCurrentRoom().getInteractableList();
-		ArrayList<BaseInteractable> allInteractables = gameManagement.getInteractables();
+		ArrayList<Item> playerItemList = (ArrayList<Item>) Player.getInventory().getAllInventory();
+		ArrayList<BaseInteractable> roomInteractableList = Player.getCurrentRoom().getInteractableList();
+		ArrayList<BaseInteractable> allInteractables = GameManagement.getInteractables();
 		
 		Item foundItem = null;
 		BaseInteractable foundInteractable = null;
@@ -439,8 +432,8 @@ public class InputHandler {
 					player.setHasLitTorch(true);
 					System.out.println("~~~~~The torch has been lit~~~~~");
 					System.out.println("It burns brightly.\n");
-					player.getCurrentRoom().removeRoomAction("Use Torch");
-					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+					Player.getCurrentRoom().removeRoomAction("Use Torch");
+					Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 					return;
 				default:
 					System.out.println("You can't use that item now...");
@@ -462,10 +455,10 @@ public class InputHandler {
 					//set item on pedestal
 					pedestal.setPedestalItem(foundItem);
 					//remove from inventory
-					player.getInventory().removeItem(foundItem);
+					Player.getInventory().removeItem(foundItem);
 					
 					//remove special action from room
-					checkSpecialConditions(player.getCurrentRoom());
+					checkSpecialConditions(Player.getCurrentRoom());
 					
 					System.out.println("~~~~~" + foundItem.getName() + " Used~~~~~");
 					System.out.println("The " + foundItem.getName() + " was set on the " + pedestal.getName() + "!\n");
@@ -486,7 +479,7 @@ public class InputHandler {
 						System.out.println("!!!A beacon of light shoots into the sky. It's coming from the crypt entrance.!!!\n");
 						
 					}
-					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+					Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				}
 			}
 
