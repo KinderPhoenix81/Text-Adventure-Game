@@ -25,6 +25,7 @@ public class InputHandler {
 	 */
 	private final Player player;
 	private final Inventory playerInventory;
+	private GameManagement gameManagement;
 
 	/**
 	 * Constructor for InputHandler
@@ -376,6 +377,8 @@ public class InputHandler {
 	public void useItem(String itemName) {
 		ArrayList<Item> playerItemList = (ArrayList<Item>) player.getInventory().getAllInventory();
 		ArrayList<BaseInteractable> roomInteractableList = player.getCurrentRoom().getInteractableList();
+		ArrayList<BaseInteractable> allInteractables = gameManagement.getInteractables();
+		
 		Item foundItem = null;
 		BaseInteractable foundInteractable = null;
 
@@ -428,6 +431,19 @@ public class InputHandler {
 					
 					System.out.println("~~~~~" + foundItem.getName() + " Used~~~~~");
 					System.out.println("The " + foundItem.getName() + " was set on the " + pedestal.getName() + "!\n");
+					
+					
+					//if all pedestals are done, send a special message
+					int completedPedestals = 0;
+					for (BaseInteractable interactable : allInteractables) {
+						if (interactable instanceof Pedestal && ((Pedestal) interactable).getPedestalHasItem()) {
+							completedPedestals++;
+						}
+					}
+					if(completedPedestals >=4) {
+						System.out.println("!!!A beacon of light shoots into the sky. It's coming from the crypt entrance.!!!\n");
+						
+					}
 					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				}
 			}
