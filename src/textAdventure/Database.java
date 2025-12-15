@@ -532,8 +532,8 @@ public class Database {
 		
 		//north garden exits
 		northGarden.setSpecialConditionVerb("Has");
-		northGarden.setSpecialConditionNoun("Lumber Totem");
-		northGarden.setSpecialAction("Use Lumber Totem");
+		northGarden.setSpecialConditionNoun("Fish Totem");
+		northGarden.setSpecialAction("Use Fish Totem");
 		
 		//west garden exits
 		westGarden.setSpecialConditionVerb("Has");
@@ -542,8 +542,8 @@ public class Database {
 		
 		//east garden exits
 		eastGarden.setSpecialConditionVerb("Has");
-		eastGarden.setSpecialConditionNoun("Fish Totem");
-		eastGarden.setSpecialAction("Use Fish Totem");
+		eastGarden.setSpecialConditionNoun("Lumber Totem");
+		eastGarden.setSpecialAction("Use Lumber Totem");
 		
 		//south garden exits
 		southGarden.setSpecialConditionVerb("Has");
