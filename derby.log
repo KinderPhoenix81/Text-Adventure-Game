@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Sun Dec 14 23:14:21 CST 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019b-206e-589d-00003e213720 
-on database directory C:\Users\munt4\Documents\GitHub\Text-Adventure-Game\Game_Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a 
+Mon Dec 15 15:38:12 CST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-019b-23f3-1771-00003df7e3b0 
+on database directory C:\Users\munt4\Documents\GitHub\Text-Adventure-Game\Game_Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@18b4aac2 
 Loaded from file:/C:/Users/munt4/Documents/GitHub/Text-Adventure-Game/dbLibrary/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=24.0.2+12-54

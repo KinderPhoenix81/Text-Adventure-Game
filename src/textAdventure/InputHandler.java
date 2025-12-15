@@ -52,8 +52,7 @@ public class InputHandler {
 	 */
 	//handles player commands
 	public boolean handleCommand(String input) {
-		//set this to false as default
-		player.setIsViewingInventory(false);
+		
 		
 		//trim input and make uppercase to avoid capitalization issues
 		String playerInput = input.trim();
@@ -109,6 +108,10 @@ public class InputHandler {
 			case QUIT:
 				System.out.println("Game Closed!");
 				System.exit(0);
+				break;
+			case BACK:
+				player.setIsViewingInventory(false);
+				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				break;
 			default:
 				System.out.println("I don't recognize that command.");
@@ -263,6 +266,7 @@ public class InputHandler {
 				System.out.println(foundItem.getDesc());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				player.setIsViewingInventory(false);
 				
 			} else {
 				System.out.println("~~~~~~~~~~~~~~~~~~~~");
