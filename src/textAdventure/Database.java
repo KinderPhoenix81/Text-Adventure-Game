@@ -490,6 +490,17 @@ public class Database {
 		Room eastGarden = rooms.get(3);
 		Room southGarden = rooms.get(4);
 		Room cryptEntrance = rooms.get(5);
+		Room darkRoom1 = rooms.get(6);
+		Room darkRoom2 = rooms.get(7);
+		Room darkRoom3 = rooms.get(8);
+		Room darkRoom4 = rooms.get(9);
+		Room darkRoom5 = rooms.get(10);
+		Room darkRoom6 = rooms.get(11);
+		Room cryptHallway = rooms.get(12);
+		Room splitHallway = rooms.get(13);
+		Room spiritRoom = rooms.get(14);
+		Room artifactRoom = rooms.get(15);
+
 		
 		//outer garden exits
 		outerGarden.setExit(Direction.NORTH, northGarden);
@@ -508,7 +519,13 @@ public class Database {
 		eastGarden.setExit(Direction.WEST, outerGarden);
 		
 		//south garden exits
-		southGarden.setExit(Direction.NORTH, outerGarden);		
+		southGarden.setExit(Direction.NORTH, outerGarden);	
+		
+		//crypt entrance
+		cryptEntrance.setExit(Direction.North, darkRoom1);
+		
+		//darkrooms
+		darkRoom1.setExit(Direction.EAST, darkRoom2);
 	}
 	
 	/**
