@@ -444,6 +444,7 @@ public class InputHandler {
 						}
 					}
 					if(completedPedestals >=4) {
+						player.setQuestComplete("Totem Quest");
 						System.out.println("!!!A beacon of light shoots into the sky. It's coming from the crypt entrance.!!!\n");
 						
 					}
