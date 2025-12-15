@@ -151,7 +151,11 @@ public class InputHandler {
 				}
 			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 				directionString = "UP";
-			}	
+			} else if (directionString.equalsIgnoreCase("Artifact Room") && Player.getCurrentRoom().getName() == "Crypt Hallway") {
+				directionString = "EAST";
+			} else if (directionString.equalsIgnoreCase("Spirit Room") && Player.getCurrentRoom().getName() == "Crypt Hallway") {
+				directionString = "WEST";
+			}
 		}	
 		try {
 			direction = Direction.valueOf(properInputFormat.apply(directionString));

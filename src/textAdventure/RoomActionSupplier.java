@@ -113,8 +113,8 @@ public class RoomActionSupplier {
 	//Crypt hallway actions
 	public static Supplier<List<String>> cryptHallwayActions = () -> 
 	new ArrayList<>(List.of(
-			"Enter Silver Door",
-			"Enter Gilded Door"
+			"Enter Spirit Room",
+			"Enter Artifact Room"
 			));
 	
 	
