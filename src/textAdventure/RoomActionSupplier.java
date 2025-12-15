@@ -125,7 +125,7 @@ public class RoomActionSupplier {
 	public static Supplier<List<String>> spiritRoomActions = () -> 
 	new ArrayList<>(List.of(
 			"Open Vase",
-			"Exit Room"
+			"Leave Room"
 			));
 	
 	/**
@@ -135,6 +135,6 @@ public class RoomActionSupplier {
 	public static Supplier<List<String>> artifactRoomActions = () -> 
 	new ArrayList<>(List.of(
 			"Grab Artifact",
-			"Exit Room"
+			"Leave Room"
 			));
 }

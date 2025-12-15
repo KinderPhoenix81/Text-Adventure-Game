@@ -491,7 +491,6 @@ public class Database {
 		Room spiritRoom = rooms.get(9);
 		Room artifactRoom = rooms.get(10);
 
-		
 		//outer garden exits
 		outerGarden.setExit(Direction.NORTH, northGarden);
 		outerGarden.setExit(Direction.WEST, westGarden);

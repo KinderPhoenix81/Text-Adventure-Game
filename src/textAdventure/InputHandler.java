@@ -129,10 +129,17 @@ public class InputHandler {
 		if("LEAVE".equalsIgnoreCase(command)) {
 			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(Player.getCurrentRoom().getName())) {
 				directionString = "UP";
+			} else if (directionString.equalsIgnoreCase("Room")) {
+				if(Player.getCurrentRoom().getName().equals("Artifact Room")) {
+					directionString = "WEST";
+				} else if(Player.getCurrentRoom().getName().equals("Spirit Room")) {
+					directionString = "EAST";
+				}
 			} else {
 				System.out.println("Oh... You're not leaving...");
-			}
-		} else {
+			}  
+			
+			} else {
 			if (directionString.equalsIgnoreCase("Crypt Door")) {
 				if(player.completedQuest("Totem Quest")) {
 					directionString = "DOWN";
@@ -151,9 +158,9 @@ public class InputHandler {
 				}
 			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 				directionString = "UP";
-			} else if (directionString.equalsIgnoreCase("Artifact Room") && Player.getCurrentRoom().getName() == "Crypt Hallway") {
+			} else if (directionString.equalsIgnoreCase("Artifact Room") && Player.getCurrentRoom().getName().equals("Crypt Hallway")) {
 				directionString = "EAST";
-			} else if (directionString.equalsIgnoreCase("Spirit Room") && Player.getCurrentRoom().getName() == "Crypt Hallway") {
+			} else if (directionString.equalsIgnoreCase("Spirit Room") && Player.getCurrentRoom().getName().equals("Crypt Hallway")) {
 				directionString = "WEST";
 			}
 		}	
