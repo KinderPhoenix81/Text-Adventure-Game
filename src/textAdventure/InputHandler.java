@@ -258,12 +258,10 @@ public class InputHandler {
 				System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 				System.out.println(foundItem.getDesc());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
-<<<<<<< HEAD
-				Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
-=======
+
 				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				player.setIsViewingInventory(false);
->>>>>>> MichaelBranch
+
 				
 			} else {
 				System.out.println("~~~~~~~~~~~~~~~~~~~~");
