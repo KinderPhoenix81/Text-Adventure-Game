@@ -542,30 +542,35 @@ public class Database {
 		Room southGarden = rooms.get(4);
 		Room cryptEntrance = rooms.get(5);
 		
-		//outer garden exits
+		//outer garden special conditions
 		outerGarden.setSpecialConditionVerb("Completed");
 		outerGarden.setSpecialConditionNoun("Totem Quest");
 		outerGarden.setSpecialAction("Enter Crypt Door");
 		
-		//north garden exits
+		//north garden special conditions
 		northGarden.setSpecialConditionVerb("Has");
 		northGarden.setSpecialConditionNoun("Fish Totem");
 		northGarden.setSpecialAction("Use Fish Totem");
 		
-		//west garden exits
+		//west garden special conditions
 		westGarden.setSpecialConditionVerb("Has");
 		westGarden.setSpecialConditionNoun("Wheat Totem");
 		westGarden.setSpecialAction("Use Wheat Totem");
 		
-		//east garden exits
+		//east garden special conditions
 		eastGarden.setSpecialConditionVerb("Has");
 		eastGarden.setSpecialConditionNoun("Lumber Totem");
 		eastGarden.setSpecialAction("Use Lumber Totem");
 		
-		//south garden exits
+		//south garden special conditions
 		southGarden.setSpecialConditionVerb("Has");
 		southGarden.setSpecialConditionNoun("Sword Totem");
 		southGarden.setSpecialAction("Use Sword Totem");
+		
+		//crypt entrance special conditions
+		cryptEntrance.setSpecialConditionVerb("Has");
+		cryptEntrance.setSpecialConditionNoun("Torch");
+		cryptEntrance.setSpecialAction("Use Torch");
 	}
 	
 	/**
