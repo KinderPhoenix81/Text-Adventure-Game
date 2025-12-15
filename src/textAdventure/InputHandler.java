@@ -274,6 +274,7 @@ public class InputHandler {
 			player.getInventory().addItem(foundItem);
 			player.getCurrentRoom().removeItem(foundItem);
 			player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
+			checkSpecialConditions(player.getCurrentRoom());
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 			System.out.println(foundItem.getDesc() + "\n");
 			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
