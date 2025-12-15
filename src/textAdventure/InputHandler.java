@@ -32,9 +32,10 @@ public class InputHandler {
 	 * 
 	 * @param player Object for the player's status
 	 */
-	public InputHandler(Player player) {
+	public InputHandler(Player player, GameManagement gameManagement) {
 		this.player = player;
 		playerInventory = player.getInventory();
+		this.gameManagement = gameManagement;
 	}
 
 	/**
@@ -73,10 +74,12 @@ public class InputHandler {
 			argument = parts[1].trim();
 			
 			//create instance of Command that uses a parameter
-			switch (command) {
+			switch (command) {				
 				case GO:
-					movePlayer(argument.toUpperCase());
-					break;
+				case ENTER:
+				case LEAVE:
+					movePlayer(command.toString(), argument.toUpperCase());
+					break;				
 				case EXAMINE:
 					examineItem(argument.toUpperCase(), player.getIsViewingInventory());
 					break;
@@ -118,13 +121,40 @@ public class InputHandler {
 	}
 
 	/**
-	 * Move the player
+	 * Move the player to new area instead of direction
 	 * 
 	 * @param directionString The direction the player wishes to move in
 	 */
 	//handles player movement
-	public void movePlayer(String directionString) {
+	public void movePlayer(String command, String directionString) {
 		Direction direction;
+		if("LEAVE".equalsIgnoreCase(command)) {
+			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(player.getCurrentRoom().getName())) {
+				directionString = "UP";
+			} else {
+				System.out.println("Oh... You're not leaving...");
+			}
+		} else {
+			if (directionString.equalsIgnoreCase("Crypt Door")) {
+				if(player.completedQuest("Totem Quest")) {
+					directionString = "DOWN";
+				} else {
+					System.out.println("I don't recognize that command");
+					return;
+				}
+				
+			} else if ("Crypt Entrance".equals(player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
+				if(player.getHasLitTorch()) {
+					directionString = "NORTH";
+				} else {
+					System.out.println("You're too scared of the darkness to head that way... \n");
+					GameManagement.displayRoom.accept(player.getCurrentRoom());
+					return;
+				}
+			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
+				directionString = "UP";
+			}	
+		}	
 		try {
 			direction = Direction.valueOf(properInputFormat.apply(directionString));
 		} catch (IllegalArgumentException e) {
@@ -137,12 +167,12 @@ public class InputHandler {
 
 		if (nextRoom != null) {
 			//check if player can have special actions
-			checkSpecialConditions(nextRoom);
 			player.setCurrentRoom(nextRoom);
+			checkSpecialConditions(player.getCurrentRoom());
 			GameManagement.displayRoom.accept(nextRoom);
 		} else {
 			System.out.println("You can not travel that direction from here.");
-		}		
+		}
 	}
 
 	/**
@@ -262,6 +292,7 @@ public class InputHandler {
 			player.getInventory().addItem(foundItem);
 			player.getCurrentRoom().removeItem(foundItem);
 			player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
+			checkSpecialConditions(player.getCurrentRoom());
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 			System.out.println(foundItem.getDesc() + "\n");
 			player.getCurrentRoom().getRoomActions().forEach(System.out::println);
@@ -404,6 +435,13 @@ public class InputHandler {
 				case "LUMBER TOTEM":
 					useItemOn = "EAST PEDESTAL";
 					break;
+				case "TORCH":
+					player.setHasLitTorch(true);
+					System.out.println("~~~~~The torch has been lit~~~~~");
+					System.out.println("It burns brightly.\n");
+					player.getCurrentRoom().removeRoomAction("Use Torch");
+					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+					return;
 				default:
 					System.out.println("You can't use that item now...");
 			}
@@ -461,11 +499,11 @@ public class InputHandler {
 	/**
 	 * Method for checking if the next room has a special condition
 	 * 
-	 * @param nextRoom The next room the player is trying to enter
+	 * @param currentRoom The next room the player is trying to enter
 	 */
-	private void checkSpecialConditions(Room nextRoom) {
-		String specialConditionVerb = nextRoom.getSpecialConditionVerb();
-		String specialConditionNoun = nextRoom.getSpecialConditionNoun();
+	private void checkSpecialConditions(Room currentRoom) {
+		String specialConditionVerb = currentRoom.getSpecialConditionVerb();
+		String specialConditionNoun = currentRoom.getSpecialConditionNoun();
 		
 		if(specialConditionVerb == null || specialConditionVerb.isEmpty()) {
 			return;
@@ -480,14 +518,14 @@ public class InputHandler {
 		switch (specialConditionVerb) {
 			case "Has":
 				if(player.hasItem(specialConditionNoun.toUpperCase())) {
-					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+					currentRoom.addRoomAction(currentRoom.getSpecialAction());
 				} else {
-					nextRoom.removeRoomAction(nextRoom.getSpecialAction());
+					currentRoom.removeRoomAction(currentRoom.getSpecialAction());
 				}
 				break;
 			case "Completed":
 				if(player.completedQuest(specialConditionNoun)) {
-					nextRoom.addRoomAction(nextRoom.getSpecialAction());
+					currentRoom.addRoomAction(currentRoom.getSpecialAction());
 				}
 				break;
 		}

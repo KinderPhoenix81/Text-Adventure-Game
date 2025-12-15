@@ -27,6 +27,7 @@ public class Player {
 	private Locale locale = new Locale("en", "US");
 	private boolean isViewingInventory = false;
 	private Map<String, Boolean> quests;
+	private boolean hasLitTorch = false;
 	
 	/**
 	 * Constructor for Player
@@ -153,6 +154,23 @@ public class Player {
 	 */
 	public void setQuestComplete(String questName) {
 		this.quests.put(questName, true);
+	}
+	
+	/**
+	 * Getter for viewing inventory
+	 * 
+	 */
+	public boolean getHasLitTorch() {
+		return hasLitTorch;
+	}
+	
+	/**
+	 * Setter for viewing inventory
+	 * 
+	 * @param isViewing Value to set
+	 */
+	public void setHasLitTorch(boolean hasLitTorch ) {
+		this.hasLitTorch = hasLitTorch;
 	}
 	
 }

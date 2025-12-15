@@ -490,12 +490,24 @@ public class Database {
 		Room eastGarden = rooms.get(3);
 		Room southGarden = rooms.get(4);
 		Room cryptEntrance = rooms.get(5);
+		Room darkRoom1 = rooms.get(6);
+		Room darkRoom2 = rooms.get(7);
+		Room darkRoom3 = rooms.get(8);
+		Room darkRoom4 = rooms.get(9);
+		Room darkRoom5 = rooms.get(10);
+		Room darkRoom6 = rooms.get(11);
+		Room cryptHallway = rooms.get(12);
+		Room splitHallway = rooms.get(13);
+		Room spiritRoom = rooms.get(14);
+		Room artifactRoom = rooms.get(15);
+
 		
 		//outer garden exits
 		outerGarden.setExit(Direction.NORTH, northGarden);
 		outerGarden.setExit(Direction.WEST, westGarden);
 		outerGarden.setExit(Direction.EAST, eastGarden);
 		outerGarden.setExit(Direction.SOUTH, southGarden);
+		outerGarden.setExit(Direction.DOWN, cryptEntrance);
 		
 		//north garden exits
 		northGarden.setExit(Direction.SOUTH, outerGarden);
@@ -507,7 +519,15 @@ public class Database {
 		eastGarden.setExit(Direction.WEST, outerGarden);
 		
 		//south garden exits
-		southGarden.setExit(Direction.NORTH, outerGarden);		
+		southGarden.setExit(Direction.NORTH, outerGarden);	
+		
+		//crypt entrance
+		cryptEntrance.setExit(Direction.NORTH, darkRoom1);
+		cryptEntrance.setExit(Direction.UP, outerGarden);
+		
+		//darkrooms
+		darkRoom1.setExit(Direction.SOUTH, cryptEntrance);
+		darkRoom1.setExit(Direction.EAST, artifactRoom);
 	}
 	
 	/**
@@ -523,30 +543,35 @@ public class Database {
 		Room southGarden = rooms.get(4);
 		Room cryptEntrance = rooms.get(5);
 		
-		//outer garden exits
+		//outer garden special conditions
 		outerGarden.setSpecialConditionVerb("Completed");
 		outerGarden.setSpecialConditionNoun("Totem Quest");
 		outerGarden.setSpecialAction("Enter Crypt Door");
 		
-		//north garden exits
+		//north garden special conditions
 		northGarden.setSpecialConditionVerb("Has");
 		northGarden.setSpecialConditionNoun("Fish Totem");
 		northGarden.setSpecialAction("Use Fish Totem");
 		
-		//west garden exits
+		//west garden special conditions
 		westGarden.setSpecialConditionVerb("Has");
 		westGarden.setSpecialConditionNoun("Wheat Totem");
 		westGarden.setSpecialAction("Use Wheat Totem");
 		
-		//east garden exits
+		//east garden special conditions
 		eastGarden.setSpecialConditionVerb("Has");
 		eastGarden.setSpecialConditionNoun("Lumber Totem");
 		eastGarden.setSpecialAction("Use Lumber Totem");
 		
-		//south garden exits
+		//south garden special conditions
 		southGarden.setSpecialConditionVerb("Has");
 		southGarden.setSpecialConditionNoun("Sword Totem");
 		southGarden.setSpecialAction("Use Sword Totem");
+		
+		//crypt entrance special conditions
+		cryptEntrance.setSpecialConditionVerb("Has");
+		cryptEntrance.setSpecialConditionNoun("Torch");
+		cryptEntrance.setSpecialAction("Use Torch");
 	}
 	
 	/**
