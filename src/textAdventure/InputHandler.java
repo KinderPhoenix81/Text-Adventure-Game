@@ -93,6 +93,7 @@ public class InputHandler {
 					ArrayList<Room> rooms = GameManagement.getRoomList();
 					rooms.get(9).removeRoomAction("Open Vase");
 					rooms.get(8).removeRoomAction("Enter Artifact Room");
+					player.setQuestComplete("Spirit Ending Quest");
 					break;
 				default:
 					System.out.println("I don't recognize that command.");
@@ -134,6 +135,18 @@ public class InputHandler {
 	//handles player movement
 	public void movePlayer(String command, String directionString) {
 		Direction direction;
+		
+		//If the an ending quest has been completed, show victory screen on console
+		if(player.completedQuest("Artifact Ending Quest") && Player.getCurrentRoom().getName().equals("Outer Garden Center")) {
+			//Display a winning condition & exit game
+			System.out.println("\n~~~~~~~~~\nYou escaped with the artifact!\n~~~~~~~~~");
+			System.exit(0);
+		} else if (player.completedQuest("Spirit Ending Quest") && Player.getCurrentRoom().getName().equals("Outer Garden Center")) {
+			//Display a winning condition & exit game
+			System.out.println("\\n~~~~~~~~~\\nYou freed the king's soul!!\\n~~~~~~~~~");
+			System.exit(0);
+		}
+		
 		if("LEAVE".equalsIgnoreCase(command)) {
 			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(Player.getCurrentRoom().getName())) {
 				directionString = "UP";
@@ -319,6 +332,7 @@ public class InputHandler {
 			if(itemName.equals("Golden Artifact")) {
 				ArrayList<Room> rooms = GameManagement.getRoomList(); 
 				rooms.get(8).removeRoomAction("Enter Spirit Room");
+				player.setQuestComplete("Artifact Ending Quest");
 			}
 		} else {
 			System.out.println("There is nothing here for examination...");

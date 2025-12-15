@@ -114,7 +114,8 @@ public class RoomActionSupplier {
 	public static Supplier<List<String>> cryptHallwayActions = () -> 
 	new ArrayList<>(List.of(
 			"Enter Spirit Room",
-			"Enter Artifact Room"
+			"Enter Artifact Room",
+			"Go South"
 			));
 	
 	

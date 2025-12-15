@@ -189,3 +189,27 @@
 12-15-2025 16:20:31.156 INFO  [LoggingExample] - Game objects properly mapped!
 12-15-2025 16:20:31.156 INFO  [LoggingExample] - Game objects sorted!
 12-15-2025 16:20:31.156 INFO  [LoggingExample] - Game objects sorted!
+12-15-2025 17:25:38.673 INFO  [LoggingExample] - Existing tables have been dropped.
+12-15-2025 17:25:38.673 INFO  [LoggingExample] - Existing tables have been dropped.
+12-15-2025 17:25:38.701 INFO  [LoggingExample] - Database created successfully!
+12-15-2025 17:25:38.701 INFO  [LoggingExample] - Database created successfully!
+12-15-2025 17:25:38.741 INFO  [LoggingExample] - Objects properly instantiated!
+12-15-2025 17:25:38.741 INFO  [LoggingExample] - Objects properly instantiated!
+12-15-2025 17:25:38.768 INFO  [LoggingExample] - Game objects properly loaded!
+12-15-2025 17:25:38.768 INFO  [LoggingExample] - Game objects properly loaded!
+12-15-2025 17:25:38.778 INFO  [LoggingExample] - Game objects properly mapped!
+12-15-2025 17:25:38.778 INFO  [LoggingExample] - Game objects properly mapped!
+12-15-2025 17:25:38.779 INFO  [LoggingExample] - Game objects sorted!
+12-15-2025 17:25:38.779 INFO  [LoggingExample] - Game objects sorted!
+12-15-2025 17:39:30.614 INFO  [LoggingExample] - Existing tables have been dropped.
+12-15-2025 17:39:30.614 INFO  [LoggingExample] - Existing tables have been dropped.
+12-15-2025 17:39:30.636 INFO  [LoggingExample] - Database created successfully!
+12-15-2025 17:39:30.636 INFO  [LoggingExample] - Database created successfully!
+12-15-2025 17:39:30.670 INFO  [LoggingExample] - Objects properly instantiated!
+12-15-2025 17:39:30.670 INFO  [LoggingExample] - Objects properly instantiated!
+12-15-2025 17:39:30.684 INFO  [LoggingExample] - Game objects properly loaded!
+12-15-2025 17:39:30.684 INFO  [LoggingExample] - Game objects properly loaded!
+12-15-2025 17:39:30.693 INFO  [LoggingExample] - Game objects properly mapped!
+12-15-2025 17:39:30.693 INFO  [LoggingExample] - Game objects properly mapped!
+12-15-2025 17:39:30.694 INFO  [LoggingExample] - Game objects sorted!
+12-15-2025 17:39:30.694 INFO  [LoggingExample] - Game objects sorted!
