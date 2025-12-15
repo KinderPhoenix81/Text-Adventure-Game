@@ -78,7 +78,7 @@ public class InputHandler {
 				case GO:
 				case ENTER:
 				case LEAVE:
-					movePlayer(command, argument.toUpperCase());
+					movePlayer(command.toString(), argument.toUpperCase());
 					break;				
 				case EXAMINE:
 					examineItem(argument.toUpperCase(), player.getIsViewingInventory());
@@ -129,7 +129,7 @@ public class InputHandler {
 	public void movePlayer(String command, String directionString) {
 		Direction direction;
 		if("LEAVE".equalsIgnoreCase(command)) {
-			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(player.getCurrentRoom().getName()))) {
+			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(player.getCurrentRoom().getName())) {
 				directionString = "UP";
 			} else {
 				System.out.println("Oh... You're not leaving...");
@@ -153,26 +153,26 @@ public class InputHandler {
 				}
 			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 				directionString = "UP";
-			}
-			try {
-				direction = Direction.valueOf(properInputFormat.apply(directionString));
-			} catch (IllegalArgumentException e) {
-				System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
-				return;
-			}
-
-			Room currentRoom = this.player.getCurrentRoom();
-			Room nextRoom = currentRoom.getExit(direction);
-
-			if (nextRoom != null) {
-				//check if player can have special actions
-				player.setCurrentRoom(nextRoom);
-				checkSpecialConditions(player.getCurrentRoom());
-				GameManagement.displayRoom.accept(nextRoom);
-			} else {
-				System.out.println("You can not travel that direction from here.");
 			}	
 		}	
+		try {
+			direction = Direction.valueOf(properInputFormat.apply(directionString));
+		} catch (IllegalArgumentException e) {
+			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
+			return;
+		}
+
+		Room currentRoom = this.player.getCurrentRoom();
+		Room nextRoom = currentRoom.getExit(direction);
+
+		if (nextRoom != null) {
+			//check if player can have special actions
+			player.setCurrentRoom(nextRoom);
+			checkSpecialConditions(player.getCurrentRoom());
+			GameManagement.displayRoom.accept(nextRoom);
+		} else {
+			System.out.println("You can not travel that direction from here.");
+		}
 	}
 
 	/**
