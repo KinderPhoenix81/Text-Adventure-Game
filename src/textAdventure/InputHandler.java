@@ -353,7 +353,7 @@ public class InputHandler {
 					System.out.println("You can't use that item now...");
 			}
 			
-			//set new pedestal examine text
+			
 			//find pedestal 
 			for(BaseInteractable interactable : roomInteractableList) 
 			{
@@ -364,9 +364,14 @@ public class InputHandler {
 				}
 			}
 			
-			
-			//remove from inventory
-			player.getInventory().removeItem(foundItem);
+			if (foundInteractable != null) {
+				Pedestal pedestal = (Pedestal) foundInteractable;
+				//set item on pedestal
+				pedestal.setPedestalItem(foundItem);
+				//remove from inventory
+				player.getInventory().removeItem(foundItem);
+			}
+
 		} else {
 			System.out.println("You do not possess that item...");
 		}
