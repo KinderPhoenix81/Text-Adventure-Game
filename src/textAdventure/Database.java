@@ -523,6 +523,7 @@ public class Database {
 		
 		//crypt entrance
 		cryptEntrance.setExit(Direction.NORTH, darkRoom1);
+		cryptEntrance.setExit(Direction.UP, outerGarden);
 		
 		//darkrooms
 		darkRoom1.setExit(Direction.SOUTH, cryptEntrance);
