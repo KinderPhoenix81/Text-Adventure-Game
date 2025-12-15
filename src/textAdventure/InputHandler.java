@@ -78,7 +78,7 @@ public class InputHandler {
 				case GO:
 				case ENTER:
 				case LEAVE:
-					movePlayer(argument.toUpperCase());
+					movePlayer(command, argument.toUpperCase());
 					break;				
 				case EXAMINE:
 					examineItem(argument.toUpperCase(), player.getIsViewingInventory());
@@ -126,45 +126,53 @@ public class InputHandler {
 	 * @param directionString The direction the player wishes to move in
 	 */
 	//handles player movement
-	public void movePlayer(String directionString) {
+	public void movePlayer(String command, String directionString) {
 		Direction direction;
-		if (directionString.equalsIgnoreCase("Crypt Door")) {
-			if(player.completedQuest("Totem Quest")) {
-				directionString = "DOWN";
+		if("LEAVE".equalsIgnoreCase(command)) {
+			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(player.getCurrentRoom().getName()))) {
+				directionString = "UP";
 			} else {
-				System.out.println("I don't recognize that command");
-				return;
+				System.out.println("Oh... You're not leaving...");
 			}
-			
-		} else if ("Crypt Entrance".equals(player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
-			if(player.getHasLitTorch()) {
-				directionString = "NORTH";
-			} else {
-				System.out.println("You're too scared of the darkness to head that way... \n");
-				GameManagement.displayRoom.accept(player.getCurrentRoom());
-				return;
-			}
-		} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
-			directionString = "UP";
-		}
-		try {
-			direction = Direction.valueOf(properInputFormat.apply(directionString));
-		} catch (IllegalArgumentException e) {
-			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
-			return;
-		}
-
-		Room currentRoom = this.player.getCurrentRoom();
-		Room nextRoom = currentRoom.getExit(direction);
-
-		if (nextRoom != null) {
-			//check if player can have special actions
-			player.setCurrentRoom(nextRoom);
-			checkSpecialConditions(player.getCurrentRoom());
-			GameManagement.displayRoom.accept(nextRoom);
 		} else {
-			System.out.println("You can not travel that direction from here.");
-		}		
+			if (directionString.equalsIgnoreCase("Crypt Door")) {
+				if(player.completedQuest("Totem Quest")) {
+					directionString = "DOWN";
+				} else {
+					System.out.println("I don't recognize that command");
+					return;
+				}
+				
+			} else if ("Crypt Entrance".equals(player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
+				if(player.getHasLitTorch()) {
+					directionString = "NORTH";
+				} else {
+					System.out.println("You're too scared of the darkness to head that way... \n");
+					GameManagement.displayRoom.accept(player.getCurrentRoom());
+					return;
+				}
+			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
+				directionString = "UP";
+			}
+			try {
+				direction = Direction.valueOf(properInputFormat.apply(directionString));
+			} catch (IllegalArgumentException e) {
+				System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
+				return;
+			}
+
+			Room currentRoom = this.player.getCurrentRoom();
+			Room nextRoom = currentRoom.getExit(direction);
+
+			if (nextRoom != null) {
+				//check if player can have special actions
+				player.setCurrentRoom(nextRoom);
+				checkSpecialConditions(player.getCurrentRoom());
+				GameManagement.displayRoom.accept(nextRoom);
+			} else {
+				System.out.println("You can not travel that direction from here.");
+			}	
+		}	
 	}
 
 	/**

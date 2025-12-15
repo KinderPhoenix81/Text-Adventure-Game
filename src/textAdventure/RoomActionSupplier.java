@@ -84,7 +84,7 @@ public class RoomActionSupplier {
 		new ArrayList<>(List.of(
 			"Go North",
 			"Grab Torch",
-			"Exit Crypt"
+			"Leave Crypt"
 			));
 	
 		/**
