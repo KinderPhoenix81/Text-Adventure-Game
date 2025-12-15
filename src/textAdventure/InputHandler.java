@@ -138,7 +138,8 @@ public class InputHandler {
 			if(player.getHasLitTorch()) {
 				directionString = "DOWN";
 			} else {
-				System.out.println("You're too scared of the darkness to head that way...");
+				System.out.println("You're too scared of the darkness to head that way... \n");
+				GameManagement.displayRoom.accept(player.getCurrentRoom());
 				return;
 			}
 		} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
