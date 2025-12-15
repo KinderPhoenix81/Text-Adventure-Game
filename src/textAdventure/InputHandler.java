@@ -131,6 +131,7 @@ public class InputHandler {
 				directionString = "DOWN";
 			} else {
 				System.out.println("I don't recognize that command");
+				return;
 			}
 			
 		} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
