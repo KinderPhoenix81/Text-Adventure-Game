@@ -73,10 +73,11 @@ public class InputHandler {
 			argument = parts[1].trim();
 			
 			//create instance of Command that uses a parameter
-			switch (command) {
+			switch (command) {				
 				case GO:
+				case ENTER:
 					movePlayer(argument.toUpperCase());
-					break;
+					break;				
 				case EXAMINE:
 					examineItem(argument.toUpperCase(), player.getIsViewingInventory());
 					break;
@@ -118,13 +119,18 @@ public class InputHandler {
 	}
 
 	/**
-	 * Move the player
+	 * Move the player to new area instead of direction
 	 * 
 	 * @param directionString The direction the player wishes to move in
 	 */
 	//handles player movement
 	public void movePlayer(String directionString) {
 		Direction direction;
+		if (directionString == "Crypt Entrance") {
+			directionString = "DOWN";
+		} else if (directionString == "Outside Crypt") {
+			directionString = "UP";
+		}
 		try {
 			direction = Direction.valueOf(properInputFormat.apply(directionString));
 		} catch (IllegalArgumentException e) {

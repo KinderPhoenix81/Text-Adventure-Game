@@ -496,6 +496,7 @@ public class Database {
 		outerGarden.setExit(Direction.WEST, westGarden);
 		outerGarden.setExit(Direction.EAST, eastGarden);
 		outerGarden.setExit(Direction.SOUTH, southGarden);
+		outerGarden.setExit(Direction.DOWN, cryptEntrance);
 		
 		//north garden exits
 		northGarden.setExit(Direction.SOUTH, outerGarden);

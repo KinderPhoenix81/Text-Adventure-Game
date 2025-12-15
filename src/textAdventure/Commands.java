@@ -12,6 +12,7 @@ public enum Commands {
 	 * The various commands the user can enter
 	 * 
 	 * GO: Handles movement
+	 * ENTER: another word to handle movement
 	 * GRAB: Pick up an item and add it to inventory
 	 * EXAMINE: Look at a point of interest
 	 * USE: Use an item
@@ -21,6 +22,7 @@ public enum Commands {
 	 * UNKNOWN: 'error message' for invalid commands
 	 */
 	GO("go", 1, "MOVE"), //takes direction
+	ENTER("go", 1, "Move"), // another word for enter
 	GRAB("grab", 1, "GET_ITEM"), //takes item
 	EXAMINE("examine", 1, "LOOK_AT"), //takes item
 	USE("use", 2, "USE_ITEM"), //takes item and something to interact with
