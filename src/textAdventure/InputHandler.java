@@ -427,7 +427,7 @@ public class InputHandler {
 					checkSpecialConditions(player.getCurrentRoom());
 					
 					System.out.println("~~~~~" + foundItem.getName() + " Used~~~~~");
-					System.out.println("The " + foundItem.getName() + " was set on the " + pedestal.getName() + "!");
+					System.out.println("The " + foundItem.getName() + " was set on the " + pedestal.getName() + "!\n");
 					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				}
 			}
