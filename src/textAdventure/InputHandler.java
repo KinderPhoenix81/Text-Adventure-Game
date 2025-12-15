@@ -134,7 +134,7 @@ public class InputHandler {
 				return;
 			}
 			
-		} else if (player.getCurrentRoom().getName() == "Crypt Entrance" && directionString.equalsIgnoreCase("NORTH")) {
+		} else if ("Crypt Entrance".equals(player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
 			if(player.getHasLitTorch()) {
 				directionString = "DOWN";
 			} else {
