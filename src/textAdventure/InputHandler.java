@@ -429,7 +429,7 @@ public class InputHandler {
 				case "TORCH":
 					player.setHasLitTorch(true);
 					System.out.println("~~~~~The torch has been lit~~~~~");
-					System.out.println("It burns brightly.");
+					System.out.println("It burns brightly.\n");
 					player.getCurrentRoom().removeRoomAction("Use Torch");
 					player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 					return;
