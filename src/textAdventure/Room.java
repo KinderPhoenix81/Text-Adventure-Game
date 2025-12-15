@@ -2,6 +2,7 @@ package textAdventure;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Room implements Comparable<Room>{
@@ -165,17 +166,18 @@ public class Room implements Comparable<Room>{
 	}
 	
 	public void removeRoomAction(String roomAction) {
-		//need to evaluate toUpper strings
-		for (String storedRoomAction : this.roomActions) {
-			String upperStoredRoomAction = storedRoomAction.toUpperCase();		
-			
-			if(upperStoredRoomAction.equals(roomAction)) {
-				this.roomActions.remove(storedRoomAction);
-				return;
-			}
-		}
-		
-		
-	}
-	
+	    String upperRoomAction = roomAction.toUpperCase();
+	    
+	    Iterator<String> iterator = this.roomActions.iterator();
+
+	    while (iterator.hasNext()) {
+	        String storedRoomAction = iterator.next();
+	        String upperStoredRoomAction = storedRoomAction.toUpperCase();
+
+	        if (upperStoredRoomAction.equals(upperRoomAction)) {
+	            iterator.remove(); 
+	            return;
+	        }
+	    }
+	}		
 }
