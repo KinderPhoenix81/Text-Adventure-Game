@@ -190,7 +190,7 @@ public class InputHandler {
 				} else {
 					//Prevent the player from moving forward into the darkness
 					System.out.println("You're too scared of the darkness to head that way... \n");
-					GameManagement.displayRoom.accept(Player.getCurrentRoom());
+					Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 					return;
 				}
 				//If the player exiting the crypt, change the direction to be up
@@ -376,6 +376,7 @@ public class InputHandler {
 			}
 		} else {
 			System.out.println("There is nothing here for examination...");
+			Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 		}
 	}
 	
