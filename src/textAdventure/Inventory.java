@@ -43,7 +43,7 @@ public class Inventory {
 	 * 
 	 * @return list of items in inventory
 	 */
-	public static List<Item> getAllInventory(){
+	public List<Item> getAllInventory(){
 		return items;
 	}
 	

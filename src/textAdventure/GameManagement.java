@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 
@@ -46,11 +47,7 @@ public class GameManagement {
 	//Provides base information about basic actions
 	private ArrayList<String> playerActionsPrompt;
 	
-	//add totem check booleans
-	private boolean isNorthTotemPlaced = false;
-	private boolean isEastTotemPlaced = false;
-	private boolean isSouthTotemPlaced = false;
-	private boolean isWestTotemPlaced = false;
+	
 	
 	
 	/**
@@ -86,8 +83,12 @@ public class GameManagement {
 		player.setCurrentRoom(roomList.get(0));
 		this.inputHandler = new InputHandler(player, this);
 		
+		//get language
+		selectLanguage();
+		
+		
 		//Show the starting room
-		displayRoom.accept(Player.getCurrentRoom());
+		displayRoom.accept(player.getCurrentRoom());
 	}
 	
 	
@@ -95,7 +96,7 @@ public class GameManagement {
 	 * Set up a room for the player to be in
 	 */
 	//Set the text of a room, it's lore, description, and all actions
-	public static Consumer<Room> displayRoom = room -> {
+	public Consumer<Room> displayRoom = room -> {
 		System.out.println("\n");
 		System.out.println("~~~ " + room.getName() + " ~~~\n");
 		System.out.println(localizedDesc(room.getRoomDesc()) + "\n");
@@ -152,6 +153,40 @@ public class GameManagement {
 		titleScrActions.add("Quit");
 		titleScreenActions = titleScrActions;
 	}
+	
+	
+	/**
+	 * Get language to be used for the rest of game
+	 * sets language in player
+	 */
+	private void selectLanguage()
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("\n\n");
+		System.out.println("Select Language:");
+		System.out.println("1. English");
+		System.out.println("2. Spanish");
+		
+		while(true)
+		{
+			String input = scanner.nextLine();
+			
+			switch(input)
+			{
+			case "1":
+				player.setLocale( new Locale("en", "US"));
+				
+				return;
+			case "2":
+				player.setLocale(new Locale("es","SP"));
+				
+				return;
+			default:
+				System.out.println("Invalide choice, try again");
+			}
+		}
+		
+	}
 
 	/**
 	 * Method for localizing the game text
@@ -160,7 +195,7 @@ public class GameManagement {
 	 * @return The localized text
 	 */
 //	//returns text based on language selected
-	public static String localizedDesc(String descKey)
+	public String localizedDesc(String descKey)
 	{
 		Locale locale = player.getLocale();
 		ResourceBundle rb = ResourceBundle.getBundle("Description", locale);
@@ -229,7 +264,7 @@ public class GameManagement {
 	 * @return the list of rooms
 	 */
 	//Getter and setter for room list
-	public static ArrayList<Room> getRoomList() {
+	public ArrayList<Room> getRoomList() {
 		return GameManagement.roomList;
 	}
 	
@@ -267,7 +302,7 @@ public class GameManagement {
 	 * @return the list of interactables
 	 */
 	//Getter and setter for interactable list
-	public static ArrayList<BaseInteractable> getInteractables() {
+	public ArrayList<BaseInteractable> getInteractables() {
 		return GameManagement.interactableList;
 	}
 	

@@ -22,9 +22,12 @@ public class Player {
 	 */
 	//Fields for player
 	private String name;
-	private static Inventory inventory = new Inventory();
-	private static Room currentRoom;
-	private Locale locale = new Locale("en", "US");
+	//these 2 were static
+	private Inventory inventory = new Inventory();
+	private Room currentRoom;
+	
+	
+	private Locale locale;
 	private boolean isViewingInventory = false;
 	private Map<String, Boolean> quests;
 	private boolean hasLitTorch = false;
@@ -60,7 +63,7 @@ public class Player {
 	 * 
 	 * @return player inventory
 	 */
-	public static Inventory getInventory() {
+	public Inventory getInventory() {
 		return inventory;
 	}
 	
@@ -69,7 +72,7 @@ public class Player {
 	 * 
 	 * @return current room
 	 */
-	public static Room getCurrentRoom() {
+	public Room getCurrentRoom() {
 		return currentRoom;
 	}
 	
