@@ -137,64 +137,88 @@ public class InputHandler {
 		Direction direction;
 		
 		//If the an ending quest has been completed, show victory screen on console
-		if(player.completedQuest("Artifact Ending Quest") && Player.getCurrentRoom().getName().equals("Outer Garden Center")) {
+		if(player.completedQuest("Artifact Ending Quest") && Player.getCurrentRoom().getName().equals("Crypt Hallway") && command.equalsIgnoreCase("leave")) {
 			//Display a winning condition & exit game
 			System.out.println("\n~~~~~~~~~\nYou escaped with the artifact!\n~~~~~~~~~");
 			System.exit(0);
-		} else if (player.completedQuest("Spirit Ending Quest") && Player.getCurrentRoom().getName().equals("Outer Garden Center")) {
+		} else if (player.completedQuest("Spirit Ending Quest") && Player.getCurrentRoom().getName().equals("Crypt Hallway") && command.equalsIgnoreCase("leave")) {
 			//Display a winning condition & exit game
 			System.out.println("\\n~~~~~~~~~\\nYou freed the king's soul!!\\n~~~~~~~~~");
 			System.exit(0);
 		}
 		
+		//If the command is to leave
 		if("LEAVE".equalsIgnoreCase(command)) {
+			//If the player is leaving the crypt
 			if(directionString.equalsIgnoreCase("CRYPT") && "Crypt Entrance".equals(Player.getCurrentRoom().getName())) {
+				//Change the direction to up
 				directionString = "UP";
+				//If the player is leaving an ending room
 			} else if (directionString.equalsIgnoreCase("Room")) {
+				//If the player is in the artifact room
 				if(Player.getCurrentRoom().getName().equals("Artifact Room")) {
+					//Change their direction to west
 					directionString = "WEST";
+					//If the player is in the spirit room
 				} else if(Player.getCurrentRoom().getName().equals("Spirit Room")) {
+					//Change their direction to east
 					directionString = "EAST";
 				}
+				//Don't let the player leave
 			} else {
 				System.out.println("Oh... You're not leaving...");
 			}  
-			
+			//If the command is NOT to leave
 			} else {
+				//If the crypt door is being accessed
 			if (directionString.equalsIgnoreCase("Crypt Door")) {
+				//If the totem quest is complete
 				if(player.completedQuest("Totem Quest")) {
+					//Allow the player to go down
 					directionString = "DOWN";
 				} else {
+					//Refuse entry
 					System.out.println("I don't recognize that command");
 					return;
 				}
-				
+			//If the crypt entrance is being accessed and the player wants to go further into the crypt
 			} else if ("Crypt Entrance".equals(Player.getCurrentRoom().getName()) && directionString.equalsIgnoreCase("NORTH")) {
+				//If the player has a lit torch
 				if(player.getHasLitTorch()) {
+					//Allow them to travel north
 					directionString = "NORTH";
 				} else {
+					//Prevent the player from moving forward into the darkness
 					System.out.println("You're too scared of the darkness to head that way... \n");
 					GameManagement.displayRoom.accept(Player.getCurrentRoom());
 					return;
 				}
+				//If the player exiting the crypt, change the direction to be up
 			} else if (directionString.equalsIgnoreCase("Outside Crypt")) {
 				directionString = "UP";
+				//If the player is trying to enter the artifact room, change the direction to be east
 			} else if (directionString.equalsIgnoreCase("Artifact Room") && Player.getCurrentRoom().getName().equals("Crypt Hallway")) {
 				directionString = "EAST";
+				//If the player is trying to enter the spirit room, change the direction to be west
 			} else if (directionString.equalsIgnoreCase("Spirit Room") && Player.getCurrentRoom().getName().equals("Crypt Hallway")) {
 				directionString = "WEST";
 			}
 		}	
+		
+		//Try parsing the directionString given by the user / conditionals above
 		try {
 			direction = Direction.valueOf(properInputFormat.apply(directionString));
+			//Catch invalid directions
 		} catch (IllegalArgumentException e) {
 			System.out.println("That is not a valid direction. Valid Directions include: NORTH, EAST, SOUTH, WEST.");
 			return;
 		}
 
+		//Assign the player's current room and next room to enter
 		Room currentRoom = Player.getCurrentRoom();
 		Room nextRoom = currentRoom.getExit(direction);
 
+		//If the next room exists
 		if (nextRoom != null) {
 			//check if player can have special actions
 			player.setCurrentRoom(nextRoom);
@@ -215,8 +239,6 @@ public class InputHandler {
 			System.out.println("There is nothing here for the taking...");
 			return;
 		}
-
-		//TODO: add to inventory if possible
 	}
 
 	/**
@@ -279,22 +301,23 @@ public class InputHandler {
 			ArrayList<Item> itemList = (ArrayList<Item>) Inventory.getAllInventory();
 			Item foundItem = null;
 			
+			//For each item in the player's inventory, display it on screen
 			for(Item item : itemList) {
 				if(item.getName().toUpperCase().contains(itemName)) {
 					foundItem = item;
 					break;
 				}
 			}
-			
+			//If an item is found, display the examination description
 			if (foundItem != null) {
 				System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
 				System.out.println(foundItem.getDesc());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~\n");
 
-				player.getCurrentRoom().getRoomActions().forEach(System.out::println);
+				Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				player.setIsViewingInventory(false);
-
-				
+			
+			//If there's no item for examination, display nothing
 			} else {
 				System.out.println("~~~~~~~~~~~~~~~~~~~~");
 				System.out.println("There is nothing here for examination...");
@@ -309,23 +332,40 @@ public class InputHandler {
 	 * @param itemName the item the player is trying to take
 	 */
 	public void grabItem(String itemName) {
+		//Get the item list of the room
 		ArrayList<Item> itemList = Player.getCurrentRoom().getItemList();
 				Item foundItem = null;
 
+		//For each item in the item list
 		for(Item item : itemList) {
+			//If the item is picked up, register that boolean
 			if(item.getName().toUpperCase().contains(itemName)) {
 				foundItem = item;
 				break;
 			}
 		}
 
+		//If there was an item found
 		if (foundItem != null) {
+			//Add it to the inventory of the player
 			Player.getInventory().addItem(foundItem);
+			
+			//Remove it from the room
 			Player.getCurrentRoom().removeItem(foundItem);
+			
+			//Remove the grab item action
 			Player.getCurrentRoom().removeRoomAction("GRAB " + itemName);
+			
+			//Check special conditions for that room given the item
 			checkSpecialConditions(Player.getCurrentRoom());
+			
+			//Display 'found item' text
 			System.out.println("~~~~~ " + foundItem.getName() + " ~~~~~");
+			
+			//Display found item description
 			System.out.println(foundItem.getDesc() + "\n");
+			
+			//Display the room actions
 			Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 			
 			//Removes the spirit room prompt when the artifact is grabbed
@@ -383,20 +423,25 @@ public class InputHandler {
 	 * @param itemName the name of the item the player is taking
 	 */
 	public void useItem(String itemName) {
+		//Create lists for player items, room interactables, and all room interactables
 		ArrayList<Item> playerItemList = (ArrayList<Item>) Player.getInventory().getAllInventory();
 		ArrayList<BaseInteractable> roomInteractableList = Player.getCurrentRoom().getInteractableList();
 		ArrayList<BaseInteractable> allInteractables = GameManagement.getInteractables();
 		
+		//Declare base item and interactable objects
 		Item foundItem = null;
 		BaseInteractable foundInteractable = null;
 
+		//For each item
 		for(Item item : playerItemList) {
+			//If the item is found, assign it
 			if(item.getName().toUpperCase().contains(itemName)) {
 				foundItem = item;
 				break;
 			}
 		}
 		
+		//Logic to assign totems to pedestals
 		String useItemOn = "";
 		if (foundItem != null) {
 			switch (foundItem.getName().toUpperCase()) {
@@ -413,10 +458,17 @@ public class InputHandler {
 					useItemOn = "EAST PEDESTAL";
 					break;
 				case "TORCH":
+					//Light the torch
 					player.setHasLitTorch(true);
+					
+					//Display text
 					System.out.println("~~~~~The torch has been lit~~~~~");
 					System.out.println("It burns brightly.\n");
+					
+					//Remove the use torch action
 					Player.getCurrentRoom().removeRoomAction("Use Torch");
+					
+					//Display each room action
 					Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 					return;
 				default:
@@ -426,6 +478,7 @@ public class InputHandler {
 			//find pedestal 
 			for(BaseInteractable interactable : roomInteractableList) 
 			{
+				//If the target interactable was found, assign it
 				if(interactable.getName().toUpperCase().equals(useItemOn)) 
 				{
 					foundInteractable = interactable;
@@ -433,6 +486,7 @@ public class InputHandler {
 				}
 			}
 			
+			//If the interactable is found and is a pedestal
 			if (foundInteractable != null) {
 				if (foundInteractable instanceof Pedestal) {
 					Pedestal pedestal = (Pedestal) foundInteractable;
@@ -458,11 +512,13 @@ public class InputHandler {
 							}							
 						}
 					}
+					//If all pedestals were completed, message the player
 					if(completedPedestals >=4) {
 						player.setQuestComplete("Totem Quest");
 						System.out.println("!!!A beacon of light shoots into the sky. It's coming from the crypt entrance.!!!\n");
 						
 					}
+					//Display all room actions
 					Player.getCurrentRoom().getRoomActions().forEach(System.out::println);
 				}
 			}
