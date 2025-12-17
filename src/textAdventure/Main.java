@@ -20,16 +20,20 @@ public class Main {
 		InputHandler inputHandler = newGame.getInputHandler();
 		
 		//scanner which will take user text and complete actions
-		Scanner scanner = new Scanner(System.in);
-		boolean playing = true;
-		
-		while (playing) {
-			System.out.println("\n> ");
-			String input = scanner.nextLine().trim();
+		try(Scanner scanner = new Scanner(System.in)) {
+			boolean playing = true;
 			
-			//handle the command from the user
-			playing = inputHandler.handleCommand(input);
+			while (playing) {
+				System.out.println("\n> ");
+				String input = scanner.nextLine().trim();
+				
+				//handle the command from the user
+				playing = inputHandler.handleCommand(input);
+			}
+		} catch (Exception e) {
+			System.err.println("An unexpected error occured: " + e.getMessage());
 		}
+
 		
 		
 	}
